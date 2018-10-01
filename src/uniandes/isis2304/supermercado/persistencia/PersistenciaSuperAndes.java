@@ -16,11 +16,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import uniandes.isis2304.supermercados.negocio.Albergan;
-import uniandes.isis2304.supermercados.negocio.Almacenan;
-import uniandes.isis2304.supermercados.negocio.Bodega;
-import uniandes.isis2304.supermercados.negocio.Cliente;
-import uniandes.isis2304.supermercados.negocio
+import uniandes.isis2304.supermercados.negocio.*;
 
 public class PersistenciaSuperAndes 
 {
@@ -30,7 +26,7 @@ public class PersistenciaSuperAndes
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-	private static Logger log = Logger.getLogger(PersistenciaParranderos.class.getName());
+	private static Logger log = Logger.getLogger(PersistenciaSuperAndes.class.getName());
 	
 	/**
 	 * Cadena para indicar el tipo de sentencias que se va a utilizar en una consulta
