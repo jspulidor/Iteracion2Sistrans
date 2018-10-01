@@ -7,6 +7,11 @@ public class Sucursal {
 	 *****************************************************************/
 	
 	/**
+	 * Identificador único de la sucursal
+	 */
+	private int id;
+	
+	/**
 	 * La ciudad donde se encuentra la sede
 	 */
 	private String ciudad;
@@ -73,6 +78,12 @@ public class Sucursal {
 		this.sector = sector;
 	}
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	/**
 	 * Cadena de caracteres con todos los atributos de la sede
 	 */

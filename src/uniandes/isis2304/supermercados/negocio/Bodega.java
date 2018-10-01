@@ -16,19 +16,28 @@ public class Bodega {
 	private int id;
 	
 	/**
-	 * Categoría de la bodega
+	 * Id del tipo de producto que se almacena en la bodega
 	 */
-	private String categoria;
+	private int tipoProducto;
 	
 	/**
-	 * Capacidad de la bodega
+	 * Id de la sucursal a la que pertenece la bodega
 	 */
-	private int capacidad;
+	private int sucursal;
 	
 	/**
-	 * Cantidad de productos disponibles en la bodega
+	 * Capacidad en volumen de la bodega
 	 */
-	private int cantidadProductos;
+	
+	private Double capacidadVolumen;
+	
+	/**
+	 * Capacidad en peso de la bodega
+	 */
+	private Double capacidadPeso;
+	
+
+	
 	
 	/* ****************************************************************
 	 * 			Métodos
@@ -40,27 +49,31 @@ public class Bodega {
 	public Bodega()
 	{
 		id = 0;
-		categoria = "Default";
-		capacidad = 0;
-		cantidadProductos=0;
+		this.tipoProducto=0;
+		this.sucursal=0;
+		this.capacidadVolumen=(double) 0;
+		this.capacidadPeso=(double) 0;
 	}
 	
-	public Bodega (int pId, String pCategoria, int pCapacidad, int cantidadProductos)
+	public Bodega (int pId, int pTipoProducto, int pSucursal, Double pCapacidadVolumen, Double pCapacidadPeso)
 	{
 		this.id=pId;
-		this.categoria=pCategoria;
-		this.capacidad=pCapacidad;
-		this.cantidadProductos=cantidadProductos;
+		this.tipoProducto=pTipoProducto;
+		this.sucursal=pSucursal;
+		this.capacidadPeso=pCapacidadPeso;
+		this.capacidadVolumen=pCapacidadVolumen;
 	}
 	
 	/**
 	 * Retorna una cadena con la información de la bodega
 	 */
+	
 	@Override
 	public String toString() {
-		return "Bodega [id=" + id + ", categoria=" + categoria + ", capacidad=" + capacidad + ", cantidadProductos="
-				+ cantidadProductos + "]";
+		return "Bodega [id=" + id + ", tipoProducto=" + tipoProducto + ", sucursal=" + sucursal + ", capacidadVolumen="
+				+ capacidadVolumen + ", capacidadPeso=" + capacidadPeso + "]";
 	}
+
 	
 	/* ****************************************************************
 	 * 			Métodos Get y Set
@@ -70,35 +83,43 @@ public class Bodega {
 		return id;
 	}
 
+
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getCategoria() {
-		return categoria;
+	public int getTipoProducto() {
+		return tipoProducto;
 	}
 
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	public void setTipoProducto(int tipoProducto) {
+		this.tipoProducto = tipoProducto;
 	}
 
-	public int getCapacidad() {
-		return capacidad;
+	public int getSucursal() {
+		return sucursal;
 	}
 
-	public void setCapacidad(int capacidad) {
-		this.capacidad = capacidad;
+	public void setSucursal(int sucursal) {
+		this.sucursal = sucursal;
 	}
 
-	public int getCantidadProductos() {
-		return cantidadProductos;
+	public Double getCapacidadVolumen() {
+		return capacidadVolumen;
 	}
 
-	public void setCantidadProductos(int cantidadProductos) {
-		this.cantidadProductos = cantidadProductos;
+	public void setCapacidadVolumen(Double capacidadVolumen) {
+		this.capacidadVolumen = capacidadVolumen;
 	}
 
-	
+	public Double getCapacidadPeso() {
+		return capacidadPeso;
+	}
+
+	public void setCapacidadPeso(Double capacidadPeso) {
+		this.capacidadPeso = capacidadPeso;
+	}
+
 	
 	
 }

@@ -5,11 +5,15 @@ public class Producto {
 	/* ****************************************************************
 	 * 			Atributos
 	 *****************************************************************/
+	/**
+	 * Código de Barras del producto
+	 */
+	private String codigoBarras;
 	
 	/**
-	 * El identificador único del producto 
+	 * Tipo del Producto
 	 */
-	private int id;
+	private int tipo;
 	
 	/**
 	 * Nombre del producto
@@ -22,19 +26,15 @@ public class Producto {
 	private String marca; 
 	
 	/**
-	 * Precio Unitario del producto
-	 */
-	private double precioUnitario;
-	
-	/**
 	 * Presentación del producto
 	 */
 	private String presentacion;
 	
 	/**
-	 * Precio por medida del producto
+	 * Unidad de medida del producto
 	 */
-	private Double precioXMedida;
+	private String unidadMedida;
+	
 	
 	/**
 	 * Cantidad en presentación del prodcuto
@@ -42,19 +42,14 @@ public class Producto {
 	private int cantidadPresentacion;
 	
 	/**
-	 * Unidad de medida del producto
+	 * Peso del empaque del producto
 	 */
-	private String unidadMedida;
+	private Double pesoEmpaque;
 	
 	/**
-	 * Empacado del producto
+	 * Volumen del empaque del producto
 	 */
-	private String empacado;
-	
-	/**
-	 * Código de Barras del producto
-	 */
-	private String codigoBarras;
+	private Double volumenEmpaque;
 	
 	/* ****************************************************************
 	 * 			Métodos
@@ -65,58 +60,52 @@ public class Producto {
 	 */
 	public Producto()
 	{
-		this.id=0;
 		this.nombre="Default";
 		this.marca="Default";
-		this.precioUnitario=0;
 		this.presentacion="Default";
-		this.precioXMedida=(double) 0;
 		this.cantidadPresentacion=0;
 		this.unidadMedida="Default";
-		this.empacado="Default";
 		this.codigoBarras="Default";
+		this.tipo=0;
+		this.pesoEmpaque=(double) 0;
+		this.volumenEmpaque=(double) 0;
 	}
 	
-	public Producto(int pId, String pNombre, String pMarca, Double pPrecioUnitario, String pPresentacion, Double pPrecioXMedida, Integer pCantidadEnPresentacion, String pUnidadMedida, String pEmpacado, String pCodigoBarras)
+	public Producto( String pNombre, String pMarca, String pPresentacion,  Integer pCantidadEnPresentacion, String pUnidadMedida, String pCodigoBarras, int pTipo, Double pPesoEmpaque, Double pVolumenEmpaque)
 	{
-		this.id=pId;
 		this.nombre=pNombre;
 		this.marca=pMarca;
-		this.precioUnitario=pPrecioUnitario;
 		this.presentacion=pPresentacion;
-		this.precioXMedida=pPrecioXMedida;
 		this.cantidadPresentacion=pCantidadEnPresentacion;
 		this.unidadMedida=pUnidadMedida;
-		this.empacado=pEmpacado;
 		this.codigoBarras=pCodigoBarras;
+		this.tipo=pTipo;
+		this.pesoEmpaque=pPesoEmpaque;
+		this.volumenEmpaque=pVolumenEmpaque;
 	}
-	
+
 	/**
 	 * Retorna una cadena con la información del producto
 	 */
 	
 	@Override
 	public String toString() {
-		return "Producto [id=" + id + ", nombre=" + nombre + ", marca=" + marca + ", precioUnitario=" + precioUnitario
-				+ ", presentacion=" + presentacion + ", precioXMedida=" + precioXMedida + ", cantidadPresentacion="
-				+ cantidadPresentacion + ", unidadMedida=" + unidadMedida + ", empacado=" + empacado + ", codigoBarras="
-				+ codigoBarras + "]";
+		return "Producto [codigoBarras=" + codigoBarras + ", tipo=" + tipo + ", nombre=" + nombre + ", marca=" + marca
+				+ ", presentacion=" + presentacion + ", unidadMedida=" + unidadMedida + ", cantidadPresentacion="
+				+ cantidadPresentacion + ", pesoEmpaque=" + pesoEmpaque + ", volumenEmpaque=" + volumenEmpaque + "]";
 	}
+	
+	
+	
 
 	/* ****************************************************************
 	 * 			Métodos Get y Set
 	 *****************************************************************/
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getNombre() {
 		return nombre;
 	}
+
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -130,28 +119,12 @@ public class Producto {
 		this.marca = marca;
 	}
 
-	public double getPrecioUnitario() {
-		return precioUnitario;
-	}
-
-	public void setPrecioUnitario(double precioUnitario) {
-		this.precioUnitario = precioUnitario;
-	}
-
 	public String getPresentacion() {
 		return presentacion;
 	}
 
 	public void setPresentacion(String presentacion) {
 		this.presentacion = presentacion;
-	}
-
-	public Double getPrecioXMedida() {
-		return precioXMedida;
-	}
-
-	public void setPrecioXMedida(Double precioXMedida) {
-		this.precioXMedida = precioXMedida;
 	}
 
 	public int getCantidadPresentacion() {
@@ -170,13 +143,6 @@ public class Producto {
 		this.unidadMedida = unidadMedida;
 	}
 
-	public String getEmpacado() {
-		return empacado;
-	}
-
-	public void setEmpacado(String empacado) {
-		this.empacado = empacado;
-	}
 
 	public String getCodigoBarras() {
 		return codigoBarras;
@@ -185,5 +151,31 @@ public class Producto {
 	public void setCodigoBarras(String codigoBarras) {
 		this.codigoBarras = codigoBarras;
 	}
+
+
+	public int getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
+	}
+
+	public Double getPesoEmpaque() {
+		return pesoEmpaque;
+	}
+
+	public void setPesoEmpaque(Double pesoEmpaque) {
+		this.pesoEmpaque = pesoEmpaque;
+	}
+
+	public Double getVolumenEmpaque() {
+		return volumenEmpaque;
+	}
+
+	public void setVolumenEmpaque(Double volumenEmpaque) {
+		this.volumenEmpaque = volumenEmpaque;
+	}
+
 	
 }

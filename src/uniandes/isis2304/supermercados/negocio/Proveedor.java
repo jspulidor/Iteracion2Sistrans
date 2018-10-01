@@ -16,6 +16,10 @@ public class Proveedor {
 	 */
 	private String nombre;
 	
+	/**
+	 * Calificacion de calidad del proveedor
+	 */
+	private double calificacionCalidad;
 	
 	/* ****************************************************************
 	 * 			Métodos
@@ -28,6 +32,7 @@ public class Proveedor {
 	{
 		NIT = 0;
 		nombre = "Default";
+		calificacionCalidad=0;
 	}
 	
 	/**
@@ -35,11 +40,22 @@ public class Proveedor {
 	 * @param pNIT 
 	 * @param pNombre
 	 */
-	public Proveedor (int pNIT, String pNombre)
+	public Proveedor (int pNIT, String pNombre, Double pCalificacionCalidad)
 	{
 		NIT = pNIT;
 		nombre = pNombre;
+		calificacionCalidad=pCalificacionCalidad;
 	}
+	
+
+	/**
+	 * Método que retorna una cadena de con la información del proveedor
+	 */
+	@Override
+	public String toString() {
+		return "Proveedor [NIT=" + NIT + ", nombre=" + nombre + ", calificacionCalidad=" + calificacionCalidad + "]";
+	}
+	
 	
 	/* ****************************************************************
 	 * 			Métodos Get y Set
@@ -60,13 +76,15 @@ public class Proveedor {
 		this.nombre = nombre;
 	}
 	
-	/**
-	 * Método que retorna una cadena de con la información del proveedor
-	 */
-	@Override
-	public String toString() {
-		return "Proveedor [NIT=" + NIT + ", nombre=" + nombre + "]";
+	public double getCalificacionCalidad() {
+		return calificacionCalidad;
 	}
+
+	public void setCalificacionCalidad(double calificacionCalidad) {
+		this.calificacionCalidad = calificacionCalidad;
+	}
+
+
 	
 
 }

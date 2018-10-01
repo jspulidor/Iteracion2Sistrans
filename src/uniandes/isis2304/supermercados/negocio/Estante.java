@@ -12,14 +12,31 @@ public class Estante {
 	private int id;
 	
 	/**
-	 * Capacidad del estante
+	 * Tipo de producto que se guarda en el estante
 	 */
-	private int capacidad;
+	private int tipoProducto;
 	
 	/**
-	 * Categoría del estante
+	 * Id de la sucursal a la que pertenece el estante
 	 */
-	private String categoria;
+	
+	private int sucursal;
+	
+	/**
+	 * Capacidad en volumen del estante
+	 */
+	private Double capacidadVolumen;
+	
+	/**
+	 * Capacidad en peso del estante
+	 */
+	private Double capacidadPeso;
+	
+	/**
+	 * Nivel de abastecimiento del estante
+	 */
+	private int nivelAbastecimiento;
+
 	
 	/* ****************************************************************
 	 * 			Métodos
@@ -31,8 +48,11 @@ public class Estante {
 	public Estante()
 	{
 		setId(0);
-		setCapacidad(0);
-		setCategoria("Default");
+		this.tipoProducto=0;
+		this.sucursal=0;
+		this.capacidadVolumen=(double) 0;
+		this.capacidadPeso=(double) 0;
+		this.nivelAbastecimiento=0;
 	}
 	
 	/**
@@ -41,21 +61,29 @@ public class Estante {
 	 * @param pCapacidad
 	 * @param pCategoria
 	 */
-	public Estante(int pId, int pCapacidad, String pCategoria)
+	public Estante(int pId, int pTipoProducto, int pSucursal, Double pCapacidadVolumen,Double pCapacidadPeso, int pNivelAbastecimiento)
 	{
 		setId(pId);
-		this.setCapacidad(pCapacidad);
-		this.setCategoria(pCategoria);
+		this.setTipoProducto(pTipoProducto);
+		this.sucursal=pSucursal;
+		this.capacidadPeso=pCapacidadPeso;
+		this.capacidadVolumen=pCapacidadVolumen;
+		this.nivelAbastecimiento=pNivelAbastecimiento;
 		
 	}
 	
+
 	/**
 	 * Retorna una cadena con la información del estante
 	 */
+	
 	@Override
 	public String toString() {
-		return "Estante [id=" + id + ", capacidad=" + capacidad + ", categoria=" + categoria + "]";
+		return "Estante [id=" + id + ", tipoProducto=" + tipoProducto + ", sucursal=" + sucursal + ", capacidadVolumen="
+				+ capacidadVolumen + ", capacidadPeso=" + capacidadPeso + ", nivelAbastecimiento=" + nivelAbastecimiento
+				+ "]";
 	}
+
 	
 	
 	/* ****************************************************************
@@ -70,20 +98,44 @@ public class Estante {
 		this.id = id;
 	}
 
-	public int getCapacidad() {
-		return capacidad;
+	public Double getCapacidadVolumen() {
+		return capacidadVolumen;
 	}
 
-	public void setCapacidad(int capacidad) {
-		this.capacidad = capacidad;
+	public void setCapacidadVolumen(Double capacidadVolumen) {
+		this.capacidadVolumen = capacidadVolumen;
 	}
 
-	public String getCategoria() {
-		return categoria;
+	public int getTipoProducto() {
+		return tipoProducto;
 	}
 
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	public void setTipoProducto(int tipoProducto) {
+		this.tipoProducto = tipoProducto;
+	}
+
+	public int getSucursal() {
+		return sucursal;
+	}
+
+	public void setSucursal(int sucursal) {
+		this.sucursal = sucursal;
+	}
+
+	public Double getCapacidadPeso() {
+		return capacidadPeso;
+	}
+
+	public void setCapacidadPeso(Double capacidadPeso) {
+		this.capacidadPeso = capacidadPeso;
+	}
+
+	public int getNivelAbastecimiento() {
+		return nivelAbastecimiento;
+	}
+
+	public void setNivelAbastecimiento(int nivelAbastecimiento) {
+		this.nivelAbastecimiento = nivelAbastecimiento;
 	}
 	
 }
