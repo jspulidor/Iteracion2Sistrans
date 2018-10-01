@@ -1,6 +1,6 @@
 package uniandes.isis2304.supermercados.negocio;
 
-public class Proveedor {
+public class Proveedor implements VOProveedor {
 	
 	/* ****************************************************************
 	 * 			Atributos

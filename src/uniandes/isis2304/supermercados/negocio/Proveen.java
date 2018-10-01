@@ -1,6 +1,6 @@
 package uniandes.isis2304.supermercados.negocio;
 
-public class Proveen {
+public class Proveen implements VOProveen {
 
 	/* ****************************************************************
 	 * 			Atributos

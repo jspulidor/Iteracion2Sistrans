@@ -2,7 +2,7 @@ package uniandes.isis2304.supermercados.negocio;
 
 import java.sql.Timestamp;
 
-public class Pedido {
+public class Pedido implements VOPedido {
 	
 	/* ****************************************************************
 	 * 			Atributos

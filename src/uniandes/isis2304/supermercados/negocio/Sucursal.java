@@ -1,6 +1,6 @@
 package uniandes.isis2304.supermercados.negocio;
 
-public class Sucursal {
+public class Sucursal implements VOSucursal {
 	
 	/* ****************************************************************
 	 * 			Atributos

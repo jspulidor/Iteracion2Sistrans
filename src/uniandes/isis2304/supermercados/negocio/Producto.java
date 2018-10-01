@@ -1,6 +1,6 @@
 package uniandes.isis2304.supermercados.negocio;
 
-public class Producto {
+public class Producto implements VOProducto {
 	
 	/* ****************************************************************
 	 * 			Atributos
@@ -39,7 +39,7 @@ public class Producto {
 	/**
 	 * Cantidad en presentación del prodcuto
 	 */
-	private int cantidadPresentacion;
+	private Double cantidadPresentacion;
 	
 	/**
 	 * Peso del empaque del producto
@@ -63,7 +63,7 @@ public class Producto {
 		this.nombre="Default";
 		this.marca="Default";
 		this.presentacion="Default";
-		this.cantidadPresentacion=0;
+		this.cantidadPresentacion=(double) 0;
 		this.unidadMedida="Default";
 		this.codigoBarras="Default";
 		this.tipo=0;
@@ -71,7 +71,7 @@ public class Producto {
 		this.volumenEmpaque=(double) 0;
 	}
 	
-	public Producto( String pNombre, String pMarca, String pPresentacion,  Integer pCantidadEnPresentacion, String pUnidadMedida, String pCodigoBarras, int pTipo, Double pPesoEmpaque, Double pVolumenEmpaque)
+	public Producto( String pNombre, String pMarca, String pPresentacion,  Double pCantidadEnPresentacion, String pUnidadMedida, String pCodigoBarras, int pTipo, Double pPesoEmpaque, Double pVolumenEmpaque)
 	{
 		this.nombre=pNombre;
 		this.marca=pMarca;
@@ -127,11 +127,11 @@ public class Producto {
 		this.presentacion = presentacion;
 	}
 
-	public int getCantidadPresentacion() {
+	public Double getCantidadPresentacion() {
 		return cantidadPresentacion;
 	}
 
-	public void setCantidadPresentacion(int cantidadPresentacion) {
+	public void setCantidadPresentacion(Double cantidadPresentacion) {
 		this.cantidadPresentacion = cantidadPresentacion;
 	}
 

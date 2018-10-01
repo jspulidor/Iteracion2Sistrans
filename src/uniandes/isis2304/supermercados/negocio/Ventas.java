@@ -1,6 +1,6 @@
 package uniandes.isis2304.supermercados.negocio;
 
-public class Ventas 
+public class Ventas implements VOVentas
 {
 	/* ****************************************************************
 	 * 			Atributos
@@ -13,7 +13,7 @@ public class Ventas
 	private int cantidadProducto;
 
 	/* ****************************************************************
-	 * 			Métodos
+	 * 			Mï¿½todos
 	 *****************************************************************/
 	
 	public Ventas()

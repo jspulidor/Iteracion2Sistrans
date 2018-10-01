@@ -1,6 +1,6 @@
 package uniandes.isis2304.supermercados.negocio;
 
-public class Promociones 
+public class Promociones implements VOPromociones
 {
 	/* ****************************************************************
 	 * 			Atributos
@@ -11,7 +11,7 @@ public class Promociones
 	public int idPromocion;
 
 	/* ****************************************************************
-	 * 			Métodos
+	 * 			Mï¿½todos
 	 *****************************************************************/
 	
 	public Promociones()
