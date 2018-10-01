@@ -1,6 +1,6 @@
 package uniandes.isis2304.supermercados.negocio;
 
-public class Almacenan 
+public class Almacenan implements VOAlmacenan
 {
 	/* ****************************************************************
 	 * 			Atributos

@@ -1,6 +1,6 @@
 package uniandes.isis2304.supermercados.negocio;
 
-public class Inventario 
+public class Inventario implements VOInventario
 {
 	/* ****************************************************************
 	 * 			Atributos
@@ -100,6 +100,11 @@ public class Inventario
 	public void setNivelReorden(int pNivelReorden)
 	{
 		this.nivelReorden = pNivelReorden;
+	}
+	
+	public String toString()
+	{
+		return "Inventario [idSucursal =" +idSucursal+ ", idProducto =" +idProducto+ ", cantidad =" +cantidad+ ", precioUnitario =" +precioUnitario+ ", precioPorMedida =" +precioPorMedida+ ", nivelReorden =" +nivelReorden+ "]";
 	}
 
 }

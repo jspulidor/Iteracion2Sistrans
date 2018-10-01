@@ -1,6 +1,7 @@
 package uniandes.isis2304.supermercados.negocio;
 
-public class Estante {
+public class Estante implements VOEstante
+{
 	
 	/* ****************************************************************
 	 * 			Atributos

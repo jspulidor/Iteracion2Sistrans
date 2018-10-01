@@ -4,7 +4,8 @@ package uniandes.isis2304.supermercados.negocio;
  * Clase para modelar el concepto BODEGA del negocio de SuperAndes
  */
 
-public class Bodega {
+public class Bodega implements VOBodega
+{
 	
 	/* ****************************************************************
 	 * 			Atributos

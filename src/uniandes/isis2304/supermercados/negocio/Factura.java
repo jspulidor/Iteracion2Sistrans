@@ -2,7 +2,8 @@ package uniandes.isis2304.supermercados.negocio;
 
 import java.sql.Timestamp;
 
-public class Factura {
+public class Factura implements VOFactura
+{
 	
 	/* ****************************************************************
 	 * 			Atributos

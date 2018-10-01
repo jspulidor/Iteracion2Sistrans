@@ -1,6 +1,7 @@
 package uniandes.isis2304.supermercados.negocio;
 
-public class Cliente {
+public class Cliente implements VOCliente
+{
 	
 	/* ****************************************************************
 	 * 			Atributos
