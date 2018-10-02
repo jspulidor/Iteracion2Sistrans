@@ -18,7 +18,6 @@ import com.google.gson.JsonObject;
 
 import oracle.net.aso.v;
 import uniandes.isis2304.supermercados.negocio.*;
-import uniandes.isis2304.supermercado.persistencia.*;
 
 public class PersistenciaSuperAndes 
 {

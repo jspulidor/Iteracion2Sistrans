@@ -82,7 +82,7 @@ public class ConexionTest
   	  	try
 		{
 			log.info ("Probando el acceso a la base de datos con datos válidos (BD, credenciales, esquema");
-			superAndes = new SuperAndes(openConfig (CONFIG_TABLAS));
+			superAndes = new SuperAndes(openConfig(CONFIG_TABLAS));
 			log.info ("Conexión realizada correstamente");
 			log.info ("Cerrando la conexión");
 			
