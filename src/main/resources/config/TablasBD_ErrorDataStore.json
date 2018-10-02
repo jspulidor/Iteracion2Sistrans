@@ -3,7 +3,7 @@
 	"unidadPersistencia": "SuperAndesErrorDS",
 	"tablas":
 	[
-		"SuperAndes_secuence"
+		"SuperAndes_sequence",
 		"X_ALBEGAN",
 		"X_ALMACENAN",
 		"X_BODEGA",

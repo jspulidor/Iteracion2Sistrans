@@ -25,7 +25,7 @@ public class PersistenciaSuperAndes
 	 * 			Constantes
 	 *****************************************************************/
 	/**
-	 * Logger para escribir la traza de la ejecución
+	 * Logger para escribir la traza de la ejecuciï¿½n
 	 */
 	private static Logger log = Logger.getLogger(PersistenciaSuperAndes.class.getName());
 	
@@ -37,12 +37,12 @@ public class PersistenciaSuperAndes
 	 * 			Atributos
 	 *****************************************************************/
 	/**
-	 * Atributo privado que es el único objeto de la clase - Patrón SINGLETON
+	 * Atributo privado que es el ï¿½nico objeto de la clase - Patrï¿½n SINGLETON
 	 */
 	private static PersistenciaSuperAndes instance;
 	
 	/**
-	 * Fábrica de Manejadores de persistencia, para el manejo correcto de las transacciones
+	 * Fï¿½brica de Manejadores de persistencia, para el manejo correcto de las transacciones
 	 */
 	private PersistenceManagerFactory pmf;
 	
@@ -143,11 +143,11 @@ public class PersistenciaSuperAndes
 	private SQLVentas sqlVentas;
 	
 	/* ****************************************************************
-	 * 			Métodos del MANEJADOR DE PERSISTENCIA
+	 * 			Mï¿½todos del MANEJADOR DE PERSISTENCIA
 	 *****************************************************************/
 
 	/**
-	 * Constructor privado con valores por defecto - Patrón SINGLETON
+	 * Constructor privado con valores por defecto - Patrï¿½n SINGLETON
 	 */
 	private PersistenciaSuperAndes()
 	{
@@ -172,12 +172,12 @@ public class PersistenciaSuperAndes
 		tablas.add("PROVEEDOR");
 		tablas.add("PROVEEN");
 		tablas.add("SUCURSAL");
-		tablas.add("TIPO_PRODUCTO");
+		tablas.add("TIPOPRODUCTO");
 		tablas.add("VENTAS");
 	}
 	
 	/**
-	 * Constructor privado, que recibe los nombres de las tablas en un objeto Json - Patrón SINGLETON
+	 * Constructor privado, que recibe los nombres de las tablas en un objeto Json - Patrï¿½n SINGLETON
 	 * @param tableConfig - Objeto Json que contiene los nombres de las tablas y de la unidad de persistencia a manejar
 	 */
 	private PersistenciaSuperAndes(JsonObject tableConfig)
@@ -191,7 +191,7 @@ public class PersistenciaSuperAndes
 	}
 	
 	/**
-	 * @return Retorna el único objeto PersistenciaSuperAndes existente - Patrón SINGLETON
+	 * @return Retorna el ï¿½nico objeto PersistenciaSuperAndes existente - Patrï¿½n SINGLETON
 	 */
 	public static PersistenciaSuperAndes getInstance ()
 	{
@@ -205,7 +205,7 @@ public class PersistenciaSuperAndes
 	/**
 	 * Constructor que toma los nombres de las tablas de la base de datos del objeto tableConfig
 	 * @param tableConfig - El objeto JSON con los nombres de las tablas
-	 * @return Retorna el único objeto PersistenciaSuperAndes existente - Patrón SINGLETON
+	 * @return Retorna el ï¿½nico objeto PersistenciaSuperAndes existente - Patrï¿½n SINGLETON
 	 */
 	public static PersistenciaSuperAndes getInstance (JsonObject tableConfig)
 	{
@@ -217,7 +217,7 @@ public class PersistenciaSuperAndes
 	}
 	
 	/**
-	 * Cierra la conexión con la base de datos
+	 * Cierra la conexiï¿½n con la base de datos
 	 */
 	public void cerrarUnidadPersistencia ()
 	{
@@ -413,9 +413,9 @@ public class PersistenciaSuperAndes
 	}
 	
 	/**
-	 * Transacción para el generador de secuencia de SuperAndes
-	 * Adiciona entradas al log de la aplicación
-	 * @return El siguiente número del secuenciador de SuperAndes
+	 * Transacciï¿½n para el generador de secuencia de SuperAndes
+	 * Adiciona entradas al log de la aplicaciï¿½n
+	 * @return El siguiente nï¿½mero del secuenciador de SuperAndes
 	 */
 	private long nextval ()
 	{
@@ -425,9 +425,9 @@ public class PersistenciaSuperAndes
     }
 
 	/**
-	 * Extrae el mensaje de la exception JDODataStoreException embebido en la Exception e, que da el detalle específico del problema encontrado
-	 * @param e - La excepción que ocurrio
-	 * @return El mensaje de la excepción JDO
+	 * Extrae el mensaje de la exception JDODataStoreException embebido en la Exception e, que da el detalle especï¿½fico del problema encontrado
+	 * @param e - La excepciï¿½n que ocurrio
+	 * @return El mensaje de la excepciï¿½n JDO
 	 */
 	private String darDetalleException(Exception e) 
 	{
@@ -441,12 +441,12 @@ public class PersistenciaSuperAndes
 	}
 	
 	/**
-	 * Método que inserta, de manera transaccional, una tupla en la tabla Proveedores
-	 * Adiciona entradas al log de la aplicación
+	 * Mï¿½todo que inserta, de manera transaccional, una tupla en la tabla Proveedores
+	 * Adiciona entradas al log de la aplicaciï¿½n
 	 * @param idProveedor - El NIT del proveedor
 	 * @param nombre - El nombre del proveedor
-	 * @param calificacionCalidad - La calificación de calidad que recibe el proveedor
-	 * @return El objeto Proveedor adicionado. null si ocurre alguna Excepción
+	 * @param calificacionCalidad - La calificaciï¿½n de calidad que recibe el proveedor
+	 * @return El objeto Proveedor adicionado. null si ocurre alguna Excepciï¿½n
 	 */
 	public Proveedor adicionarProveedor(int idProveedor, String nombre, double calificacionCalidad)
 	{
@@ -458,7 +458,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlProveedor.adicionarProveedor(pm, idProveedor, nombre, calificacionCalidad);
             tx.commit();
             
-            log.trace ("Inserción del proveedor: "+idProveedor+", "+nombre+", "+calificacionCalidad+": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserciï¿½n del proveedor: "+idProveedor+", "+nombre+", "+calificacionCalidad+": " + tuplasInsertadas + " tuplas insertadas");
             
             return new Proveedor (idProveedor, nombre, calificacionCalidad);
         }
@@ -478,10 +478,10 @@ public class PersistenciaSuperAndes
 	}
 
 	/**
-	 * Método que inserta, de manera transaccional, una tupla en la tabla TipoProducto
-	 * Adiciona entradas al log de la aplicación
+	 * Mï¿½todo que inserta, de manera transaccional, una tupla en la tabla TipoProducto
+	 * Adiciona entradas al log de la aplicaciï¿½n
 	 * @param nombre - El nombre del tipo del producto
-	 * @return El objeto TipoBebida adicionado. null si ocurre alguna Excepción
+	 * @return El objeto TipoBebida adicionado. null si ocurre alguna Excepciï¿½n
 	 */
 	public TipoProducto adicionarTipoProducto(String nombre, String categoria)
 	{
@@ -494,7 +494,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlTipoProducto.adicionarTipoProducto(pm, idTipoProducto, nombre, categoria);
             tx.commit();
             
-            log.trace ("Inserción de tipo de bebida: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserciï¿½n de tipo de bebida: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
             
             return new TipoProducto(idTipoProducto, nombre, categoria);
         }
@@ -519,10 +519,10 @@ public class PersistenciaSuperAndes
 	}
 	
 	/**
-	 * Método que inserta, de manera transaccional, una tupla en la tabla Clientes
-	 * Adiciona entradas al log de la aplicación
+	 * Mï¿½todo que inserta, de manera transaccional, una tupla en la tabla Clientes
+	 * Adiciona entradas al log de la aplicaciï¿½n
 	 * @param nombre - El nombre del cliente
-	 * @return El objeto Cliente adicionado. null si ocurre alguna Excepción
+	 * @return El objeto Cliente adicionado. null si ocurre alguna Excepciï¿½n
 	 */
 	public Cliente adicionarCliente(int idCliente, String nombre, String correo, String ciudad, String direccion)
 	{
@@ -534,7 +534,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlCliente.adicionarCliente(pm, idCliente, nombre, correo, ciudad, direccion);
             tx.commit();
 
-            log.trace ("Inserción del cliente: "+idCliente+", "+nombre+", "+correo+", "+ciudad+", "+direccion+": " + tuplasInsertadas + " tuplas insertadas");    
+            log.trace ("Inserciï¿½n del cliente: "+idCliente+", "+nombre+", "+correo+", "+ciudad+", "+direccion+": " + tuplasInsertadas + " tuplas insertadas");    
             return new Cliente (idCliente, nombre, correo, ciudad, direccion);
         }
         catch (Exception e)
@@ -553,18 +553,18 @@ public class PersistenciaSuperAndes
 	}
 	
 	/**
-	 * Método que inserta, de manera transaccional, una tupla en la tabla Productos
-	 * Adiciona entradas al log de la aplicación
+	 * Mï¿½todo que inserta, de manera transaccional, una tupla en la tabla Productos
+	 * Adiciona entradas al log de la aplicaciï¿½n
 	 * @param codigoDeBarras - El codigo de barras del producto
 	 * @param idTipoProducto - El tipo de producto
 	 * @param nombre - El nombre del producto
 	 * @param marca - La marca del producto
-	 * @param presentacion - La presentación del producto
-	 * @param unidadDeMedida - La unidad en la cual está medido el producto
-	 * @param cantidadPresentacion - La cantidad de producto que hay en la presentación
+	 * @param presentacion - La presentaciï¿½n del producto
+	 * @param unidadDeMedida - La unidad en la cual estï¿½ medido el producto
+	 * @param cantidadPresentacion - La cantidad de producto que hay en la presentaciï¿½n
 	 * @param pesoEmpaque - El peso del empaque 
 	 * @param volumenEmpaque - El volumen del empaque
-	 * @return El objeto Producto adicionado. null si ocurre alguna Excepción
+	 * @return El objeto Producto adicionado. null si ocurre alguna Excepciï¿½n
 	 */
 	public Producto adicionarProducto(String codigoDeBarras, int idTipoProducto, String nombre, String marca, String presentacion, String unidadDeMedida, double cantidadPresentacion, double pesoEmpaque, double volumenEmpaque)
 	{
@@ -576,7 +576,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlProducto.adicionarProducto(pm, codigoDeBarras, idTipoProducto, nombre, marca, presentacion, unidadDeMedida, cantidadPresentacion, pesoEmpaque, volumenEmpaque);
             tx.commit();
 
-            log.trace ("Inserción del proveedor: "+codigoDeBarras+", "+idTipoProducto+", "+nombre+", "+marca+", "+presentacion+", "+unidadDeMedida+", "+cantidadPresentacion+", "+pesoEmpaque+", "+volumenEmpaque+": " + tuplasInsertadas + " tuplas insertadas");    
+            log.trace ("Inserciï¿½n del proveedor: "+codigoDeBarras+", "+idTipoProducto+", "+nombre+", "+marca+", "+presentacion+", "+unidadDeMedida+", "+cantidadPresentacion+", "+pesoEmpaque+", "+volumenEmpaque+": " + tuplasInsertadas + " tuplas insertadas");    
             return new Producto(codigoDeBarras, idTipoProducto, nombre, marca, presentacion, cantidadPresentacion, unidadDeMedida, pesoEmpaque, volumenEmpaque);
         }
         catch (Exception e)
@@ -595,12 +595,12 @@ public class PersistenciaSuperAndes
 	}
 	
 	/**
-	 * Método que inserta, de manera transaccional, una tupla en la tabla Sucursal
-	 * Adiciona entradas al log de la aplicación
+	 * Mï¿½todo que inserta, de manera transaccional, una tupla en la tabla Sucursal
+	 * Adiciona entradas al log de la aplicaciï¿½n
 	 * @param ciudad - La ciudad de la sucursal
 	 * @param sector - El sector de la sucursal
-	 * @param direccion - La dirección de la sucursal
-	 * @return El objeto Sucursal adicionado. null si ocurre alguna Excepción
+	 * @param direccion - La direcciï¿½n de la sucursal
+	 * @return El objeto Sucursal adicionado. null si ocurre alguna Excepciï¿½n
 	 */
 	public Sucursal adicionarSucursal(String ciudad, String sector, String direccion)
 	{
@@ -613,7 +613,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlSucursal.adicionarSucursal(pm, idSucursal, ciudad, direccion, sector);
             tx.commit();
 
-            log.trace ("Inserción de Sucursal: "+idSucursal+", "+ciudad+", "+sector+", "+direccion+": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserciï¿½n de Sucursal: "+idSucursal+", "+ciudad+", "+sector+", "+direccion+": " + tuplasInsertadas + " tuplas insertadas");
 
             return new Sucursal(idSucursal, ciudad, sector, direccion);
         }
@@ -633,13 +633,13 @@ public class PersistenciaSuperAndes
 	}
 	
 	/**
-	 * Método que inserta, de manera transaccional, una tupla en la tabla Sucursal
-	 * Adiciona entradas al log de la aplicación
-	 * @param idTipoProducto - El tipo de producto que almaenará
-	 * @param idSucursal - La sucursal en la cual está
-	 * @param capacidadVolumen - La capacidad en volumen que podrá almacenar
-	 * @param capacidadPeso - La capacidad en peso que podrá almacenar.
-	 * @return El objeto Bodega adicionado. null si ocurre alguna Excepción
+	 * Mï¿½todo que inserta, de manera transaccional, una tupla en la tabla Sucursal
+	 * Adiciona entradas al log de la aplicaciï¿½n
+	 * @param idTipoProducto - El tipo de producto que almaenarï¿½
+	 * @param idSucursal - La sucursal en la cual estï¿½
+	 * @param capacidadVolumen - La capacidad en volumen que podrï¿½ almacenar
+	 * @param capacidadPeso - La capacidad en peso que podrï¿½ almacenar.
+	 * @return El objeto Bodega adicionado. null si ocurre alguna Excepciï¿½n
 	 */
 	public Bodega adicionarBodegaASucursal(int idTipoProducto, int idSucursal, double capacidadVolumen, double capacidadPeso)
 	{
@@ -652,7 +652,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlBodega.adicionarBodega(pm, idBodega, idTipoProducto, idSucursal, capacidadVolumen, capacidadPeso);
             tx.commit();
 
-            log.trace ("Inserción de Bodega: "+idBodega+", "+idTipoProducto+", "+idSucursal+", "+capacidadVolumen+", "+capacidadPeso+": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserciï¿½n de Bodega: "+idBodega+", "+idTipoProducto+", "+idSucursal+", "+capacidadVolumen+", "+capacidadPeso+": " + tuplasInsertadas + " tuplas insertadas");
 
             return new Bodega(idBodega, idTipoProducto, idSucursal, capacidadVolumen, capacidadPeso);
         }
@@ -672,14 +672,14 @@ public class PersistenciaSuperAndes
 	}
 	
 	/**
-	 * Método que inserta, de manera transaccional, una tupla en la tabla Sucursal
-	 * Adiciona entradas al log de la aplicación
-	 * @param idTipoProducto - El tipo de producto que albergará
-	 * @param idSucursal - La sucursal en la cual estará
-	 * @param capacidadVolumen - Capacidad en volumen que podrá albergar
-	 * @param capacidadPeso - Capacidad en peso que podrá albergar
+	 * Mï¿½todo que inserta, de manera transaccional, una tupla en la tabla Sucursal
+	 * Adiciona entradas al log de la aplicaciï¿½n
+	 * @param idTipoProducto - El tipo de producto que albergarï¿½
+	 * @param idSucursal - La sucursal en la cual estarï¿½
+	 * @param capacidadVolumen - Capacidad en volumen que podrï¿½ albergar
+	 * @param capacidadPeso - Capacidad en peso que podrï¿½ albergar
 	 * @param nivelAbastecimiento - Nivel de abastecimiento del estante
-	 * @return El objeto Estante adicionado. null si ocurre alguna Excepción
+	 * @return El objeto Estante adicionado. null si ocurre alguna Excepciï¿½n
 	 */
 	public Estante adicionarEstanteASucursal(int idTipoProducto, int idSucursal, double capacidadVolumen, double capacidadPeso, int nivelAbastecimiento)
 	{
@@ -692,7 +692,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlEstante.adicionarEstante(pm, idEstante, idTipoProducto, idSucursal, capacidadVolumen, capacidadPeso, nivelAbastecimiento);
             tx.commit();
 
-            log.trace ("Inserción de Estante: " +idEstante+", "+idTipoProducto+", "+idSucursal+", "+capacidadVolumen+", "+capacidadPeso+", "+nivelAbastecimiento+": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserciï¿½n de Estante: " +idEstante+", "+idTipoProducto+", "+idSucursal+", "+capacidadVolumen+", "+capacidadPeso+", "+nivelAbastecimiento+": " + tuplasInsertadas + " tuplas insertadas");
 
             return new Estante(idEstante, idTipoProducto, idSucursal, capacidadVolumen, capacidadPeso, nivelAbastecimiento);
         }

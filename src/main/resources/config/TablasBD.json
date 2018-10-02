@@ -3,16 +3,16 @@
 	"unidadPersistencia": "SuperAndes",
 	"tablas":
 	[
-		"SuperAndes_secuence"
-		"ALBEGAN",
+		"SuperAndes_sequence",
+		"ALBERGAN",
 		"ALMACENAN",
 		"BODEGA",
 		"CLIENTE",
-		"COMPARASCLIENTE",
+		"COMPRASCLIENTES",
 		"ESTANTE",
 		"FACTURA",
 		"INVENTARIO",
-		"PEDIDO"
+		"PEDIDO",
 		"PRODUCTO",
 		"PROMOCION",
 		"PROMOCIONES",

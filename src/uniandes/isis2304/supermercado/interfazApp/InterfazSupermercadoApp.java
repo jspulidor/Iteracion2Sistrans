@@ -60,7 +60,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener {
 	/**
 	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos
 	 */
-	private static final String CONFIG_TABLAS = "./src/main/resources/config/TablasBD_A.json"; 
+	private static final String CONFIG_TABLAS = "./src/main/resources/config/TablasBD.json"; 
 	
 	/* ****************************************************************
 	 * 			Atributos
