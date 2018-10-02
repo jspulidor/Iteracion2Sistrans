@@ -494,7 +494,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlTipoProducto.adicionarTipoProducto(pm, idTipoProducto, nombre, categoria);
             tx.commit();
             
-            log.trace ("Inserci�n de tipo de bebida: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserci�n de tipo de producto: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
             
             return new TipoProducto(idTipoProducto, nombre, categoria);
         }
@@ -709,5 +709,37 @@ public class PersistenciaSuperAndes
             }
             pm.close();
         }
-	}	
+	}
+	
+	public long[] limpiarSuperAndes()
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long[] resp = sqlUtil.limpiarSuperAndes(pm);
+			tx.commit();
+			log.info("Borrada la base de datos");
+			return resp;
+		}
+		catch(Exception e)
+		{
+			log.error("Exception: "+e.getMessage()+"\n"+darDetalleException(e));
+			return new long[] {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+		}
+		finally
+		{
+			if(tx.isActive())
+				tx.rollback();
+			pm.close();
+		}
+	}
+
+
+
+
+
+
+
 }

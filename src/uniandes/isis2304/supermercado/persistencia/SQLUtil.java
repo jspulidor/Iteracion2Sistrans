@@ -66,4 +66,52 @@ class SQLUtil
         long resp = (long) sql.executeUnique();
         return resp;
 	}
+	
+	/**
+	 * Crea y ejecuta las sentencias SQL para cada tabla de la base de datos - EL ORDEN ES IMPORTANTE 
+	 * @param pm - El manejador de persistencia
+	 * @return Un arreglo con 17 números que indican el número de tuplas borradas en las tablas 
+	 */
+	public long [] limpiarSuperAndes(PersistenceManager pm)
+	{
+        Query sqlAlbergan = pm.newQuery(SQL, "DELETE FROM " + psa.darTablaAlbergan());          
+        Query sqlAlmacenan = pm.newQuery(SQL, "DELETE FROM " + psa.darTablaAlmacenan());
+        Query sqlBodega = pm.newQuery(SQL, "DELETE FROM " + psa.darTablaBodega());
+        Query sqlCliente = pm.newQuery(SQL, "DELETE FROM " + psa.darTablaClientes());
+        Query sqlComprasClientes = pm.newQuery(SQL, "DELETE FROM " + psa.darTablaComprasClientes());
+        Query sqlEstante = pm.newQuery(SQL, "DELETE FROM " + psa.darTablaEstante());
+        Query sqlFactura = pm.newQuery(SQL, "DELETE FROM " + psa.darTablaFactura());
+        Query sqlInventario = pm.newQuery(SQL, "DELETE FROM" +psa.darTablaInventario());
+        Query sqlPedido = pm.newQuery(SQL, "DELETE FROM" +psa.darTablaPedido());
+        Query sqlProducto = pm.newQuery(SQL, "DELETE FROM" +psa.darTablaProducto());
+        Query sqlPromocion = pm.newQuery(SQL, "DELETE FROM" +psa.darTablaPromocion());
+        Query sqlPromociones = pm.newQuery(SQL, "DELETE FROM" +psa.darTablaPromociones());
+        Query sqlProveedor = pm.newQuery(SQL, "DELETE FROM" +psa.darTablaProveedor());
+        Query sqlProveen = pm.newQuery(SQL, "DELETE FROM" +psa.darTablaProveen());
+        Query sqlSucursal = pm.newQuery(SQL, "DELETE FROM" +psa.darTablaSucursal());
+        Query sqlTipoProducto = pm.newQuery(SQL, "DELETE FROM" +psa.darTablaTipoProducto());
+        Query sqlVentas = pm.newQuery(SQL, "DELETE FROM" +psa.darTablaVentas());
+        
+        long alberganEliminados = (long) sqlAlbergan.executeUnique();
+        long almacenanEliminados = (long) sqlAlmacenan.executeUnique();
+        long bodegaEliminados = (long) sqlBodega.executeUnique();
+        long clienteEliminados = (long) sqlCliente.executeUnique();
+        long comprasClientesEliminados = (long) sqlComprasClientes.executeUnique();
+        long estanteEliminados = (long) sqlEstante.executeUnique();
+        long facturaEliminados = (long) sqlFactura.executeUnique();
+        long inventarioEliminados = (long) sqlInventario.executeUnique();
+        long pedidoEliminados = (long) sqlPedido.executeUnique();
+        long productoEliminados = (long) sqlProducto.executeUnique();
+        long promocionEliminados = (long) sqlPromocion.executeUnique();
+        long promocionesEliminados = (long) sqlPromociones.executeUnique();
+        long proveedorEliminados = (long) sqlProveedor.executeUnique();
+        long proveenEliminados = (long) sqlProveen.executeUnique();
+        long sucursalEliminados = (long) sqlSucursal.executeUnique();
+        long tipoProductoEliminados = (long) sqlTipoProducto.executeUnique();
+        long ventasEliminados = (long) sqlVentas.executeUnique();
+        return new long[] {alberganEliminados, almacenanEliminados,bodegaEliminados, clienteEliminados,comprasClientesEliminados,
+        					estanteEliminados, facturaEliminados,facturaEliminados, inventarioEliminados, pedidoEliminados,
+        					productoEliminados, promocionEliminados, promocionesEliminados,proveedorEliminados, proveenEliminados,
+        					sucursalEliminados, tipoProductoEliminados, ventasEliminados};
+	}
 }
