@@ -16,17 +16,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import uniandes.isis2304.parranderos.negocio.TipoBebida;
-import uniandes.isis2304.parranderos.persistencia.PersistenciaParranderos;
-import uniandes.isis2304.parranderos.persistencia.SQLBar;
-import uniandes.isis2304.parranderos.persistencia.SQLBebedor;
-import uniandes.isis2304.parranderos.persistencia.SQLBebida;
-import uniandes.isis2304.parranderos.persistencia.SQLGustan;
-import uniandes.isis2304.parranderos.persistencia.SQLSirven;
-import uniandes.isis2304.parranderos.persistencia.SQLTipoBebida;
-import uniandes.isis2304.parranderos.persistencia.SQLUtil;
-import uniandes.isis2304.parranderos.persistencia.SQLVisitan;
+import oracle.net.aso.v;
 import uniandes.isis2304.supermercados.negocio.*;
+import uniandes.isis2304.supermercado.persistencia.*;
 
 public class PersistenciaSuperAndes 
 {
@@ -170,7 +162,7 @@ public class PersistenciaSuperAndes
 		tablas.add ("ALMACENAN");
 		tablas.add ("BODEGA");
 		tablas.add ("CLIENTE");
-		tablas.add ("COMPRAS_CLIENTES");
+		tablas.add ("COMPRASCLIENTES");
 		tablas.add ("ESTANTE");
 		tablas.add ("FACTURA");
 		tablas.add("INVENTARIO");
@@ -429,7 +421,7 @@ public class PersistenciaSuperAndes
 	private long nextval ()
 	{
         long resp = sqlUtil.nextval (pmf.getPersistenceManager());
-        log.trace ("Generando secuencia: " + resp);
+        log.trace ("Generando secuencia: "+ resp);
         return resp;
     }
 
@@ -452,27 +444,27 @@ public class PersistenciaSuperAndes
 	/**
 	 * Método que inserta, de manera transaccional, una tupla en la tabla Proveedores
 	 * Adiciona entradas al log de la aplicación
+	 * @param idProveedor - El NIT del proveedor
 	 * @param nombre - El nombre del proveedor
+	 * @param calificacionCalidad - La calificación de calidad que recibe el proveedor
 	 * @return El objeto Proveedor adicionado. null si ocurre alguna Excepción
 	 */
-	public Proveedor adicionarTipoBebida(String nombre)
+	public Proveedor adicionarProveedor(int idProveedor, String nombre, double calificacionCalidad)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
         try
         {
             tx.begin();
-            long idTipoBebida = nextval ();
-            long tuplasInsertadas = sqlProveedor.adicionarProveedor(pm, idTipoBebida, nombre);
+            long tuplasInsertadas = sqlProveedor.adicionarProveedor(pm, idProveedor, nombre, calificacionCalidad);
             tx.commit();
             
-            log.trace ("Inserción de tipo de bebida: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserción del proveedor: "+idProveedor+", "+nombre+", "+calificacionCalidad+": " + tuplasInsertadas + " tuplas insertadas");
             
-            return new TipoBebida (idTipoBebida, nombre);
+            return new Proveedor (idProveedor, nombre, calificacionCalidad);
         }
         catch (Exception e)
         {
-//        	e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
         	return null;
         }
@@ -486,7 +478,237 @@ public class PersistenciaSuperAndes
         }
 	}
 
+	/**
+	 * Método que inserta, de manera transaccional, una tupla en la tabla TipoProducto
+	 * Adiciona entradas al log de la aplicación
+	 * @param nombre - El nombre del tipo del producto
+	 * @return El objeto TipoBebida adicionado. null si ocurre alguna Excepción
+	 */
+	public TipoProducto adicionarTipoProducto(String nombre, String categoria)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            int idTipoProducto = (int) nextval();
+            long tuplasInsertadas = sqlTipoProducto.adicionarTipoProducto(pm, idTipoProducto, nombre, categoria);
+            tx.commit();
+            
+            log.trace ("Inserción de tipo de bebida: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+            
+            return new TipoProducto(idTipoProducto, nombre, categoria);
+        }
+        catch (Exception e)
+        {
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public List<TipoProducto> darTiposProductos(String nombre)
+	{
+		return sqlTipoProducto.darTiposProducto(pmf.getPersistenceManager());
+	}
+	
+	/**
+	 * Método que inserta, de manera transaccional, una tupla en la tabla Clientes
+	 * Adiciona entradas al log de la aplicación
+	 * @param nombre - El nombre del cliente
+	 * @return El objeto Cliente adicionado. null si ocurre alguna Excepción
+	 */
+	public Cliente adicionarCliente(int idCliente, String nombre, String correo, String ciudad, String direccion)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx = pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long tuplasInsertadas = sqlCliente.adicionarCliente(pm, idCliente, nombre, correo, ciudad, direccion);
+            tx.commit();
 
+            log.trace ("Inserción del cliente: "+idCliente+", "+nombre+", "+correo+", "+ciudad+", "+direccion+": " + tuplasInsertadas + " tuplas insertadas");    
+            return new Cliente (idCliente, nombre, correo, ciudad, direccion);
+        }
+        catch (Exception e)
+        {
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	/**
+	 * Método que inserta, de manera transaccional, una tupla en la tabla Productos
+	 * Adiciona entradas al log de la aplicación
+	 * @param codigoDeBarras - El codigo de barras del producto
+	 * @param idTipoProducto - El tipo de producto
+	 * @param nombre - El nombre del producto
+	 * @param marca - La marca del producto
+	 * @param presentacion - La presentación del producto
+	 * @param unidadDeMedida - La unidad en la cual está medido el producto
+	 * @param cantidadPresentacion - La cantidad de producto que hay en la presentación
+	 * @param pesoEmpaque - El peso del empaque 
+	 * @param volumenEmpaque - El volumen del empaque
+	 * @return El objeto Producto adicionado. null si ocurre alguna Excepción
+	 */
+	public Producto adicionarProducto(String codigoDeBarras, int idTipoProducto, String nombre, String marca, String presentacion, String unidadDeMedida, double cantidadPresentacion, double pesoEmpaque, double volumenEmpaque)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx = pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long tuplasInsertadas = sqlProducto.adicionarProducto(pm, codigoDeBarras, idTipoProducto, nombre, marca, presentacion, unidadDeMedida, cantidadPresentacion, pesoEmpaque, volumenEmpaque);
+            tx.commit();
 
+            log.trace ("Inserción del proveedor: "+codigoDeBarras+", "+idTipoProducto+", "+nombre+", "+marca+", "+presentacion+", "+unidadDeMedida+", "+cantidadPresentacion+", "+pesoEmpaque+", "+volumenEmpaque+": " + tuplasInsertadas + " tuplas insertadas");    
+            return new Producto(codigoDeBarras, idTipoProducto, nombre, marca, presentacion, cantidadPresentacion, unidadDeMedida, pesoEmpaque, volumenEmpaque);
+        }
+        catch (Exception e)
+        {
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	/**
+	 * Método que inserta, de manera transaccional, una tupla en la tabla Sucursal
+	 * Adiciona entradas al log de la aplicación
+	 * @param ciudad - La ciudad de la sucursal
+	 * @param sector - El sector de la sucursal
+	 * @param direccion - La dirección de la sucursal
+	 * @return El objeto Sucursal adicionado. null si ocurre alguna Excepción
+	 */
+	public Sucursal adicionarSucursal(String ciudad, String sector, String direccion)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            int idSucursal = (int) nextval();
+            long tuplasInsertadas = sqlSucursal.adicionarSucursal(pm, idSucursal, ciudad, direccion, sector);
+            tx.commit();
 
+            log.trace ("Inserción de Sucursal: "+idSucursal+", "+ciudad+", "+sector+", "+direccion+": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new Sucursal(idSucursal, ciudad, sector, direccion);
+        }
+        catch (Exception e)
+        {
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	/**
+	 * Método que inserta, de manera transaccional, una tupla en la tabla Sucursal
+	 * Adiciona entradas al log de la aplicación
+	 * @param idTipoProducto - El tipo de producto que almaenará
+	 * @param idSucursal - La sucursal en la cual está
+	 * @param capacidadVolumen - La capacidad en volumen que podrá almacenar
+	 * @param capacidadPeso - La capacidad en peso que podrá almacenar.
+	 * @return El objeto Bodega adicionado. null si ocurre alguna Excepción
+	 */
+	public Bodega adicionarBodegaASucursal(int idTipoProducto, int idSucursal, double capacidadVolumen, double capacidadPeso)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            int idBodega = (int) nextval();
+            long tuplasInsertadas = sqlBodega.adicionarBodega(pm, idBodega, idTipoProducto, idSucursal, capacidadVolumen, capacidadPeso);
+            tx.commit();
+
+            log.trace ("Inserción de Bodega: "+idBodega+", "+idTipoProducto+", "+idSucursal+", "+capacidadVolumen+", "+capacidadPeso+": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new Bodega(idBodega, idTipoProducto, idSucursal, capacidadVolumen, capacidadPeso);
+        }
+        catch (Exception e)
+        {
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	/**
+	 * Método que inserta, de manera transaccional, una tupla en la tabla Sucursal
+	 * Adiciona entradas al log de la aplicación
+	 * @param idTipoProducto - El tipo de producto que albergará
+	 * @param idSucursal - La sucursal en la cual estará
+	 * @param capacidadVolumen - Capacidad en volumen que podrá albergar
+	 * @param capacidadPeso - Capacidad en peso que podrá albergar
+	 * @param nivelAbastecimiento - Nivel de abastecimiento del estante
+	 * @return El objeto Estante adicionado. null si ocurre alguna Excepción
+	 */
+	public Estante adicionarEstanteASucursal(int idTipoProducto, int idSucursal, double capacidadVolumen, double capacidadPeso, int nivelAbastecimiento)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            int idEstante = (int) nextval();
+            long tuplasInsertadas = sqlEstante.adicionarEstante(pm, idEstante, idTipoProducto, idSucursal, capacidadVolumen, capacidadPeso, nivelAbastecimiento);
+            tx.commit();
+
+            log.trace ("Inserción de Estante: " +idEstante+", "+idTipoProducto+", "+idSucursal+", "+capacidadVolumen+", "+capacidadPeso+", "+nivelAbastecimiento+": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new Estante(idEstante, idTipoProducto, idSucursal, capacidadVolumen, capacidadPeso, nivelAbastecimiento);
+        }
+        catch (Exception e)
+        {
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}	
 }

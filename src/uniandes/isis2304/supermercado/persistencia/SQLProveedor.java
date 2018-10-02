@@ -30,7 +30,7 @@ class SQLProveedor {
 	/**
 	 * Método que adiciona una bodega a la base de datos de SuperAndes
 	 */
-	public long adicionarProveedor(PersistenceManager pm, int NIT, int nombre, Double calificacionCalidad)
+	public long adicionarProveedor(PersistenceManager pm, int NIT, String nombre, Double calificacionCalidad)
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + ps.darTablaProveedor () + "(NIT, nombre, calificacionCalidad) values (?, ?, ?, ?)");
         q.setParameters(NIT, nombre, calificacionCalidad);

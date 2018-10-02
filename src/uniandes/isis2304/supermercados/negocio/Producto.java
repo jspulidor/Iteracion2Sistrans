@@ -60,29 +60,29 @@ public class Producto implements VOProducto {
 	 */
 	public Producto()
 	{
+		this.codigoBarras ="Default";
+		this.tipo=0;
 		this.nombre="Default";
 		this.marca="Default";
 		this.presentacion="Default";
 		this.cantidadPresentacion=(double) 0;
 		this.unidadMedida="Default";
-		this.codigoBarras="Default";
-		this.tipo=0;
 		this.pesoEmpaque=(double) 0;
 		this.volumenEmpaque=(double) 0;
 	}
 	
-	public Producto( String pNombre, String pMarca, String pPresentacion,  Double pCantidadEnPresentacion, String pUnidadMedida, String pCodigoBarras, int pTipo, Double pPesoEmpaque, Double pVolumenEmpaque)
+	public Producto( String pCodigoBarras, int pTipo, String pNombre, String pMarca, String pPresentacion,  Double pCantidadEnPresentacion, String pUnidadMedida, Double pPesoEmpaque, Double pVolumenEmpaque)
 	{
+		this.codigoBarras=pCodigoBarras;
+		this.tipo=pTipo;
 		this.nombre=pNombre;
 		this.marca=pMarca;
 		this.presentacion=pPresentacion;
 		this.cantidadPresentacion=pCantidadEnPresentacion;
 		this.unidadMedida=pUnidadMedida;
-		this.codigoBarras=pCodigoBarras;
-		this.tipo=pTipo;
 		this.pesoEmpaque=pPesoEmpaque;
 		this.volumenEmpaque=pVolumenEmpaque;
-	}
+	} 
 
 	/**
 	 * Retorna una cadena con la información del producto

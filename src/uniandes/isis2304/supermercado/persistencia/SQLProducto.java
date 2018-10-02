@@ -35,7 +35,7 @@ class SQLProducto {
 	/**
 	 * Método que adiciona una bodega a la base de datos de SuperAndes
 	 */
-	public long adicionarProducto(PersistenceManager pm, int codigoBarras, int tipo, String nombre, String marca, String presentacion, String unidadMedida, Double cantidadPresentacion, Double pesoEmpaque, Double volumenEmpaque)
+	public long adicionarProducto(PersistenceManager pm, String codigoBarras, int tipo, String nombre, String marca, String presentacion, String unidadMedida, Double cantidadPresentacion, Double pesoEmpaque, Double volumenEmpaque)
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + ps.darTablaProducto () + "(codigoBarras, tipoProducto, nombre, marca, presentacion, unidadMedida, cantidadPresentacion, pesoEmpaque, volumenEmpaque) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         q.setParameters(codigoBarras, tipo, nombre, marca, presentacion, unidadMedida, cantidadPresentacion, pesoEmpaque, volumenEmpaque);

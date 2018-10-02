@@ -44,7 +44,6 @@ public class Pedido implements VOPedido {
 	 */
 	private double precio;
 
-
 	/**
 	 * La fecha de entrega del pedido
 	 */
