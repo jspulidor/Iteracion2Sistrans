@@ -49,7 +49,7 @@ class SQLCliente
 	 */	
 	public long adicionarCliente(PersistenceManager pm, int idCliente, String nombre, String correo, String ciudad, String direccion)
 	{
-		Query sql = pm.newQuery(SQL, "INSERT INTO "+psa.darTablaCliente() + "(id, nombre, correo, ciudad, direccion) values (?, ?, ? , ?, ?)");
+		Query sql = pm.newQuery(SQL, "INSERT INTO "+psa.darTablaClientes()+ "(id, nombre, correo, ciudad, direccion) values (?, ?, ? , ?, ?)");
 		sql.setParameters(idCliente, nombre, correo, ciudad, direccion);
 		return (long) sql.executeUnique();
 	}
