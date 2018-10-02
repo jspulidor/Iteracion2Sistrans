@@ -66,7 +66,8 @@ public class Pedido implements VOPedido {
 	/**
 	 * Constructor por defecto
 	 */
-	public Pedido (){
+	public Pedido ()
+	{
 		id = 0;
 		idSucursal=0;
 		idProveedor=0;
@@ -76,7 +77,7 @@ public class Pedido implements VOPedido {
 		precio = 0;
 		fechaEntrega = new Timestamp (0);
 		calidadProductos=0;
-		estado="Default";
+		estado="PENDIENTE";
 	}
 	
 	/**

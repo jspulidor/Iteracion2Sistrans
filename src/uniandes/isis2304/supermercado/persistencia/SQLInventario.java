@@ -40,10 +40,6 @@ class SQLInventario
 	 * @return Una lista de objetos INVENTARIO
 	 */
 	
-	public List<Inventario> darInventario(PersistenceManager pm)
-	{
-		Query sql = pm.newQuery(SQL, "SELECT * FROM")
-	}
 
 
 

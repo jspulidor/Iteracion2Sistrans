@@ -1,5 +1,10 @@
 package uniandes.isis2304.supermercado.persistencia;
 
+import java.sql.Timestamp;
+
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+
 class SQLPedido 
 {
 	/* ****************************************************************
@@ -36,7 +41,11 @@ class SQLPedido
 	 * @param
 	 * @return EL número de tuplas insertadas
 	 */
-	public long adicionarPedido(PersistenceManager pm, int )
-
+	public long adicionarPedido(PersistenceManager pm, int idPedido, int idSucursal, int idProveedor, int idProducto, Timestamp fechaEsperaEntrega, int cantidad, double precioTotal, Timestamp fechaEntrega, int calidadProductos, String estado)
+	{
+		 Query sql = pm.newQuery(SQL, "INSERT INTO " +psa.darTablaPedido()+ "(idPedido, idSucursal, idProvedor, idProducto, fechaEsperaEntrega, cantidad, precioTotal, fechaEntrega, calidadProductos, estado) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		 sql.setParameters(idPedido, idSucursal, idProveedor, idProducto, fechaEsperaEntrega, cantidad, precioTotal, fechaEntrega, calidadProductos, estado);
+		 return (long) sql.executeUnique();
+	}
 
 }
