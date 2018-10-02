@@ -5,32 +5,24 @@
 	"bannerPath": "./src/main/resources/config/logo.png",
 	"menuBar":
 	[
-		{ "menuTitle": "Adicionar",
+		{ "menuTitle": "TipoBebida",
 		  "options":
 			[
 				{
-					"label": "Adicionar Proveedor",
-					"event": "adicionarProveedor"
+					"label": "Adicionar",
+					"event": "adicionarTipoBebida"
 				},
 				{
-					"label": "Adicionar Producto",
-					"event": "adicionarProducto"
+					"label": "Listar",
+					"event": "listarTipoBebida"
 				},
 				{
-					"label": "Adicionar Cliente",
-					"event": "adicionarCliente"
+					"label": "Borrar por Id",
+					"event": "eliminarTipoBebidaPorId"
 				},
 				{
-					"label": "Adicionar Sucursal",
-					"event": "adicionarSucursal"
-				},
-				{
-					"label": "Adicionar Bodega",
-					"event": "adicionarBodega"
-				},
-				{
-					"label": "Adicionar Estante",
-					"event": "adicionarEstante"
+					"label": "Buscar por Nombre",
+					"event": "buscarTipoBebidaPorNombre"
 				}
 			]
 		},
@@ -38,16 +30,16 @@
 		  "options":
 			[
 				{
-					"label": "Mostrar log SuperAndes",
-					"event": "mostrarLogSuperAndes"
+					"label": "Mostrar log Parranderos",
+					"event": "mostrarLogParranderos"
 				},
 				{
 					"label": "Mostrar log datanucleus",
 					"event": "mostrarLogDatanuecleus"
 				},
 				{
-					"label": "Limpiar log de SuperAndes",
-					"event": "limpiarLogSuperAndes"
+					"label": "Limpiar log de parranderos",
+					"event": "limpiarLogParranderos"
 				},
 				{
 					"label": "Limpiar log de datanucleus",
