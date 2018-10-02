@@ -2,9 +2,14 @@ package uniandes.isis2304.supermercado.interfazApp;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Method;
 
 import javax.jdo.JDODataStoreException;
@@ -26,6 +31,11 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import uniandes.isis2304.supermercados.negocio.SuperAndes;
+import uniandes.isis2304.supermercados.negocio.VOCliente;
+import uniandes.isis2304.supermercados.negocio.VOEstante;
+import uniandes.isis2304.supermercados.negocio.VOProducto;
+import uniandes.isis2304.supermercados.negocio.VOProveedor;
+import uniandes.isis2304.supermercados.negocio.VOSucursal;
 import uniandes.isis2304.supermercados.negocio.VOTipoProducto;
 
 
@@ -216,24 +226,172 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener {
 	/* ****************************************************************
 	 * 			CRUD de Cliente
 	 *****************************************************************/
-    
-    /**
-     * Adiciona un cliente con la información dada por el usuario
-     * Se crea una nueva tupla de cliente en la base de datos, si un cliente con ese id no existía
-     */
+    public void adicionarCliente( )
+    {
+    	try 
+    	{
+    		String idS = JOptionPane.showInputDialog (this, "Cual es el numero de identificación del cliente?", "Adicionar Cliente", JOptionPane.QUESTION_MESSAGE);
+    		String nombre = JOptionPane.showInputDialog (this, "Cual es el nombre del cliente?", "Adicionar Cliente", JOptionPane.QUESTION_MESSAGE);
+    		String correo= JOptionPane.showInputDialog (this, "Cual es el correo del cliente?", "Adicionar Cliente", JOptionPane.QUESTION_MESSAGE);
+    		String ciudad = JOptionPane.showInputDialog (this, "Cual es la ciudad de residencia del cliente?", "Adicionar Cliente", JOptionPane.QUESTION_MESSAGE);
+
+    		if (idS != null && nombre!= null && correo != null & ciudad!= null)
+    		{	
+    			int idCliente = Integer.parseInt(idS);
+        		VOCliente tb = superAndes.adicionarCliente( idCliente, nombre, correo, ciudad);
+        		if (tb == null)
+        		{
+        			throw new Exception ("No se pudo crear un cliente con la información dada ");
+        		}
+        		String resultado = "En adicionarCliente\n\n";
+        		resultado += "Cliente adicionado exitosamente: " + tb;
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }    
 
     
 	/* ****************************************************************
 	 * 			CRUD de Sucursal
 	 *****************************************************************/
     
+    public void adicionarSucursal( )
+    {
+    	try 
+    	{
+    		String ciudad = JOptionPane.showInputDialog (this, "En qué ciudad se encuentra la sucursal?", "Adicionar Sucursal", JOptionPane.QUESTION_MESSAGE);
+    		String sector= JOptionPane.showInputDialog (this, "En qué sector se encuentra la bodega?", "Adicionar Sucursal", JOptionPane.QUESTION_MESSAGE);
+    		String direccion = JOptionPane.showInputDialog (this, "Cual es la dirección de la sucursal?", "Adicionar Sucursal", JOptionPane.QUESTION_MESSAGE);
+
+    		if (ciudad != null && sector!= null && direccion != null)
+    		{	
+        		VOSucursal tb = superAndes.adicionarSucursal( ciudad, sector, direccion);
+        		if (tb == null)
+        		{
+        			throw new Exception ("No se pudo crear una sucursal con la información dada ");
+        		}
+        		String resultado = "En adicionarSucursal\n\n";
+        		resultado += "Sucursal adicionada exitosamente: " + tb;
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    
+    
 	/* ****************************************************************
 	 * 			CRUD de Bodega
 	 *****************************************************************/
     
+    public void adicionarBodega( )
+    {
+    	try 
+    	{
+    		String sucursalS = JOptionPane.showInputDialog (this, "A qué sucursal quiere agregar la bodega?", "Adicionar Bodega", JOptionPane.QUESTION_MESSAGE);
+    		String tipoProductoS= JOptionPane.showInputDialog (this, "Qué tipo de producto almacena en la bodega?", "Adicionar Bodega", JOptionPane.QUESTION_MESSAGE);
+    		String capacidadVolumenS = JOptionPane.showInputDialog (this, "Capacidad en cm^3 de la bodega", "Adicionar Bodega", JOptionPane.QUESTION_MESSAGE);
+    		String capacidadPesoS = JOptionPane.showInputDialog (this, "Capacidad en gr de la bodega", "Adicionar Bodega", JOptionPane.QUESTION_MESSAGE);
+
+    		if (sucursalS != null && tipoProductoS!= null && capacidadVolumenS != null && capacidadPesoS != null)
+    		{
+        		
+        		int sucursal = Integer.parseInt(sucursalS);
+        		int tipoProducto = Integer.parseInt(tipoProductoS);
+        		Double capacidadVolumen= Double.parseDouble(capacidadVolumenS);
+        		Double capacidadPeso = Double.parseDouble(capacidadVolumenS);
+        		
+        		VOEstante tb = superAndes.adicionarBodega( tipoProducto, sucursal, capacidadVolumen, capacidadPeso);
+        		if (tb == null)
+        		{
+        			throw new Exception ("No se pudo crear una bodega con la información dada ");
+        		}
+        		String resultado = "En adicionarBodega\n\n";
+        		resultado += "Bodega adicionada exitosamente: " + tb;
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
 	/* ****************************************************************
 	 * 			CRUD de Estante
 	 *****************************************************************/
+    
+    public void adicionarEstante( )
+    {
+    	try 
+    	{
+    		String sucursalS = JOptionPane.showInputDialog (this, "A qué sucursal quiere agregar el estante?", "Adicionar Estante", JOptionPane.QUESTION_MESSAGE);
+    		String tipoProductoS= JOptionPane.showInputDialog (this, "Qué tipo de producto almacena el estante?", "Adicionar Estante", JOptionPane.QUESTION_MESSAGE);
+    		String capacidadVolumenS = JOptionPane.showInputDialog (this, "Capacidad en cm^3 del estante", "Adicionar Estante", JOptionPane.QUESTION_MESSAGE);
+    		String capacidadPesoS = JOptionPane.showInputDialog (this, "Capacidad en gr del estante", "Adicionar Estante", JOptionPane.QUESTION_MESSAGE);
+    		String nivelAbastecimientoS = JOptionPane.showInputDialog (this, "Cual es el nivel de abastecimiento del examen?", "Adicionar Estante", JOptionPane.QUESTION_MESSAGE);
+
+    		
+    		if (sucursalS != null && tipoProductoS!= null && capacidadVolumenS != null && capacidadPesoS != null && nivelAbastecimientoS!=null)
+    		{
+        		
+        		int sucursal = Integer.parseInt(sucursalS);
+        		int tipoProducto = Integer.parseInt(tipoProductoS);
+        		Double capacidadVolumen= Double.parseDouble(capacidadVolumenS);
+        		Double capacidadPeso = Double.parseDouble(capacidadVolumenS);
+        		int nivelAbastecimiento = Integer.parseInt(nivelAbastecimientoS);
+        		
+        		VOEstante tb = superAndes.adicionarEstante( tipoProducto, sucursal, capacidadVolumen, capacidadPeso, nivelAbastecimiento);
+        		if (tb == null)
+        		{
+        			throw new Exception ("No se pudo crear un estante con la información dada ");
+        		}
+        		String resultado = "En adicionarEstante\n\n";
+        		resultado += "Estante adicionado exitosamente: " + tb;
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
     
 	/* ****************************************************************
 	 * 			CRUD de tipoProducto
@@ -277,9 +435,174 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener {
 	 * 			CRUD de Proveedores
 	 *****************************************************************/
     
+    public void adicionarProveedor( )
+    {
+    	try 
+    	{
+    		String nitS = JOptionPane.showInputDialog (this, "Cual es el NIT del proveedor?", "Adicionar Proveedor", JOptionPane.QUESTION_MESSAGE);
+    		String nombre = JOptionPane.showInputDialog (this, "Cual es el nombre del proveedor?", "Adicionar Proveedor", JOptionPane.QUESTION_MESSAGE);
+    		String calificacionCalidadS= JOptionPane.showInputDialog (this, "Cual es la calificacion de calidad del proveedor?", "Adicionar Proveedor", JOptionPane.QUESTION_MESSAGE);
+
+    		if (nitS != null && nombre!= null && calificacionCalidadS != null)
+    		{	
+    			int nit = Integer.parseInt(nitS);
+    			Double calificacionCalidad = Double.parseDouble(calificacionCalidadS);
+        		VOProveedor tb = superAndes.adicionarProveedor(nit, nombre, calificacionCalidad);
+        		if (tb == null)
+        		{
+        			throw new Exception ("No se pudo crear un proveedor con la información dada ");
+        		}
+        		String resultado = "En adicionarProveedor\n\n";
+        		resultado += "Proveedor adicionado exitosamente: " + tb;
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    } 
+    
 	/* ****************************************************************
 	 * 			CRUD de Producto
 	 *****************************************************************/
+    
+    public void adicionarProducto( )
+    {
+    	try 
+    	{
+    		String codigoBarras = JOptionPane.showInputDialog (this, "Cual es el codigo de Barras del Producto?", "Adicionar Producto", JOptionPane.QUESTION_MESSAGE);
+    		String tipoProductoS= JOptionPane.showInputDialog (this, "Cual es el id del tipo del producto?", "Adicionar Producto", JOptionPane.QUESTION_MESSAGE);
+    		String nombre= JOptionPane.showInputDialog (this, "Cual es el nombre del producto?", "Adicionar Producto", JOptionPane.QUESTION_MESSAGE);
+    		String marca= JOptionPane.showInputDialog (this, "Cual es la marca del producto?", "Adicionar Producto", JOptionPane.QUESTION_MESSAGE);
+    		String presentacion= JOptionPane.showInputDialog (this, "Cual es la presentacion?", "Adicionar Producto", JOptionPane.QUESTION_MESSAGE);
+    		String unidadMedida= JOptionPane.showInputDialog (this, "Cual es la unidad de medida del producto?", "Adicionar Producto", JOptionPane.QUESTION_MESSAGE);
+    		String cantidadPresentacionS= JOptionPane.showInputDialog (this, "Cual es la cantidad de producto en la presentacion?", "Adicionar Productor", JOptionPane.QUESTION_MESSAGE);
+    		String pesoEmpaqueS= JOptionPane.showInputDialog (this, "Cual es el peso en gr del producto junto con su empaque?", "Adicionar Producto", JOptionPane.QUESTION_MESSAGE);
+    		String volumenEmpaqueS= JOptionPane.showInputDialog (this, "Cual es el volumen en cm^3 del producto con empaque?", "Adicionar Producto", JOptionPane.QUESTION_MESSAGE);
+    		
+    		
+    		if (codigoBarras!= null && tipoProductoS!=null && nombre!= null && marca!= null && presentacion!= null && unidadMedida!= null && cantidadPresentacionS!= null && pesoEmpaqueS!=null && volumenEmpaqueS!=null)
+    		{	
+    			int tipoProducto = Integer.parseInt(tipoProductoS);
+    			Double cantidadPresentacion= Double.parseDouble(cantidadPresentacionS);
+    			Double pesoEmpaque = Double.parseDouble(pesoEmpaqueS);
+    			Double volumenEmpaque=Double.parseDouble(volumenEmpaqueS);
+        		VOProducto tb = superAndes.adicionarProducto(codigoBarras, tipoProducto, nombre, marca, presentacion, unidadMedida, cantidadPresentacion, pesoEmpaque, volumenEmpaque);
+        		if (tb == null)
+        		{
+        			throw new Exception ("No se pudo crear un producto con la información dada ");
+        		}
+        		String resultado = "En adicionarProducto\n\n";
+        		resultado += "Producto adicionado exitosamente: " + tb;
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    } 
+    
+    
+    /* ****************************************************************
+	 * 			Métodos administrativos
+	 *****************************************************************/
+	/**
+	 * Muestra el log de Parranderos
+	 */
+	public void mostrarLogParranderos ()
+	{
+		mostrarArchivo ("parranderos.log");
+	}
+	
+	/**
+	 * Muestra el log de datanucleus
+	 */
+	public void mostrarLogDatanuecleus ()
+	{
+		mostrarArchivo ("datanucleus.log");
+	}
+	
+	/**
+	 * Limpia el contenido del log de parranderos
+	 * Muestra en el panel de datos la traza de la ejecución
+	 */
+	public void limpiarLogParranderos ()
+	{
+		// Ejecución de la operación y recolección de los resultados
+		boolean resp = limpiarArchivo ("parranderos.log");
+
+		// Generación de la cadena de caracteres con la traza de la ejecución de la demo
+		String resultado = "\n\n************ Limpiando el log de parranderos ************ \n";
+		resultado += "Archivo " + (resp ? "limpiado exitosamente" : "NO PUDO ser limpiado !!");
+		resultado += "\nLimpieza terminada";
+
+		panelDatos.actualizarInterfaz(resultado);
+	}
+	
+	/**
+	 * Limpia el contenido del log de datanucleus
+	 * Muestra en el panel de datos la traza de la ejecución
+	 */
+	public void limpiarLogDatanucleus ()
+	{
+		// Ejecución de la operación y recolección de los resultados
+		boolean resp = limpiarArchivo ("datanucleus.log");
+
+		// Generación de la cadena de caracteres con la traza de la ejecución de la demo
+		String resultado = "\n\n************ Limpiando el log de datanucleus ************ \n";
+		resultado += "Archivo " + (resp ? "limpiado exitosamente" : "NO PUDO ser limpiado !!");
+		resultado += "\nLimpieza terminada";
+
+		panelDatos.actualizarInterfaz(resultado);
+	}
+	
+	/**
+	 * Limpia todas las tuplas de todas las tablas de la base de datos de parranderos
+	 * Muestra en el panel de datos el número de tuplas eliminadas de cada tabla
+	 */
+	public void limpiarBD ()
+	{
+		try 
+		{
+    		// Ejecución de la demo y recolección de los resultados
+			long eliminados [] = superAndes.limpiarSuperAndes();
+			
+			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
+			String resultado = "\n\n************ Limpiando la base de datos ************ \n";
+			resultado += eliminados [0] + " Gustan eliminados\n";
+			resultado += eliminados [1] + " Sirven eliminados\n";
+			resultado += eliminados [2] + " Visitan eliminados\n";
+			resultado += eliminados [3] + " Bebidas eliminadas\n";
+			resultado += eliminados [4] + " Tipos de bebida eliminados\n";
+			resultado += eliminados [5] + " Bebedores eliminados\n";
+			resultado += eliminados [6] + " Bares eliminados\n";
+			resultado += "\nLimpieza terminada";
+   
+			panelDatos.actualizarInterfaz(resultado);
+		} 
+		catch (Exception e) 
+		{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
     
 	/* ****************************************************************
 	 * 			Métodos privados para la presentación de resultados y otras operaciones
@@ -313,6 +636,46 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener {
 		resultado += "\n\nRevise datanucleus.log y parranderos.log para más detalles";
 		return resultado;
 	}
+	
+	/**
+	 * Limpia el contenido de un archivo dado su nombre
+	 * @param nombreArchivo - El nombre del archivo que se quiere borrar
+	 * @return true si se pudo limpiar
+	 */
+	private boolean limpiarArchivo(String nombreArchivo) 
+	{
+		BufferedWriter bw;
+		try 
+		{
+			bw = new BufferedWriter(new FileWriter(new File (nombreArchivo)));
+			bw.write ("");
+			bw.close ();
+			return true;
+		} 
+		catch (IOException e) 
+		{
+//			e.printStackTrace();
+			return false;
+		}
+	}
+
+	/**
+	 * Abre el archivo dado como parámetro con la aplicación por defecto del sistema
+	 * @param nombreArchivo - El nombre del archivo que se quiere mostrar
+	 */
+	private void mostrarArchivo (String nombreArchivo)
+	{
+		try
+		{
+			Desktop.getDesktop().open(new File(nombreArchivo));
+		}
+		catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
     
 	/* ****************************************************************
 	 * 			Métodos de la Interacción

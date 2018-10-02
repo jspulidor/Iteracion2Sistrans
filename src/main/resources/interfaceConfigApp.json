@@ -5,24 +5,32 @@
 	"bannerPath": "./src/main/resources/config/logo.png",
 	"menuBar":
 	[
-		{ "menuTitle": "TipoBebida",
+		{ "menuTitle": "Adicionar",
 		  "options":
 			[
 				{
-					"label": "Adicionar",
-					"event": "adicionarTipoBebida"
+					"label": "Adicionar Proveedor",
+					"event": "adicionarProveedor"
 				},
 				{
-					"label": "Listar",
-					"event": "listarTipoBebida"
+					"label": "Adicionar Producto",
+					"event": "adicionarProducto"
 				},
 				{
-					"label": "Borrar por Id",
-					"event": "eliminarTipoBebidaPorId"
+					"label": "Adicionar Cliente",
+					"event": "adicionarCliente"
 				},
 				{
-					"label": "Buscar por Nombre",
-					"event": "buscarTipoBebidaPorNombre"
+					"label": "Adicionar Sucursal",
+					"event": "adicionarSucursal"
+				},
+				{
+					"label": "Adicionar Bodega",
+					"event": "adicionarBodega"
+				},
+				{
+					"label": "Adicionar Estante",
+					"event": "adicionarEstante"
 				}
 			]
 		},
@@ -30,16 +38,16 @@
 		  "options":
 			[
 				{
-					"label": "Mostrar log Parranderos",
-					"event": "mostrarLogParranderos"
+					"label": "Mostrar log SuperAndes",
+					"event": "mostrarLogSuperAndes"
 				},
 				{
 					"label": "Mostrar log datanucleus",
 					"event": "mostrarLogDatanuecleus"
 				},
 				{
-					"label": "Limpiar log de parranderos",
-					"event": "limpiarLogParranderos"
+					"label": "Limpiar log de SuperAndes",
+					"event": "limpiarLogSuperAndes"
 				},
 				{
 					"label": "Limpiar log de datanucleus",
@@ -48,44 +56,6 @@
 				{
 					"label": "Limpiar Base de Datos",
 					"event": "limpiarBD"
-				}
-			]
-		},		
-		{ "menuTitle": "Documentación",
-		  "options":
-			[
-				{
-					"label": "Presentación general",
-					"event": "mostrarPresentacionGeneral"
-				},
-				{
-					"label": "Modelo conceptual",
-					"event": "mostrarModeloConceptual"
-				},
-				{
-					"label": "Esquema de la BD",
-					"event": "mostrarEsquemaBD"
-				},
-				{
-					"label": "Script creación de la BD",
-					"event": "mostrarScriptBD"
-				},
-				{
-					"label": "Arquitectura de referencia",
-					"event": "mostrarArqRef"
-				},
-				{
-					"label": "Javadoc Parranderos",
-					"event": "mostrarJavadoc"
-				}
-			]
-		},		
-		{ "menuTitle": "Acerca de ...",
-		  "options":
-			[
-				{
-					"label": "Acerca de ...",
-					"event": "acercaDe"
 				}
 			]
 		}		
