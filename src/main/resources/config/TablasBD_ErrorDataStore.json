@@ -1,10 +1,10 @@
 {
 	"title": "Nombres de las tablas de SuperAndes para pruebas de la aplicación cuando la base de datos no existe o está caida",
-	"unidadPersistencia": "SuperAndesErrorUser",
+	"unidadPersistencia": "SuperAndesErrorDS",
 	"tablas":
 	[
-		"SuperAndes_secuence"
-		"X_ALBEGAN",
+		"SuperAndes_sequence",
+		"X_ALBERGAN",
 		"X_ALMACENAN",
 		"X_BODEGA",
 		"X_CLIENTE",
