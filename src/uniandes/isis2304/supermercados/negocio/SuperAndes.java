@@ -4,7 +4,6 @@ import org.apache.log4j.Logger;
 
 import com.google.gson.JsonObject;
 
-import uniandes.isis2304.parranderos.negocio.TipoBebida;
 import uniandes.isis2304.supermercado.persistencia.PersistenciaSuperAndes;
 
 
@@ -54,47 +53,62 @@ public class SuperAndes
 	{
 		psa.cerrarUnidadPersistencia ();
 	}
-
-	public VOCliente adicionarCliente(int idCliente, String nombre, String correo, String ciudad) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	
+	public Cliente adicionarCliente(int idCliente, String nombre, String correo, String ciudad, String direccion) {
+		
+        log.info ("Adicionando cliente con nombre : " + nombre);
+        Cliente cliente = psa.adicionarCliente(idCliente,nombre, correo, ciudad, direccion);		
+        log.info ("Adicionando cliente con nombre : " + nombre);
+        return cliente;
+		
 	}
 
 	public VOSucursal adicionarSucursal(String ciudad, String sector, String direccion) {
-		// TODO Auto-generated method stub
-		return null;
+        log.info ("Adicionando sucursal con direccion : " + direccion);
+        Sucursal sucursal = psa.adicionarSucursal(ciudad, sector, direccion);		
+        log.info ("Adicionando sucursal con direccion : " + direccion);
+        return sucursal;
 	}
 
-	public VOEstante adicionarBodega(int tipoProducto, int sucursal, Double capacidadVolumen, Double capacidadPeso) {
-		// TODO Auto-generated method stub
-		return null;
+	public Bodega adicionarBodega(int tipoProducto, int sucursal, Double capacidadVolumen, Double capacidadPeso) {
+        log.info ("Adicionando bodega" );
+        Bodega bodega = psa.adicionarBodegaASucursal(tipoProducto, sucursal, capacidadVolumen, capacidadPeso);		
+        log.info ("Adicionando bodega");
+        return bodega;
 	}
 
-	public VOEstante adicionarEstante(int tipoProducto, int sucursal, Double capacidadVolumen, Double capacidadPeso,
+	public Estante adicionarEstante(int tipoProducto, int sucursal, Double capacidadVolumen, Double capacidadPeso,
 			int nivelAbastecimiento) {
-		// TODO Auto-generated method stub
-		return null;
+        log.info ("Adicionando estante" );
+        Estante estante = psa.adicionarEstanteASucursal(tipoProducto, sucursal, capacidadVolumen, capacidadPeso, nivelAbastecimiento);		
+        log.info ("Adicionando estante");
+        return estante;
 	}
 
-	public TipoProducto adicionarTipoProducto(String nombreTipo) {
+	public TipoProducto adicionarTipoProducto(String nombreTipo, String categoria) {
 		
-        log.info ("Adicionando Tipo de bebida: " + nombreTipo);
-        TipoProducto tipoBebida = psa.adicionarTipoPropucto(nombreTipo);		
-        log.info ("Adicionando Tipo de bebida: " + tipoBebida);
-        return tipoBebida;
+        log.info ("Adicionando Tipo de producto: " + nombreTipo);
+        TipoProducto tipoProducto = psa.adicionarTipoProducto(nombreTipo, categoria);		
+        log.info ("Adicionando Tipo de producto: " + nombreTipo);
+        return tipoProducto;
 		
 	}
 
-	public VOProveedor adicionarProveedor(int nit, String nombre, Double calificacionCalidad) {
-		// TODO Auto-generated method stub
-		return null;
+	public Proveedor adicionarProveedor(int nit, String nombre, Double calificacionCalidad) {
+        log.info ("Adicionando Proveedor" );
+        Proveedor proveedor = psa.adicionarProveedor(nit,nombre,calificacionCalidad);		
+        log.info ("Adicionando proveedor");
+        return proveedor;
 	}
 
-	public VOProducto adicionarProducto(String codigoBarras, int tipoProducto, String nombre, String marca,
+	public Producto adicionarProducto(String codigoBarras, int tipoProducto, String nombre, String marca,
 			String presentacion, String unidadMedida, Double cantidadPresentacion, Double pesoEmpaque,
 			Double volumenEmpaque) {
-		// TODO Auto-generated method stub
-		return null;
+        log.info ("Adicionando Producto" );
+        Producto producto = psa.adicionarProducto(codigoBarras,tipoProducto,nombre,marca,presentacion,unidadMedida,cantidadPresentacion,pesoEmpaque,volumenEmpaque);		
+        log.info ("Adicionando Producto");
+        return producto;
 	}
 	
 

@@ -31,6 +31,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import uniandes.isis2304.supermercados.negocio.SuperAndes;
+import uniandes.isis2304.supermercados.negocio.VOBodega;
 import uniandes.isis2304.supermercados.negocio.VOCliente;
 import uniandes.isis2304.supermercados.negocio.VOEstante;
 import uniandes.isis2304.supermercados.negocio.VOProducto;
@@ -234,11 +235,12 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener {
     		String nombre = JOptionPane.showInputDialog (this, "Cual es el nombre del cliente?", "Adicionar Cliente", JOptionPane.QUESTION_MESSAGE);
     		String correo= JOptionPane.showInputDialog (this, "Cual es el correo del cliente?", "Adicionar Cliente", JOptionPane.QUESTION_MESSAGE);
     		String ciudad = JOptionPane.showInputDialog (this, "Cual es la ciudad de residencia del cliente?", "Adicionar Cliente", JOptionPane.QUESTION_MESSAGE);
+    		String direccion = JOptionPane.showInputDialog (this, "Cual es la ciudad de residencia del cliente?", "Adicionar Cliente", JOptionPane.QUESTION_MESSAGE);
 
-    		if (idS != null && nombre!= null && correo != null & ciudad!= null)
+    		if (idS != null && nombre!= null && correo != null && ciudad!= null && direccion !=null )
     		{	
     			int idCliente = Integer.parseInt(idS);
-        		VOCliente tb = superAndes.adicionarCliente( idCliente, nombre, correo, ciudad);
+        		VOCliente tb = superAndes.adicionarCliente( idCliente, nombre, correo, ciudad, direccion);
         		if (tb == null)
         		{
         			throw new Exception ("No se pudo crear un cliente con la información dada ");
@@ -322,7 +324,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener {
         		Double capacidadVolumen= Double.parseDouble(capacidadVolumenS);
         		Double capacidadPeso = Double.parseDouble(capacidadVolumenS);
         		
-        		VOEstante tb = superAndes.adicionarBodega( tipoProducto, sucursal, capacidadVolumen, capacidadPeso);
+        		VOBodega tb = superAndes.adicionarBodega( tipoProducto, sucursal, capacidadVolumen, capacidadPeso);
         		if (tb == null)
         		{
         			throw new Exception ("No se pudo crear una bodega con la información dada ");
@@ -406,9 +408,10 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener {
     	try 
     	{
     		String nombreTipo = JOptionPane.showInputDialog (this, "Nombre del tipo de producto?", "Adicionar tipo de producto", JOptionPane.QUESTION_MESSAGE);
-    		if (nombreTipo != null)
+    		String categoria = JOptionPane.showInputDialog (this, "Cual es la categoria del producto?", "Adicionar tipo de producto", JOptionPane.QUESTION_MESSAGE);
+    		if (nombreTipo != null && categoria!= null)
     		{
-        		VOTipoProducto tb = superAndes.adicionarTipoProducto (nombreTipo);
+        		VOTipoProducto tb = superAndes.adicionarTipoProducto (nombreTipo, categoria);
         		if (tb == null)
         		{
         			throw new Exception ("No se pudo crear un tipo de producto con nombre: " + nombreTipo);
