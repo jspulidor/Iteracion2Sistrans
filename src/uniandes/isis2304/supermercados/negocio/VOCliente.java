@@ -12,6 +12,8 @@ public interface VOCliente
 	
 	public String getCorreo();
 	
+	public String getCiudad();
+	
 	public String getDireccion();
 	
 	public String toString();

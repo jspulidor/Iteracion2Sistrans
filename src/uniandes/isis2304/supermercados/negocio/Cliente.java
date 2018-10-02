@@ -23,6 +23,11 @@ public class Cliente implements VOCliente
 	private String correo;
 	
 	/**
+	 * Ciudad del cliente
+	 */
+	private String ciudad;
+	
+	/**
 	 * Dirección del cliente
 	 */
 	private String direccion;
@@ -39,6 +44,7 @@ public class Cliente implements VOCliente
 		setDocIdentidad(0);
 		setNombre("Default");
 		setCorreo("Default");
+		setCiudad("Default");
 		setDireccion("Default");
 	}
 	
@@ -49,11 +55,12 @@ public class Cliente implements VOCliente
 	 * @param pCorreo
 	 * @param pDireccion
 	 */
-	public Cliente( int pDocIdentidad, String pNombre, String pCorreo, String pDireccion)
+	public Cliente( int pDocIdentidad, String pNombre, String pCorreo, String pCiudad, String pDireccion)
 	{
 		this.setDocIdentidad(pDocIdentidad);
 		this.setNombre(pNombre);
 		this.setCorreo(pCorreo);
+		this.setCiudad(pCiudad);
 		this.setDireccion(pDireccion);
 	}
 	
@@ -93,6 +100,14 @@ public class Cliente implements VOCliente
 
 	public void setCorreo(String correo) {
 		this.correo = correo;
+	}
+	
+	public String getCiudad() {
+		return ciudad;
+	}
+	
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
 	}
 
 	public String getDireccion() {

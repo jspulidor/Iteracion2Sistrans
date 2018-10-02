@@ -30,7 +30,7 @@ class SQLSucursal {
 	/**
 	 * Método que adiciona una sucursal a la base de datos de SuperAndes
 	 */
-	public long adicionarSucursal(PersistenceManager pm, int id, int ciudad, String direccion, String sector)
+	public long adicionarSucursal(PersistenceManager pm, int id, String ciudad, String direccion, String sector)
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + ps.darTablaSucursal () + "(id, ciudad, direccion, sector) values (?, ?, ?, ?)");
         q.setParameters(id, ciudad, direccion, sector);

@@ -43,11 +43,12 @@ public class Sucursal implements VOSucursal {
 	 * @param pDireccion La dirección de la sucursal
 	 * @param pSector El sector de la sucursal
 	 */
-	public Sucursal(String pCiudad, String pDireccion, String pSector)
+	public Sucursal(int pId, String pCiudad, String pSector, String pDireccion)
 	{
+		id = pId;
 		ciudad = pCiudad;
-		direccion = pDireccion;
 		sector = pSector;
+		direccion = pDireccion;
 	}
 	
 	/* ****************************************************************
@@ -89,7 +90,7 @@ public class Sucursal implements VOSucursal {
 	 */
 	@Override
 	public String toString() {
-		return "Sucursal [ciudad=" + ciudad + ", direccion=" + direccion + ", sector=" + sector + "]";
+		return "Sucursal [ciudad=" + ciudad + ", sector=" + sector + ", direccion=" + direccion + "]";
 	}
 	
 }
