@@ -23,6 +23,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -685,7 +686,8 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener {
     {
         try
         {
-        	
+        	String log4jConfPath = "./src/main/resources/log4j.properties";
+        	PropertyConfigurator.configure(log4jConfPath);
             // Unifica la interfaz para Mac y para Windows.
             UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
             InterfazSupermercadoApp interfaz = new InterfazSupermercadoApp( );

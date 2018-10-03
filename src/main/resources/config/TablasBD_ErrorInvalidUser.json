@@ -1,6 +1,6 @@
 {
 	"title": "Nombres de las tablas de SuperAndes para pruebas de la aplicación cuando la base de datos no existe o está caida",
-	"unidadPersistencia": "SuperAndesErrorUser",
+	"unidadPersistencia": "ParranderosErrorUser",
 	"tablas":
 	[
 		"SuperAndes_sequence",
