@@ -36,7 +36,6 @@ public class Bodega implements VOBodega
 	 * Capacidad en peso de la bodega
 	 */
 	private Double capacidadPeso;
-	
 
 	
 	

@@ -1,57 +1,43 @@
 {
-	"title": "AplicaciÃ³n transaccional de SuperAndes",
+	"title": "Aplicación transaccional de SuperAndes",
 	"frameH": 600,
 	"frameW": 800,
 	"bannerPath": "./src/main/resources/config/logo.png",
 	"menuBar":
 	[
-		{ "menuTitle": "TipoBebida",
+		{ "menuTitle": "Adicionar",
 		  "options":
 			[
 				{
-					"label": "Adicionar",
-					"event": "adicionarTipoBebida"
+					"label": "Adicionar Cliente",
+					"event": "adicionarCliente"
 				},
 				{
-					"label": "Listar",
-					"event": "listarTipoBebida"
+					"label": "Adicionar Sucursal",
+					"event": "adicionarSucursal"
 				},
 				{
-					"label": "Borrar por Id",
-					"event": "eliminarTipoBebidaPorId"
+					"label": "Adicionar Bodega",
+					"event": "adicionarBodega"
 				},
 				{
-					"label": "Buscar por Nombre",
-					"event": "buscarTipoBebidaPorNombre"
-				}
-			]
-		},
-		{ "menuTitle": "Mantenimiento",
-		  "options":
-			[
-				{
-					"label": "Mostrar log Parranderos",
-					"event": "mostrarLogParranderos"
+					"label": "Adicionar Estante",
+					"event": "adicionarEstante"
 				},
 				{
-					"label": "Mostrar log datanucleus",
-					"event": "mostrarLogDatanuecleus"
+					"label": "Adicionar Tipo Producto",
+					"event": "adicionarTipoProducto"
 				},
 				{
-					"label": "Limpiar log de parranderos",
-					"event": "limpiarLogParranderos"
+					"label": "Adicionar Proveedor",
+					"event": "adicionarProveedor"
 				},
-				{
-					"label": "Limpiar log de datanucleus",
-					"event": "limpiarLogDatanucleus"
-				},
-				{
-					"label": "Limpiar Base de Datos",
-					"event": "limpiarBD"
+								{
+					"label": "Adicionar Producto",
+					"event": "adicionarProducto"
 				}
 			]
 		}		
-		
 	]
 }
 	

@@ -38,14 +38,38 @@ class SQLPedido
 	
 	/**
 	 * Crea y ejecuta la sentencia SQL para adicionar un PEDIDO a la base de datos de SuperAndes
-	 * @param
+	 * @param idPedido - El identificador del pedido
+	 * @param idSucursal - El identificador de la sucursal
+	 * @param idProveedor - El identificaddor del proveedor
+	 * @param idProducto - El identificador del producto
+	 * @param fechaEsperaEntrega - La fecha esperada de entrega
+	 * @param cantidad - La cantidad de producto a pedir
+	 * @param precioTotal - El precio total del pedido
+	 * @param fechaEntrega - La fecha de entrega del pedido
+	 * @param calidadProductos - La calidad del producto
+	 * @param estado - El estado actual del pedido
 	 * @return EL número de tuplas insertadas
 	 */
 	public long adicionarPedido(PersistenceManager pm, int idPedido, int idSucursal, int idProveedor, int idProducto, Timestamp fechaEsperaEntrega, int cantidad, double precioTotal, Timestamp fechaEntrega, int calidadProductos, String estado)
 	{
-		 Query sql = pm.newQuery(SQL, "INSERT INTO " +psa.darTablaPedido()+ "(idPedido, idSucursal, idProvedor, idProducto, fechaEsperaEntrega, cantidad, precioTotal, fechaEntrega, calidadProductos, estado) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		 Query sql = pm.newQuery(SQL, "INSERT INTO " +psa.darTablaPedido() + "(id_pedido, id_sucursal, id_provedor, id_producto, fecha_espera_entrega, cantidad, precio_total, fecha_entrega, calidad_productos, estado) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		 sql.setParameters(idPedido, idSucursal, idProveedor, idProducto, fechaEsperaEntrega, cantidad, precioTotal, fechaEntrega, calidadProductos, estado);
 		 return (long) sql.executeUnique();
 	}
-
+	
+	/**
+	 * Crea y ejecuta la sentencia SQL para adicionar un PEDIDO a la base de datos de SuperAndes
+	 * @param idPedido - El identificador del pedido
+	 * @param idSucursal - El identificador de la sucursal
+	 * @return EL número de tuplas insertadas
+	 */
+	public long llegadaPedido(PersistenceManager pm, int idPedido, int idSucursal, int idProveedor, String estado)
+	{
+		Query sql = pm.newQuery(SQL, "DELETE FROM" +psa.darTablaPedido() + "WHERE id_pedido = ? AND id_sucursal = ? AND id_proveedor = ?");
+		sql.setParameters(idPedido, idSucursal, idProveedor, estado);
+		return (long) sql.executeUnique();
+	}
+	
+	
+	
 }

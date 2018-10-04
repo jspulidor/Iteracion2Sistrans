@@ -1,6 +1,7 @@
 package uniandes.isis2304.supermercado.persistencia;
 
 import java.math.BigDecimal;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
@@ -458,7 +459,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlProveedor.adicionarProveedor(pm, idProveedor, nombre, calificacionCalidad);
             tx.commit();
             
-            log.trace ("Inserciï¿½n del proveedor: "+idProveedor+", "+nombre+", "+calificacionCalidad+": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserción del proveedor: "+idProveedor+", "+nombre+", "+calificacionCalidad+": " + tuplasInsertadas + " tuplas insertadas");
             
             return new Proveedor (idProveedor, nombre, calificacionCalidad);
         }
@@ -486,7 +487,7 @@ public class PersistenciaSuperAndes
 	public TipoProducto adicionarTipoProducto(String nombre, String categoria)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
+        Transaction tx=pm.currentTransaction(); 
         try
         {
             tx.begin();
@@ -494,7 +495,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlTipoProducto.adicionarTipoProducto(pm, idTipoProducto, nombre, categoria);
             tx.commit();
             
-            log.trace ("Inserciï¿½n de tipo de producto: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserción de tipo de producto: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
             
             return new TipoProducto(idTipoProducto, nombre, categoria);
         }
@@ -534,7 +535,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlCliente.adicionarCliente(pm, idCliente, nombre, correo, ciudad, direccion);
             tx.commit();
 
-            log.trace ("Inserciï¿½n del cliente: "+idCliente+", "+nombre+", "+correo+", "+ciudad+", "+direccion+": " + tuplasInsertadas + " tuplas insertadas");    
+            log.trace ("Inserción del cliente: "+idCliente+", "+nombre+", "+correo+", "+ciudad+", "+direccion+": " + tuplasInsertadas + " tuplas insertadas");    
             return new Cliente (idCliente, nombre, correo, ciudad, direccion);
         }
         catch (Exception e)
@@ -576,7 +577,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlProducto.adicionarProducto(pm, codigoDeBarras, idTipoProducto, nombre, marca, presentacion, unidadDeMedida, cantidadPresentacion, pesoEmpaque, volumenEmpaque);
             tx.commit();
 
-            log.trace ("Inserciï¿½n del proveedor: "+codigoDeBarras+", "+idTipoProducto+", "+nombre+", "+marca+", "+presentacion+", "+unidadDeMedida+", "+cantidadPresentacion+", "+pesoEmpaque+", "+volumenEmpaque+": " + tuplasInsertadas + " tuplas insertadas");    
+            log.trace ("Inserción del proveedor: "+codigoDeBarras+", "+idTipoProducto+", "+nombre+", "+marca+", "+presentacion+", "+unidadDeMedida+", "+cantidadPresentacion+", "+pesoEmpaque+", "+volumenEmpaque+": " + tuplasInsertadas + " tuplas insertadas");    
             return new Producto(codigoDeBarras, idTipoProducto, nombre, marca, presentacion, cantidadPresentacion, unidadDeMedida, pesoEmpaque, volumenEmpaque);
         }
         catch (Exception e)
@@ -613,7 +614,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlSucursal.adicionarSucursal(pm, idSucursal, ciudad, direccion, sector);
             tx.commit();
 
-            log.trace ("Inserciï¿½n de Sucursal: "+idSucursal+", "+ciudad+", "+sector+", "+direccion+": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserción de Sucursal: "+idSucursal+", "+ciudad+", "+sector+", "+direccion+": " + tuplasInsertadas + " tuplas insertadas");
 
             return new Sucursal(idSucursal, ciudad, sector, direccion);
         }
@@ -652,7 +653,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlBodega.adicionarBodega(pm, idBodega, idTipoProducto, idSucursal, capacidadVolumen, capacidadPeso);
             tx.commit();
 
-            log.trace ("Inserciï¿½n de Bodega: "+idBodega+", "+idTipoProducto+", "+idSucursal+", "+capacidadVolumen+", "+capacidadPeso+": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserción de Bodega: "+idBodega+", "+idTipoProducto+", "+idSucursal+", "+capacidadVolumen+", "+capacidadPeso+": " + tuplasInsertadas + " tuplas insertadas");
 
             return new Bodega(idBodega, idTipoProducto, idSucursal, capacidadVolumen, capacidadPeso);
         }
@@ -692,7 +693,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlEstante.adicionarEstante(pm, idEstante, idTipoProducto, idSucursal, capacidadVolumen, capacidadPeso, nivelAbastecimiento);
             tx.commit();
 
-            log.trace ("Inserciï¿½n de Estante: " +idEstante+", "+idTipoProducto+", "+idSucursal+", "+capacidadVolumen+", "+capacidadPeso+", "+nivelAbastecimiento+": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserción de Estante: " +idEstante+", "+idTipoProducto+", "+idSucursal+", "+capacidadVolumen+", "+capacidadPeso+", "+nivelAbastecimiento+": " + tuplasInsertadas + " tuplas insertadas");
 
             return new Estante(idEstante, idTipoProducto, idSucursal, capacidadVolumen, capacidadPeso, nivelAbastecimiento);
         }
@@ -709,6 +710,190 @@ public class PersistenciaSuperAndes
             }
             pm.close();
         }
+	}
+	
+	/**
+	 * Mï¿½todo que inserta, de manera transaccional, una tupla en la tabla Promocion
+	 * Adiciona entradas al log de la aplicaciï¿½n
+	 * @param idSucursal - El identificador de la sucursal
+	 * @param fechaInicio - La fecha de inicio de la promocion
+	 * @param fechaFinal - La fecha final de la promocion
+	 * @param cantidadProductos - La cantidad del producto en promocion
+	 * @param precioFinal - El precio final de la promocion
+	 * @return El objeto Promocion adicionado. null si ocurre alguna Excepciï¿½n
+	 */
+	public Promocion adicionarPromocion(int idSucursal, Timestamp fechaInicio, Timestamp fechaFinal, int cantidadProductos, double precioFinal)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            int idPromocion = (int) nextval();
+            long tuplasInsertadas = sqlPromocion.adicionarPromocion(pm, idPromocion, idSucursal, fechaInicio, fechaFinal, cantidadProductos, precioFinal);
+            tx.commit();
+
+            log.trace ("Inserción de Promocion: " +idPromocion+", "+idSucursal+", "+fechaInicio+", "+fechaFinal+", "+cantidadProductos+", "+precioFinal+": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new Promocion(idPromocion, idSucursal, fechaInicio, fechaFinal, cantidadProductos, precioFinal);
+        }
+        catch (Exception e)
+        {
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	/**
+	 * Mï¿½todo que finaliza, de manera transaccional, una tupla en la tabla Promocion
+	 * Adiciona entradas al log de la aplicaciï¿½n
+	 * @return El objeto Promocion adicionado. null si ocurre alguna Excepciï¿½n
+	 */
+	public long finalizarPromocionPorFecha(int idSucursal, Timestamp fechaFinal)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			tx.begin();
+            long resp = sqlPromocion.finalizarPromocionPorFecha(pm, idSucursal, fechaFinal);
+            tx.commit();
+
+            return resp;
+		}
+		catch(Exception e)
+		{
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return -1;
+		}
+		finally 
+		{
+			 if (tx.isActive())
+	            {
+	                tx.rollback();
+	            }
+	            pm.close();
+		}
+	}
+	
+	/**
+	 * Mï¿½todo que finaliza, de manera transaccional, una tupla en la tabla Promocion
+	 * Adiciona entradas al log de la aplicaciï¿½n
+	 * @return El objeto Promocion adicionado. null si ocurre alguna Excepciï¿½n
+	 */
+	public long finalizarPromocionPorCantidad(int idSucursal)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			tx.begin();
+            long resp = sqlPromocion.finalizarPromocionPorCantidad(pm, idSucursal);
+            tx.commit();
+
+            return resp;
+		}
+		catch(Exception e)
+		{
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return -1;
+		}
+		finally 
+		{
+			 if (tx.isActive())
+	            {
+	                tx.rollback();
+	            }
+	            pm.close();
+		}
+	}
+	
+	/**
+	 * Mï¿½todo que inserta, de manera transaccional, una tupla en la tabla Pedido
+	 * Adiciona entradas al log de la aplicaciï¿½n
+	 * @param idSucursal - El identificador de la sucursal
+	 * @param idProveedor - El identificador del proveedor
+	 * @param fechaEsperadaEntrega - La fecha esperada de entrega del pedido
+	 * @param cantidad - La cantidad de producto que se quiere pedir
+	 * @param precioTotal - El precio total del pedido
+	 * @param fechaEntrega - La fecha de entrega del pedido
+	 * @param calidadProductos - La calidad de los productos pedidos
+	 * @param estado - El estado actual del pedido 
+	 * @return El objeto Pedido adicionado. null si ocurre alguna Excepciï¿½n
+	 */
+	public Pedido adicionarPedidoAProveedor(int idSucursal, int idProveedor, int idProducto, Timestamp fechaEsperadaEntrega, int cantidad, double precioTotal, Timestamp fechaEntrega, int calidadProductos)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			tx.begin();
+            int idPedido = (int) nextval();
+            String estadoInicial = "Pendiente"; 
+            long tuplasInsertadas = sqlPedido.adicionarPedido(pm, idPedido, idSucursal, idProveedor, idProducto, fechaEsperadaEntrega, cantidad, precioTotal, fechaEntrega, calidadProductos, estadoInicial);
+            tx.commit();
+
+            log.trace ("Inserción de Pedido: " +idPedido+", "+idSucursal+", "+idProducto+", "+fechaEsperadaEntrega+", "+cantidad+", "+precioTotal+", "+fechaEntrega+", "+calidadProductos+", "+estadoInicial+": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new Pedido(idPedido, idSucursal, idProveedor, idProducto, fechaEsperadaEntrega, cantidad, precioTotal, fechaEntrega, calidadProductos, estadoInicial);
+		}
+		catch(Exception e)
+		{
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+		}
+		finally 
+		{
+			 if (tx.isActive())
+	            {
+	                tx.rollback();
+	            }
+	            pm.close();
+		}
+	}
+
+	/**
+	 * Mï¿½todo que elimina, de manera transaccional, una tupla en la tabla Pedido
+	 * Adiciona entradas al log de la aplicaciï¿½n
+	 * @param idSucursal - El identificador de la sucursal
+	 * @param idProveedor - El identificador del proveedor
+	 * @param estado - El estado actual del pedido 
+	 * @return El objeto Pedido adicionado. null si ocurre alguna Excepciï¿½n
+	 */
+	public long llegadaPedidoAProveedor(int idPedido, int idSucursal, int idProveedor)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			tx.begin();
+            String estadoFinal = "Entregado"; 
+            long resp = sqlPedido.llegadaPedido(pm, idPedido, idSucursal, idProveedor, estadoFinal);
+            tx.commit();
+
+            return resp;
+		}
+		catch(Exception e)
+		{
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return -1;
+		}
+		finally 
+		{
+			 if (tx.isActive())
+	            {
+	                tx.rollback();
+	            }
+	            pm.close();
+		}
 	}
 	
 	public long[] limpiarSuperAndes()
@@ -735,11 +920,4 @@ public class PersistenciaSuperAndes
 			pm.close();
 		}
 	}
-
-
-
-
-
-
-
 }

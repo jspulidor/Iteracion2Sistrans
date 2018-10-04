@@ -1,5 +1,7 @@
 package uniandes.isis2304.supermercados.negocio;
 
+import java.sql.Timestamp;
+
 import org.apache.log4j.Logger;
 
 import com.google.gson.JsonObject;
@@ -111,6 +113,43 @@ public class SuperAndes
         return producto;
 	}
 	
+	public Promocion adicionarPromocion(int idPromocion, int idSucursal, Timestamp fechaInicio, Timestamp fechaFinal, int cantidadProductos, double precioFinal)
+	{
+		log.info("Adicionando promocion: "+idPromocion);
+		Promocion promocion = psa.adicionarPromocion(idSucursal, fechaInicio, fechaFinal, cantidadProductos, precioFinal);
+		log.info("Adicionando promocion: "+promocion);
+		return promocion;
+	}
+	
+	public Pedido adicionarPedidoAProveedor(int idPedido, int idSucursal, int idProveedor, int idProducto, Timestamp fechaEsperadaEntrega, int cantidad, double precioTotal, Timestamp fechaEntrega, int calidadProductos, String estado)
+	{
+		log.info("Adicionando pedido: "+idPedido);
+		Pedido pedido = psa.adicionarPedidoAProveedor(idSucursal, idProveedor, idProducto, fechaEsperadaEntrega, cantidad, precioTotal, fechaEntrega, calidadProductos);
+		log.info("Adicionando pedido: "+pedido);
+		return pedido;
+	}
+	
+	public long finalizarPromocionPorFecha(int idSucursal, Timestamp fechaFinal)
+	{
+		log.info("Eliminando promoción por fecha: "+fechaFinal);
+		long resp = psa.finalizarPromocionPorFecha(idSucursal, fechaFinal);
+		log.info("Eliminando promoción por fecha: "+resp+" tuplas eliminadas");
+		return resp;
+	}
 
+	public long finalizarPromocionPorCantidad(int idSucursal)
+	{
+		long resp = psa.finalizarPromocionPorCantidad(idSucursal);
+		log.info("Eliminando promoción por fecha: "+resp+" tuplas eliminadas");
+		return resp;
+	}
+	
+	public long finalizarPedidoAProveedor(int idPedido, int idSucursal, int idProveedor)
+	{
+		log.info("Finalizando pedido: "+idPedido);
+		long resp = psa.llegadaPedidoAProveedor(idPedido, idSucursal, idProveedor);
+		log.info("Eliminando promoción por fecha: "+resp+" tuplas eliminadas");
+		return resp;
+	}
 
 }

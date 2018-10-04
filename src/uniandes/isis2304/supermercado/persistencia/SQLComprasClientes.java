@@ -45,7 +45,7 @@ class SQLComprasClientes
 	 */
 	public long adicionarCompraCliente(PersistenceManager pm, int idCliente, int idFactura)
 	{
-		 Query sql = pm.newQuery(SQL, "INSERT INTO " +psa.darTablaAlbergan()+ "(idCliente, idFactura) values (?, ?)");	
+		 Query sql = pm.newQuery(SQL, "INSERT INTO " +psa.darTablaAlbergan()+ "(id_cliente, id_factura) values (?, ?)");	
 		 sql.setParameters(idCliente, idFactura);
 		 return (long)sql.executeUnique();   
 	}

@@ -50,9 +50,35 @@ class SQLAlbergan
 	 */
 	public long adicionarAlbergan(PersistenceManager pm, int idProducto, int idEstante, int cantidadProducto) 
 	{
-        Query sql = pm.newQuery(SQL, "INSERT INTO " +psa.darTablaAlbergan()+ "(idProducto, idEstante, cantidadProducto) values (?, ?, ?)");
+        Query sql = pm.newQuery(SQL, "INSERT INTO " +psa.darTablaAlbergan()+ "(id_producto, id_estante, cantidad_producto) values (?, ?, ?)");
         sql.setParameters(idProducto, idEstante, cantidadProducto);
         return (long)sql.executeUnique();            
+	}
+	
+	/**
+	 * Crea y ejecuta la sentencia SQL para aumentar en una cantidad el número de productos albergados de la 
+	 * base de datos de SuperAndes
+	 * @param pm - El manejador de persistencia
+	 * @return El número de tuplas modificadas
+	 */
+	public long aumentarProductoEnEstante(PersistenceManager pm, String idEstante, String idProducto, int cantidad)
+	{
+        Query q = pm.newQuery(SQL, "UPDATE " + psa.darTablaAlbergan() + " SET cantidad_producto = cantidad_producto + "+cantidad+" WHERE id_estante = ? AND id_producto = ?");
+        q.setParameters(idEstante, idProducto);
+        return (long) q.executeUnique();
+	}
+	
+	/**
+	 * Crea y ejecuta la sentencia SQL para disminuir en una cantidad el número de productos albergados de la 
+	 * base de datos de SuperAndes
+	 * @param pm - El manejador de persistencia
+	 * @return El número de tuplas modificadas
+	 */
+	public long disminuirProductoEnBodega(PersistenceManager pm, String idEstante, String idProducto, int cantidad)
+	{
+        Query q = pm.newQuery(SQL, "UPDATE " + psa.darTablaAlbergan() + " SET cantidad_producto = cantidad_producto - "+cantidad+" WHERE id_estante = ? AND id_producto = ?");
+        q.setParameters(idEstante, idProducto);
+        return (long) q.executeUnique();
 	}
 	
 	/**
@@ -64,7 +90,7 @@ class SQLAlbergan
 	 */
 	public long eliminarAlbergan(PersistenceManager pm, int idProducto, int idEstante) 
 	{
-        Query sql = pm.newQuery(SQL, "DELETE FROM " +psa.darTablaAlbergan()+ " WHERE idProducto = ? AND idEstante = ?");
+        Query sql = pm.newQuery(SQL, "DELETE FROM " +psa.darTablaAlbergan()+ " WHERE id_producto = ? AND id_estante = ?");
         sql.setParameters(idProducto, idEstante);
         return (long) sql.executeUnique();            
 	}

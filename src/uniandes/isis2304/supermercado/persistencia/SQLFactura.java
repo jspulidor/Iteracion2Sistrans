@@ -38,7 +38,7 @@ class SQLFactura
 	
 	public long generarFactura(PersistenceManager pm, int idFactura, Timestamp fechaCompra, int cantidadProductos, double total)
 	{
-		Query sql = pm.newQuery(SQL, "INSERT INTO " +psa.darTablaFactura() + "(idFactura, fechaCompra, cantidadProductos, total) values (?, ?, ?, ?)");
+		Query sql = pm.newQuery(SQL, "INSERT INTO " +psa.darTablaFactura() + "(id_factura, fecha_compra, cantidad_productos, total) values (?, ?, ?, ?)");
 		sql.setParameters(idFactura, fechaCompra, cantidadProductos, total);
 		return (long) sql.executeUnique();
 	}

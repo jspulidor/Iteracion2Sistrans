@@ -40,7 +40,7 @@ class SQLTipoProducto
 	
 	public long adicionarTipoProducto(PersistenceManager pm, int id, String nombre, String categoria)
 	{
-		Query sql = pm.newQuery(SQL, "INSERT INTO "+psa.darTablaTipoProducto() +"(id, nombre,categoria) values (?, ?, ?)");
+		Query sql = pm.newQuery(SQL, "INSERT INTO "+psa.darTablaTipoProducto() +"(id, nombre, categoria) values (?, ?, ?)");
 		sql.setParameters(id, nombre, categoria);
 		return (long) sql.executeUnique();
 	}

@@ -47,11 +47,37 @@ class SQLAlmacenan
 	 * @param cantidadProducto - Cantidad del producto que almacena
 	 * @return EL número de tuplas insertadas
 	 */
-	public long adicionarAlmacenan(PersistenceManager pm, int idProducto, int idEstante, int cantidadProducto) 
+	public long adicionarAlmacenan(PersistenceManager pm, int idProducto, int idBodega, int cantidadProducto) 
 	{
-        Query sql = pm.newQuery(SQL, "INSERT INTO " +psa.darTablaAlbergan()+ "(idProducto, idEstante, cantidadProducto) values (?, ?, ?)");
-        sql.setParameters(idProducto, idEstante, cantidadProducto);
+        Query sql = pm.newQuery(SQL, "INSERT INTO " +psa.darTablaAlbergan()+ "(id_producto, id_bodega, cantidad_producto) values (?, ?, ?)");
+        sql.setParameters(idProducto, idBodega, cantidadProducto);
         return (long)sql.executeUnique();            
+	}
+	
+	/**
+	 * Crea y ejecuta la sentencia SQL para aumentar en una cantidad el número de productos almacenados de la 
+	 * base de datos de SuperAndes
+	 * @param pm - El manejador de persistencia
+	 * @return El número de tuplas modificadas
+	 */
+	public long aumentarProductoEnBodega(PersistenceManager pm, String idBodega, String idProducto, int cantidad)
+	{
+        Query q = pm.newQuery(SQL, "UPDATE " + psa.darTablaAlmacenan() + " SET cantidad_producto = cantidad_producto + "+cantidad+" WHERE id_bodega = ? AND id_producto = ?");
+        q.setParameters(idBodega, idProducto);
+        return (long) q.executeUnique();
+	}
+	
+	/**
+	 * Crea y ejecuta la sentencia SQL para disminuir en una cantidad el número de productos almacenados de la 
+	 * base de datos de SuperAndes
+	 * @param pm - El manejador de persistencia
+	 * @return El número de tuplas modificadas
+	 */
+	public long disminuirProductoEnBodega(PersistenceManager pm, String idBodega, String idProducto, int cantidad)
+	{
+        Query q = pm.newQuery(SQL, "UPDATE " + psa.darTablaAlmacenan() + " SET cantidad_producto = cantidad_producto - "+cantidad+" WHERE id_bodega = ? AND id_producto = ?");
+        q.setParameters(idBodega, idProducto);
+        return (long) q.executeUnique();
 	}
 	
 	/**
@@ -63,7 +89,7 @@ class SQLAlmacenan
 	 */
 	public long eliminarAlmacenan(PersistenceManager pm, int idProducto, int idBodega) 
 	{
-        Query sql = pm.newQuery(SQL, "DELETE FROM " +psa.darTablaAlbergan()+ " WHERE idProducto = ? AND idBodega = ?");
+        Query sql = pm.newQuery(SQL, "DELETE FROM " +psa.darTablaAlbergan()+ " WHERE id_producto = ? AND id_bodega = ?");
         sql.setParameters(idProducto, idBodega);
         return (long) sql.executeUnique();            
 	}
