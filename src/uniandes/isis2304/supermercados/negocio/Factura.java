@@ -16,16 +16,10 @@ public class Factura implements VOFactura
 	private int id;
 	
 	/**
-	 * Cantidad de productos de la factura
+	 * Identificador de la visita a la sucursal
 	 */
 	
-	private int cantidadProductos;
-	
-	/**
-	 * Fecha de expedicion factura
-	 */
-	
-	private Timestamp fechaCompra;
+	private int idVisitaMercado;
 	
 	/**
 	 * Total de la factura
@@ -43,16 +37,14 @@ public class Factura implements VOFactura
 	public Factura()
 	{
 		id = 0;
-		setCantidadProductos(0);
-		setFechaCompra(new Timestamp(0));
-		total=(double) 0;
+		idVisitaMercado = 0;
+		total = (double) 0;
 	}
 	
-	public Factura (int pId, int pCantidadProductos, Timestamp pFechaCompra, Double pTotal)
+	public Factura (int pId, int pIdVisitaMercado, Double pTotal)
 	{
 		this.id=pId;
-		this.cantidadProductos=pCantidadProductos;
-		this.fechaCompra = pFechaCompra;
+		this.idVisitaMercado = pIdVisitaMercado;
 		this.total=pTotal;
 	}
 	
@@ -62,8 +54,7 @@ public class Factura implements VOFactura
 	
 	@Override
 	public String toString() {
-		return "Factura [id=" + id + ", cantidadProductos=" + cantidadProductos + ", fechaCompra=" + fechaCompra
-				+ ", total=" + total + "]";
+		return "Factura [id=" + id + ", visitaMercado=" + idVisitaMercado + ", total=" + total + "]";
 	}
 	
 	/* ****************************************************************
@@ -79,20 +70,12 @@ public class Factura implements VOFactura
 		this.id = id;
 	}
 
-	public int getCantidadProductos() {
-		return cantidadProductos;
+	public int getIdVisitaMercado() {
+		return idVisitaMercado;
 	}
 
-	public void setCantidadProductos(int cantidadProductos) {
-		this.cantidadProductos = cantidadProductos;
-	}
-
-	public Timestamp getFechaCompra() {
-		return fechaCompra;
-	}
-
-	public void setFechaCompra(Timestamp fechaCompra) {
-		this.fechaCompra = fechaCompra;
+	public void setCantidadProductos(int pIdVisitaMercado) {
+		this.idVisitaMercado = pIdVisitaMercado;
 	}
 
 	public Double getTotal() {

@@ -7,6 +7,7 @@ public interface VOProveen {
 	 *****************************************************************/
 	public int getIdProveedor();
 	public int getIdProducto();
+	public int getIdSucursal();
 	public Double getPrecio() ;
 	public String toString();
 }

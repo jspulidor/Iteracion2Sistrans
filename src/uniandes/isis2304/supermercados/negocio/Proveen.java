@@ -17,9 +17,14 @@ public class Proveen implements VOProveen {
 	private int idProducto;
 	
 	/**
+	 * Id d la sucursal
+	 */
+	private int idSucursal;
+	
+	/**
 	 * Precio de venta fijado por el proveedor para el producto
 	 */
-	private Double precio;
+	private Double precioUnitario;
 	
 	/* ****************************************************************
 	 * 			Métodos
@@ -32,7 +37,8 @@ public class Proveen implements VOProveen {
 	{
 		this.idProducto=0;
 		this.idProveedor=0;
-		this.precio=(double) 0;
+		this.idSucursal=0;
+		this.precioUnitario=(double) 0;
 	}
 	
 	/**
@@ -42,11 +48,12 @@ public class Proveen implements VOProveen {
 	 * @param pPrecio
 	 */
 	
-	public Proveen(int pIdProducto, int pIdProveedor, Double pPrecio)
+	public Proveen(int pIdProducto, int pIdProveedor, int pIdSucursal, Double pPrecio)
 	{
 		this.idProducto=pIdProducto;
 		this.idProveedor=pIdProveedor;
-		this.precio=pPrecio;
+		this.idSucursal=pIdSucursal;
+		this.precioUnitario=pPrecio;
 	}
 	
 	/**
@@ -54,7 +61,7 @@ public class Proveen implements VOProveen {
 	 */
 	@Override
 	public String toString() {
-		return "Proveen [idProveedor=" + idProveedor + ", idProducto=" + idProducto + ", precio=" + precio + "]";
+		return "Proveen [idProveedor=" + idProveedor + ", idProducto=" + idProducto + ", idSucursal=" +idSucursal+", precio=" + precioUnitario + "]";
 	}
 
 	
@@ -75,16 +82,24 @@ public class Proveen implements VOProveen {
 		return idProducto;
 	}
 
+	public int getIdSucursal() {
+		return idSucursal;
+	}
+	
+	public void setIdSucursal(int pIdSucursal) {
+		this.idSucursal = pIdSucursal;
+	}
+	
 	public void setIdProducto(int idProducto) {
 		this.idProducto = idProducto;
 	}
 
 	public Double getPrecio() {
-		return precio;
+		return precioUnitario;
 	}
 
 	public void setPrecio(Double precio) {
-		this.precio = precio;
+		this.precioUnitario = precio;
 	}
 	
 	

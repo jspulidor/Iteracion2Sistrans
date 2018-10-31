@@ -10,9 +10,7 @@ public interface VOFactura
 	
 	public int getId();
 	
-	public int getCantidadProductos();
-	
-	public Timestamp getFechaCompra();
+	public int getIdVisitaMercado();
 	
 	public Double getTotal();
 	
