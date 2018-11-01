@@ -79,11 +79,6 @@ public class PersistenciaSuperAndes
 	private SQLCliente sqlCliente;
 	
 	/**
-	 * Atributo para el acceso a la tabla COMPRASCLIENTES de la base de datos
-	 */
-	private SQLComprasClientes sqlComprasClientes;
-	
-	/**
 	 * Atributo para el acceso a la tabla ESTANTE de la base de datos
 	 */
 	private SQLEstante sqlEstante;
@@ -143,6 +138,20 @@ public class PersistenciaSuperAndes
 	 */
 	private SQLVentas sqlVentas;
 	
+	/**
+	 * Atributo para el acceso a la tabla CARRITOCOMPRAS de la base de datos
+	 */
+	private SQLCarritoCompras sqlCarritoCompras;
+	
+	/**
+	 * Atributo para el acceso a la tabla SELECCIONPRODUCTOS de la base de datos
+	 */
+	private SQLSeleccionProductos sqlSeleccionProductos;
+	
+	/**
+	 * Atributo para el acceso a la tabla VISITASMERCADO de la base de datos
+	 */
+	private SQLVisitaMercado sqlVisitasMercado;
 	/* ****************************************************************
 	 * 			M�todos del MANEJADOR DE PERSISTENCIA
 	 *****************************************************************/
@@ -157,14 +166,13 @@ public class PersistenciaSuperAndes
 		
 		// Define los nombres por defecto de las tablas de la base de datos
 		tablas = new LinkedList<String> ();
-		tablas.add ("SuperAndes_sequence");
-		tablas.add ("ALBERGAN");
-		tablas.add ("ALMACENAN");
-		tablas.add ("BODEGA");
-		tablas.add ("CLIENTE");
-		tablas.add ("COMPRASCLIENTES");
-		tablas.add ("ESTANTE");
-		tablas.add ("FACTURA");
+		tablas.add("SuperAndes_sequence");
+		tablas.add("ALBERGAN");
+		tablas.add("ALMACENAN");
+		tablas.add("BODEGA");
+		tablas.add("CLIENTE");
+		tablas.add("ESTANTE");
+		tablas.add("FACTURA");
 		tablas.add("INVENTARIO");
 		tablas.add("PEDIDO");
 		tablas.add("PRODUCTO");
@@ -174,7 +182,9 @@ public class PersistenciaSuperAndes
 		tablas.add("PROVEEN");
 		tablas.add("SUCURSAL");
 		tablas.add("TIPOPRODUCTO");
-		tablas.add("VENTAS");
+		tablas.add("CARRITOCOMPRAS");
+		tablas.add("SELECCIONPRODUCTOS");
+		tablas.add("VISITASMERCADO");
 	}
 	
 	/**
@@ -253,7 +263,6 @@ public class PersistenciaSuperAndes
 		sqlAlmacenan = new SQLAlmacenan(this);
 		sqlBodega = new SQLBodega(this);
 		sqlCliente = new SQLCliente(this);
-		sqlComprasClientes = new SQLComprasClientes(this);
 		sqlEstante = new SQLEstante(this);
 		sqlFactura = new SQLFactura(this);	
 		sqlInventario = new SQLInventario(this);
@@ -265,7 +274,9 @@ public class PersistenciaSuperAndes
 		sqlProveen = new SQLProveen(this);
 		sqlSucursal = new SQLSucursal(this);
 		sqlTipoProducto = new SQLTipoProducto(this);
-		sqlVentas = new SQLVentas(this);
+		sqlCarritoCompras = new SQLCarritoCompras(this);
+		sqlVisitasMercado = new SQLVisitaMercado(this);
+		sqlSeleccionProductos = new SQLSeleccionProductos(this);
 		sqlUtil = new SQLUtil(this);
 	}
 
@@ -310,19 +321,11 @@ public class PersistenciaSuperAndes
 	}
 	
 	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de ComprasCliente de SuperAndes
-	 */
-	public String darTablaComprasClientes()
-	{
-		return tablas.get(6);
-	}
-	
-	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de Estante de SuperAndes
 	 */
 	public String darTablaEstante()
 	{
-		return tablas.get(7);
+		return tablas.get(6);
 	}
 	
 	/**
@@ -330,7 +333,7 @@ public class PersistenciaSuperAndes
 	 */
 	public String darTablaFactura()
 	{
-		return tablas.get(8);
+		return tablas.get(7);
 	}
 	
 	/**
@@ -338,7 +341,7 @@ public class PersistenciaSuperAndes
 	 */
 	public String darTablaInventario()
 	{
-		return tablas.get(9);
+		return tablas.get(8);
 	}
 	
 	/**
@@ -346,7 +349,7 @@ public class PersistenciaSuperAndes
 	 */
 	public String darTablaPedido()
 	{
-		return tablas.get(10);
+		return tablas.get(9);
 	}
 	
 	/**
@@ -354,7 +357,7 @@ public class PersistenciaSuperAndes
 	 */
 	public String darTablaProducto()
 	{
-		return tablas.get(11);
+		return tablas.get(10);
 	}
 	
 	/**
@@ -362,7 +365,7 @@ public class PersistenciaSuperAndes
 	 */
 	public String darTablaPromocion()
 	{
-		return tablas.get(12);
+		return tablas.get(11);
 	}
 	
 	/**
@@ -370,7 +373,7 @@ public class PersistenciaSuperAndes
 	 */
 	public String darTablaPromociones()
 	{
-		return tablas.get(13);
+		return tablas.get(12);
 	}
 	
 	/**
@@ -378,7 +381,7 @@ public class PersistenciaSuperAndes
 	 */
 	public String darTablaProveedor()
 	{
-		return tablas.get(14);
+		return tablas.get(13);
 	}
 	
 	/**
@@ -386,7 +389,7 @@ public class PersistenciaSuperAndes
 	 */
 	public String darTablaProveen()
 	{
-		return tablas.get(15);
+		return tablas.get(14);
 	}
 	
 	/**
@@ -394,7 +397,7 @@ public class PersistenciaSuperAndes
 	 */
 	public String darTablaSucursal()
 	{
-		return tablas.get(16);
+		return tablas.get(15);
 	}
 	
 	/**
@@ -402,15 +405,31 @@ public class PersistenciaSuperAndes
 	 */
 	public String darTablaTipoProducto()
 	{
+		return tablas.get(16);
+	}
+	
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de CarritoCompras de SuperAndes
+	 */
+	public String darTablaCarritoCompras()
+	{
 		return tablas.get(17);
 	}
 	
 	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Ventas de SuperAndes
+	 * @return La cadena de caracteres con el nombre de la tabla de SeleccionProductos de SuperAndes
 	 */
-	public String darTablaVentas()
+	public String darTablaSeleccionProductos()
 	{
 		return tablas.get(18);
+	}
+	
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de VisitaMercado de SuperAndes
+	 */
+	public String darTablaVisitaMercado()
+	{
+		return tablas.get(19);
 	}
 	
 	/**

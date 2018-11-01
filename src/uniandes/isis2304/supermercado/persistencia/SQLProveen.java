@@ -2,7 +2,6 @@ package uniandes.isis2304.supermercado.persistencia;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
-
 class SQLProveen 
 {
 	/* ****************************************************************
@@ -42,10 +41,10 @@ class SQLProveen
 	 * @param idSucursal - El identificador de la sucursal
 	 * @return EL número de tuplas insertadas
 	 */
-	public long adicionarProveen(PersistenceManager pm, int idProveedor, int idProducto, int idSucursal) 
+	public long adicionarProveen(PersistenceManager pm, int idProveedor, int idProducto, int idSucursal, double precioUnitario) 
 	{
-        Query sql = pm.newQuery(SQL, "INSERT INTO " + psa.darTablaProveen() + "(id_proveedor, id_producto, id_sucursal) values (?, ?, ?)");
-        sql.setParameters(idProducto, idProducto, idSucursal);
+        Query sql = pm.newQuery(SQL, "INSERT INTO " + psa.darTablaProveen() + "(id_proveedor, id_producto, id_sucursal, precioUnitario) values (?, ?, ?, ?)");
+        sql.setParameters(idProducto, idProducto, idSucursal, precioUnitario);
         return (long)sql.executeUnique();            
 	}	
 }
