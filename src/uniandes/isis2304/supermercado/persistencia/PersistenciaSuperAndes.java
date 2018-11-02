@@ -1,5 +1,4 @@
 package uniandes.isis2304.supermercado.persistencia;
-//
 import java.math.BigDecimal;
 import java.sql.Time;
 import java.sql.Timestamp;
