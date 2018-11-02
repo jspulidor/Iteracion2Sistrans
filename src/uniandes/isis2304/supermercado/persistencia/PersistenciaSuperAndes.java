@@ -912,26 +912,6 @@ public class PersistenciaSuperAndes
 		}
 	}
 	
-	public long adicionarProductoACarritoCompras(int pIdProducto, int pIdVisitaMercado)
-	{
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-		
-		try
-		{
-			tx.begin();
-			int idSeleccion = (int) nextval();
-			long resp = sqlSeleccionProductos.adicionarSeleccionProductos(pm, idSeleccion, pIdVisitaMercado);
-			tx.commit();
-			
-		}
-		catch (Exception e) 
-		{
-			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	return -1;
-		}
-	}
-	
 	/**
 	 * RF16
 	 * Metodo que actualiza el estado de abandonado del carrito de compras
@@ -948,7 +928,7 @@ public class PersistenciaSuperAndes
 		try
 		{
 			tx.begin();
-			long resp = sqlCarritoCompras.actualizarAbandonado(pm, pId, pIdSucursal, idCliente);
+			long resp = sqlCliente.abandonarCarrito(pm, pId, pIdSucursal, idCliente);
 			tx.commit();
 			return resp;
 		}
