@@ -43,7 +43,7 @@ public class SQLVisitaMercado
 	 * @param fechaVisita - Fecha de la visita
 	 * @return EL número de tuplas insertadas
 	 */	
-	public long adicionarCarritoCompras(PersistenceManager pm, int id, int idCarritoCompras, int idCliente, Timestamp fechaVisita)
+	public long adicionarVisitaMercado(PersistenceManager pm, int id, int idCarritoCompras, int idCliente, Timestamp fechaVisita)
 	{
 		Query sql = pm.newQuery(SQL, "INSERT INTO "+psa.darTablaVisitaMercado()+ "(id, idCarritoCompras, idCliente, fechaVisita) values (?, ? , ?, ?)");
 		sql.setParameters(id, idCarritoCompras, idCliente, fechaVisita);

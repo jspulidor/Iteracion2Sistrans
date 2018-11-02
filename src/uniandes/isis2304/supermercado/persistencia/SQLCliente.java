@@ -53,4 +53,15 @@ class SQLCliente
 		sql.setParameters(idCliente, nombre, correo, ciudad, direccion);
 		return (long) sql.executeUnique();
 	}
+
+	public long abandonarCarrito(PersistenceManager pm, int id, int idSucursal, int pIdCliente)
+	{
+		Query sql = pm.newQuery(SQL, "UPDATE "+psa.darTablaCarritoCompras()+" SET abandonado = 'SI' FROM "+psa.darTablaCarritoCompras()+
+				                     "INNER JOIN "+psa.darTablaVisitaMercado()+" ON "+psa.darTablaCarritoCompras()+".id = "+psa.darTablaVisitaMercado()+".id_carritocompras WHERE "
+				                     +psa.darTablaVisitaMercado()+".id_cliente = "+pIdCliente+" AND "+psa.darTablaCarritoCompras()+".id = "+id);
+		sql.setParameters(id, idSucursal, pIdCliente);
+		return (long) sql.executeUnique();	
+	}
+
+
 }

@@ -3,6 +3,8 @@ package uniandes.isis2304.supermercado.persistencia;
 import java.math.BigDecimal;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -132,11 +134,6 @@ public class PersistenciaSuperAndes
 	 * Atributo para el acceso a la tabla TIPOPRODUCTO de la base de datos
 	 */
 	private SQLTipoProducto sqlTipoProducto;
-	
-	/**
-	 * Atributo para el acceso a la tabla VENTAS de la base de datos
-	 */
-	private SQLVentas sqlVentas;
 	
 	/**
 	 * Atributo para el acceso a la tabla CARRITOCOMPRAS de la base de datos
@@ -914,6 +911,54 @@ public class PersistenciaSuperAndes
 	            pm.close();
 		}
 	}
+	
+	public long adicionarProductoACarritoCompras(int pIdProducto, int pIdVisitaMercado)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		
+		try
+		{
+			tx.begin();
+			int idSeleccion = (int) nextval();
+			long resp = sqlSeleccionProductos.adicionarSeleccionProductos(pm, idSeleccion, pIdVisitaMercado);
+			tx.commit();
+			
+		}
+		catch (Exception e) 
+		{
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return -1;
+		}
+	}
+	
+	/**
+	 * RF16
+	 * Metodo que actualiza el estado de abandonado del carrito de compras
+	 * Adiciona entradas al log de la aplicaci�n
+	 * @param pId - Identificador del carrito
+	 * @param pIdSucursal - Indentificador de la sucursal
+	 * @param idCliente - Identificador del cliente
+	 * @return El objeto CarritoCompras actualizado. null si ocurre alguna Excepci�n
+	 */
+	public long abandonarCarritoCompras(int pId, int pIdSucursal, int idCliente)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long resp = sqlCarritoCompras.actualizarAbandonado(pm, pId, pIdSucursal, idCliente);
+			tx.commit();
+			return resp;
+		}
+		catch(Exception e)
+		{
+			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return -1;
+		}
+	}
+	
 	
 	public long[] limpiarSuperAndes()
 	{

@@ -3,7 +3,8 @@ package uniandes.isis2304.supermercado.persistencia;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-class SQLSucursal {
+class SQLSucursal 
+{
 	
 	/* ****************************************************************
 	 * 			Constantes
@@ -36,6 +37,6 @@ class SQLSucursal {
         q.setParameters(id, ciudad, sector, direccion);
         return (long) q.executeUnique();     
 	}
-	
 
+	public long recolectarProductosAbandonados(PersistenceManager pm, int idCarrito, )
 }
