@@ -1,11 +1,20 @@
 {
-	"title": "Aplicaci�n transaccional de SuperAndes",
+	"title": "Aplicaci�n transaccional de SuperAndes",
 	"frameH": 600,
 	"frameW": 800,
 	"bannerPath": "./src/main/resources/config/logo.png",
 	"menuBar":
 	[
-		{ "menuTitle": "Adicionar",
+		{ "menuTitle": "AdministradorSuperAndes",
+		  "options":
+			[
+				{
+					"label": "Adicionar Sucursal",
+					"event": "adicionarSucursal"
+				}
+			]
+		},
+		{ "menuTitle": "UsuarioSucursal",
 		  "options":
 			[
 				{
@@ -32,9 +41,38 @@
 					"label": "Adicionar Proveedor",
 					"event": "adicionarProveedor"
 				},
-								{
+				{
 					"label": "Adicionar Producto",
 					"event": "adicionarProducto"
+				},
+				{
+					"label": "RecolectarProductosAbandonados",
+					"event": "recolectarProductosAbandonados"
+				}
+			]
+		},
+		{ "menuTitle": "UsuarioCliente",
+		  "options":
+			[
+				{
+					"label": "Comprar/SolicitarCarritoCompras",
+					"event": "comprar"
+				},
+				{
+					"label": "AñadirProductosAlCarrito",
+					"event": "añadirProductosAlCarrito"
+				},
+				{
+					"label": "DevolverProductosDelCarrito",
+					"event": "devolverProductosDelCarrito"
+				},
+				{
+					"label": "AbandonarCarrito",
+					"event": "abandonarCarrito"
+				},
+				{
+					"label": "HacerCheckOut",
+					"event": "hacerCheckOut"
 				}
 			]
 		}		
