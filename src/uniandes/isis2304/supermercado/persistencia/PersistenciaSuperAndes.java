@@ -1,5 +1,5 @@
 package uniandes.isis2304.supermercado.persistencia;
-
+//
 import java.math.BigDecimal;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -21,7 +21,6 @@ import com.google.gson.JsonObject;
 
 import oracle.net.aso.v;
 import uniandes.isis2304.supermercados.negocio.*;
-
 public class PersistenciaSuperAndes 
 {
 	/* ****************************************************************
