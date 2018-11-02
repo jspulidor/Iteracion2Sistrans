@@ -38,5 +38,13 @@ class SQLSucursal
         return (long) q.executeUnique();     
 	}
 
-	public long recolectarProductosAbandonados(PersistenceManager pm, int idCarrito, )
+	public long recolectarProductosAbandonados(PersistenceManager pm)
+	{
+		Query sql = pm.newQuery(SQL, "DELETE id_producto FROM (SELECT id_producto WHERE "+ps.darTablaSeleccionProductos()+".id_visitamercado = "+ps.darTablaVisitaMercado()+".id AND "
+								      +ps.darTablaVisitaMercado()+".id_carritocompras = "+ps.darTablaCarritoCompras()+".id");
+		Query sql2 = pm.newQuery(SQL, "INSERT INTO "+ps.darTablaAlbergan()+" (id_estante, id_producto, cantidad_producto) SELECT id_estante, id_producto, cantidad_producto"
+				                     +"FROM"+  " WHERE "+ps.darTablaSeleccionProductos()+".id_visitamercado = "+ps.darTablaVisitaMercado()+"id AND "
+									  +ps.darTablaVisitaMercado()+"id_carritocompras = "+ps.darTablaCarritoCompras()+".id AND "
+									  +ps.darTablaSeleccionProductos()+".id_producto = "+ps.darTablaProducto()+".id"); 
+	}
 }
