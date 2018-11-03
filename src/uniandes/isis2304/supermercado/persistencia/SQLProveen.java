@@ -43,7 +43,7 @@ class SQLProveen
 	 */
 	public long adicionarProveen(PersistenceManager pm, int idProveedor, int idProducto, int idSucursal, double precioUnitario) 
 	{
-        Query sql = pm.newQuery(SQL, "INSERT INTO " + psa.darTablaProveen() + "(id_proveedor, id_producto, id_sucursal, precioUnitario) values (?, ?, ?, ?)");
+        Query sql = pm.newQuery(SQL, "INSERT INTO " + psa.darTablaProveen() + "(id_proveedor, id_producto, id_sucursal, precio_unitario) values (?, ?, ?, ?)");
         sql.setParameters(idProducto, idProducto, idSucursal, precioUnitario);
         return (long)sql.executeUnique();            
 	}	

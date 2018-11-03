@@ -7,7 +7,9 @@ public class SeleccionProductos implements VOSeleccionProductos
 	 *****************************************************************/
 	public int idProducto;
 	
-	public int idVisitaMercado;
+	public int idCarritoCompras;
+	
+	public int cantidad;
 
 	/* ****************************************************************
 	 * Constructor
@@ -15,13 +17,15 @@ public class SeleccionProductos implements VOSeleccionProductos
 	public SeleccionProductos()
 	{
 		idProducto = 0;
-		idVisitaMercado = 0;
+		idCarritoCompras = 0;
+		cantidad = 0;
 	}
 	
-	public SeleccionProductos(int pIdProducto, int pIdVisitaMercado)
+	public SeleccionProductos(int pIdProducto, int pIdCarritoCompras, int pCantidad)
 	{
 		idProducto = pIdProducto;
-		idVisitaMercado = pIdVisitaMercado;
+		idCarritoCompras = pIdCarritoCompras;
+		cantidad = pCantidad;
 	}
 	
 	/* ****************************************************************
@@ -29,8 +33,7 @@ public class SeleccionProductos implements VOSeleccionProductos
 	 *****************************************************************/
 	@Override
 	public int getIdProducto() {
-		// TODO Auto-generated method stub
-		return 0;
+		return idProducto;
 	}
 	
 	public void setIdProducto(int pIdProducto) {
@@ -38,12 +41,20 @@ public class SeleccionProductos implements VOSeleccionProductos
 	}
 
 	@Override
-	public int getIdVisitaMercado() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getIdCarritoCompras() {
+		return idCarritoCompras;
 	}
 	
-	public void setIdVisitaMercado(int pIdVisitaMercado) {
-		this.idVisitaMercado = pIdVisitaMercado;
+	public void setIdCarritoCompras(int pIdCarritoCompras) {
+		this.idCarritoCompras = pIdCarritoCompras;
+	}
+	
+	@Override
+	public int getCantidad() {
+		return cantidad;
+	}
+	
+	public void setCantidad(int pCantidad) {
+		this.cantidad = pCantidad;
 	}
 }

@@ -1,5 +1,10 @@
 package uniandes.isis2304.supermercados.negocio;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+
+import oracle.net.nt.NTAdapter.NetworkAdapterType;
+
 public class CarritoCompras implements VOCarritoCompras
 {
 	/* ****************************************************************
@@ -8,6 +13,8 @@ public class CarritoCompras implements VOCarritoCompras
 	public int id;
 	
 	public int idSucursal;
+	
+	public int idCliente;
 	
 	public String Disponibilidad;
 	
@@ -20,14 +27,16 @@ public class CarritoCompras implements VOCarritoCompras
 	{
 		id = 0;
 		idSucursal = 0;
+		idCliente = 0;
 		Disponibilidad = "SI";
 		Abandonado = "NO";
 	}
 	
-	public CarritoCompras(int pId, int pIdSucursal, String pDisponibilidad, String pAbandonado)
+	public CarritoCompras(int pId, int pIdSucursal, int pIdCliente, String pDisponibilidad, String pAbandonado)
 	{
 		this.id = pId;
 		this.idSucursal = pIdSucursal;
+		this.idCliente = pIdCliente;
 		this.Disponibilidad = pDisponibilidad;
 		this.Abandonado = pAbandonado;
 	}
@@ -51,6 +60,16 @@ public class CarritoCompras implements VOCarritoCompras
 	
 	public void setIdSucursal(int pIdSucural) {
 		this.idSucursal = pIdSucural;
+	}
+	
+	@Override
+	public int getIdCliente() 
+	{
+		return idCliente;
+	}
+	
+	public void setIdCliente(int pIdCliente) {
+		this.idCliente = pIdCliente;
 	}
 
 	@Override

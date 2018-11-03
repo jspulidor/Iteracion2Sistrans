@@ -7,5 +7,7 @@ public interface VOSeleccionProductos
 	 *****************************************************************/
 	public int getIdProducto();
 	
-	public int getIdVisitaMercado();
+	public int getIdCarritoCompras();
+	
+	public int getCantidad();
 }

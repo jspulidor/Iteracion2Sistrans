@@ -37,7 +37,7 @@ class SQLProducto {
 	 */
 	public long adicionarProducto(PersistenceManager pm, String codigoBarras, int tipo, String nombre, String marca, String presentacion, String unidadMedida, Double cantidadPresentacion, Double pesoEmpaque, Double volumenEmpaque)
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + ps.darTablaProducto () + "(id, tipo_producto, nombre, marca, presentacion, unidad_de_medida, cantidad_presentacion, peso_empaque, volumen_empaque) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        Query q = pm.newQuery(SQL, "INSERT INTO " + ps.darTablaProducto () + "(id, id_tipoproducto, nombre, marca, presentacion, unidad_de_medida, cantidad_presentacion, peso_empaque, volumen_empaque) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         q.setParameters(codigoBarras, tipo, nombre, marca, presentacion, unidadMedida, cantidadPresentacion, pesoEmpaque, volumenEmpaque);
         return (long) q.executeUnique();     
 	}

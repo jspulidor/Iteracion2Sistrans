@@ -143,10 +143,6 @@ public class PersistenciaSuperAndes
 	 */
 	private SQLSeleccionProductos sqlSeleccionProductos;
 	
-	/**
-	 * Atributo para el acceso a la tabla VISITASMERCADO de la base de datos
-	 */
-	private SQLVisitaMercado sqlVisitasMercado;
 	/* ****************************************************************
 	 * 			Mï¿½todos del MANEJADOR DE PERSISTENCIA
 	 *****************************************************************/
@@ -179,7 +175,6 @@ public class PersistenciaSuperAndes
 		tablas.add("TIPOPRODUCTO");
 		tablas.add("CARRITOCOMPRAS");
 		tablas.add("SELECCIONPRODUCTOS");
-		tablas.add("VISITASMERCADO");
 	}
 	
 	/**
@@ -270,7 +265,6 @@ public class PersistenciaSuperAndes
 		sqlSucursal = new SQLSucursal(this);
 		sqlTipoProducto = new SQLTipoProducto(this);
 		sqlCarritoCompras = new SQLCarritoCompras(this);
-		sqlVisitasMercado = new SQLVisitaMercado(this);
 		sqlSeleccionProductos = new SQLSeleccionProductos(this);
 		sqlUtil = new SQLUtil(this);
 	}
@@ -417,14 +411,6 @@ public class PersistenciaSuperAndes
 	public String darTablaSeleccionProductos()
 	{
 		return tablas.get(18);
-	}
-	
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de VisitaMercado de SuperAndes
-	 */
-	public String darTablaVisitaMercado()
-	{
-		return tablas.get(19);
 	}
 	
 	/**
@@ -911,6 +897,124 @@ public class PersistenciaSuperAndes
 	}
 	
 	/**
+	 * RF12
+	 * Se adiciona un carrito y es asignado a un cliente
+	 * Adiciona entradas al log de la aplicaciï¿½n
+	 * @param pIdSucursal
+	 * @param pIdCliente
+	 * @param pDisponibilidad
+	 * @param pAbandonado
+	 * @param pFechaVisista
+	 * @return El objeto CarritoCompras adicionado. null si ocurre alguna Excepciï¿½n
+	 */
+	public long solicitarCarritoCompras(int pIdSucursal, int pIdCliente, String pDisponibilidad, String pAbandonado, Timestamp pFechaVisista)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			int idCarrito = (int) nextval();
+			long resp = sqlCarritoCompras.solicitarCarritoCompras(pm, idCarrito, pIdSucursal, pIdCliente, pDisponibilidad, pAbandonado, pFechaVisista);
+			tx.commit();
+			return resp;
+		}
+		catch (Exception e) 
+		{
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return -1;
+		}
+	}
+	
+	/**
+	 * RF13
+	 * Se adicionan productos al carrito de compras
+	 * Adiciona entradas al log de la aplicaciï¿½n
+	 * @param pIdProducto
+	 * @param pIdCarritoCompras
+	 * @param pCantidad
+	 * @return El objeto SeleccionProductos adicionado. null si ocurre alguna Excepciï¿½n
+	 */
+	public long adicionarProductosACarrito(int pIdProducto, int pIdCarritoCompras, int pCantidad, int pIdEstante)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long resp = sqlSeleccionProductos.adicionarSeleccionProductos(pm, pIdProducto, pIdCarritoCompras, pCantidad);
+			long resp2 = sqlAlbergan.eliminarAlbergan(pm, pIdProducto, pIdEstante);
+			tx.commit();
+			//Inserción y Eliminación
+			return resp + resp2;
+		}
+		catch (Exception e)
+		{
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return -1;
+		}
+	}
+	
+	/**
+	 * RF14.1
+	 * Devuelve un producto del carrito de compras
+	 * Adiciona entradas al log de la aplicaciï¿½n
+	 * @param pIdProducto
+	 * @param pIdCarritoCompras
+	 * @return El objeto SeleccionProductos eliminado. null si ocurre alguna Excepciï¿½n
+	 */
+	public long devolverProductoDelCarrito(int pIdProducto, int pIdCarritoCompras, int pIdEstante, int pCantidad)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long resp = sqlSeleccionProductos.devolverSeleccionProductos(pm, pIdProducto, pIdCarritoCompras);
+			long resp2 = sqlAlbergan.adicionarAlbergan(pm, pIdProducto, pIdEstante, pCantidad);
+			tx.commit();
+			//Eliminación + Inserción
+			return resp + resp2;
+		}
+		catch (Exception e) 
+		{
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return -1;
+		}
+	}
+	
+	/**
+	 * RF14.2
+	 * Devuelve una cantidad de un producto del carrito de compras
+	 * Adiciona entradas al log de la aplicaciï¿½n
+	 * @param pIdProducto
+	 * @param pIdCarrtioCompras
+	 * @param pCantidad
+	 * @return El objeto SeleccionProductos actualizado. null si ocurre alguna Excepciï¿½n
+	 */
+	public long devolverCantidadProductosDelCarrito(int pIdProducto, int pIdCarrtioCompras, int pIdEstante, int pCantidad)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long resp = sqlSeleccionProductos.devolverCantidadProductos(pm, pIdProducto, pIdCarrtioCompras, pCantidad);
+			long resp2 = sqlAlbergan.adicionarAlbergan(pm, pIdProducto, pIdEstante, pCantidad);
+			tx.commit();
+			//Eliminación + Inserción
+			return resp + resp2;
+		}
+		catch (Exception e) 
+		{
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return -1;
+		}
+	}
+	
+	
+	
+	/**
 	 * RF16
 	 * Metodo que actualiza el estado de abandonado del carrito de compras
 	 * Adiciona entradas al log de la aplicaciï¿½n
@@ -937,6 +1041,29 @@ public class PersistenciaSuperAndes
 		}
 	}
 	
+	/**
+	 * RF17
+	 * Método que recolecta los productos de los carritos abandonados y los coloca en los estantes
+	 * Adiciona entradas al log de la aplicaciï¿½n
+	 * @return El objeto Albergan actualizado. null si ocurre alguna Excepciï¿½n
+	 */
+	public long recolectarProductosAbandonados()
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long resp = sqlSucursal.recolectarProductosAbandonados(pm);
+			tx.commit();
+			return resp;
+		}
+		catch (Exception e) 
+		{
+			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return -1;
+		}
+	}
 	
 	public long[] limpiarSuperAndes()
 	{

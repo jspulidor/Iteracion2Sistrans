@@ -26,7 +26,7 @@ public class SQLSeleccionProductos
 	 *****************************************************************/
 	/**
 	 * Constructor
-	 * @param pp - El Manejador de persistencia de la aplicación
+	 * @param psa - El Manejador de persistencia de la aplicación
 	 */
 	public SQLSeleccionProductos(PersistenciaSuperAndes psa)
 	{
@@ -39,10 +39,37 @@ public class SQLSeleccionProductos
 	 * @param idVisitaMercado - Identificador de la visita
 	 * @return EL número de tuplas insertadas
 	 */	
-	public long adicionarSeleccionProductos(PersistenceManager pm, int id, int idVisitaMercado)
+	public long adicionarSeleccionProductos(PersistenceManager pm, int idProducto, int idCarritoCompras, int cantidad)
 	{
-		Query sql = pm.newQuery(SQL, "INSERT INTO "+psa.darTablaSeleccionProductos()+ "(id, idVisitaMercado) values (?, ?)");
-		sql.setParameters(id, idVisitaMercado);
+		Query sql = pm.newQuery(SQL, "INSERT INTO "+psa.darTablaSeleccionProductos()+" (id_producto, id_carritocompras, cantidad) values (?, ?, ?)");
+		sql.setParameters(idProducto, idCarritoCompras, cantidad);
 		return (long) sql.executeUnique();
 	}	
+
+	/**
+	 * Crea y ejecuta la sentencia SQL para eliminar una SELECCIONPRODUCTOS a la base de datos de SuperAndes
+	 * @param idProducto - Identificador del producto
+	 * @param idCarritoCompras - Identificador del carrito
+	 * @return EL número de tuplas eliminadas
+	 */
+	public long devolverSeleccionProductos(PersistenceManager pm, int idProducto, int idCarritoCompras)
+	{
+		Query sql = pm.newQuery(SQL, "DELETE FROM "+psa.darTablaSeleccionProductos()+" WHERE id_producto = "+idProducto+" AND id_carritocompras = "+idCarritoCompras);
+		sql.setParameters(idProducto, idCarritoCompras);
+		return (long) sql.executeUnique();
+	}
+	
+	/**
+	 * Crea y ejecuta la sentencia SQL para actualizar una SELECCIONPRODUCTOS a la base de datos de SuperAndes
+	 * @param idProducto - Identificador del producto
+	 * @param idCarritoCompras - Identficador del carrtio
+	 * @param cantidad - Cantidad del producto
+	 * @return EL número de tuplas actualizadas
+	 */
+	public long devolverCantidadProductos(PersistenceManager pm, int idProducto, int idCarritoCompras, int cantidad)
+	{
+		Query sql = pm.newQuery(SQL, "UPDATE "+psa.darTablaSeleccionProductos()+" SET cantidad = "+cantidad);
+		sql.setParameters(idProducto, idCarritoCompras, cantidad);
+		return (long) sql.executeUnique();
+	}
 }

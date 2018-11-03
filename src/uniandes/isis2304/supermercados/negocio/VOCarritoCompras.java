@@ -1,5 +1,7 @@
 package uniandes.isis2304.supermercados.negocio;
 
+import java.sql.Timestamp;
+
 public interface VOCarritoCompras 
 {
 	/* ****************************************************************
@@ -8,6 +10,8 @@ public interface VOCarritoCompras
 	public int getId();
 	
 	public int getIdSucursal();
+	
+	public int getIdCliente();
 	
 	public String getDisponiblidad();
 	

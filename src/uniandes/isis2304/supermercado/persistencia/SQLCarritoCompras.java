@@ -1,5 +1,7 @@
 package uniandes.isis2304.supermercado.persistencia;
 
+import java.sql.Timestamp;
+
 import javax.jdo.PersistenceManager;
 
 import javax.jdo.Query;
@@ -39,13 +41,13 @@ public class SQLCarritoCompras
 	 * @param id - Identificador del carrito
 	 * @param idSucursal - Identificador de la sucursal
 	 * @param Disponibilidad - Disponibilidad del carrito
-	 * @param Abandonado - El carrito tiene dueño o no
+	 * @param Abandonado - El carrito tiene cliente o no
 	 * @return EL número de tuplas insertadas
 	 */	
-	public long adicionarCarritoCompras(PersistenceManager pm, int id, int idSucursal, String Disponibilidad, String Abandonado)
+	public long solicitarCarritoCompras(PersistenceManager pm, int id, int idSucursal, int idCliente, String Disponibilidad, String Abandonado, Timestamp fechaVisista)
 	{
-		Query sql = pm.newQuery(SQL, "INSERT INTO "+psa.darTablaCarritoCompras()+ "(id, idSucursal, Disponibilidad, Abandonado) values (?, ? , ?, ?)");
-		sql.setParameters(id, idSucursal, Disponibilidad, Abandonado);
+		Query sql = pm.newQuery(SQL, "INSERT INTO "+psa.darTablaCarritoCompras()+ "(id, id_sucursal, id_cliente, disponibilidad, abandonado, fecha_visita) values (?, ? , ?, ?, ?, ?)");
+		sql.setParameters(id, idSucursal, idCliente, Disponibilidad, Abandonado, fechaVisista);
 		return (long) sql.executeUnique();
 	}
 }

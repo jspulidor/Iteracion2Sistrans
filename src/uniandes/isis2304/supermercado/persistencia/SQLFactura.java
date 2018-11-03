@@ -36,10 +36,10 @@ class SQLFactura
 		this.psa = psa;
 	}
 	
-	public long generarFactura(PersistenceManager pm, int idFactura, int idVisitaMercado, double total)
+	public long generarFactura(PersistenceManager pm, int idFactura, int idCarritoCompras, double total, Timestamp fecha)
 	{
-		Query sql = pm.newQuery(SQL, "INSERT INTO " +psa.darTablaFactura() + "(id_factura, visita_mercado, total) values (?, ?, ?)");
-		sql.setParameters(idFactura, idVisitaMercado, total);
+		Query sql = pm.newQuery(SQL, "INSERT INTO " +psa.darTablaFactura() + "(id_factura, id_carritocompras, total, fecha) values (?, ?, ?, ?)");
+		sql.setParameters(idFactura, idCarritoCompras, total, fecha);
 		return (long) sql.executeUnique();
 	}
 }

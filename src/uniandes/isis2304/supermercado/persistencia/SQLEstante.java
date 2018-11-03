@@ -38,7 +38,7 @@ class SQLEstante {
 	 */
 	public long adicionarEstante(PersistenceManager pm, int idEstante, int tipoProducto, int sucursal, Double capacidadVolumen, Double capacidadPeso, int nivelAbastecimiento)
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + ps.darTablaEstante () + "(id_estante, tipo_producto, sucursal, capacidad_volumen, capacidad_peso, nivel_abastecimiento) values (?, ?, ?, ?, ?, ?)");
+        Query q = pm.newQuery(SQL, "INSERT INTO " + ps.darTablaEstante () + "(id_estante, id_tipoproducto, id_sucursal, capacidad_volumen, capacidad_peso, nivel_abastecimiento) values (?, ?, ?, ?, ?, ?)");
         q.setParameters(idEstante, tipoProducto, sucursal, capacidadVolumen, capacidadPeso, nivelAbastecimiento);
         return (long) q.executeUnique();     
 	}

@@ -16,15 +16,25 @@ public class Factura implements VOFactura
 	private int id;
 	
 	/**
-	 * Identificador de la visita a la sucursal
+	 * Identificador del carrito 
 	 */
 	
-	private int idVisitaMercado;
+	private int idCarritoCompras;
+	
+	/**
+	 * Identifiador del Cliente
+	 */
+	private int idCliente;
 	
 	/**
 	 * Total de la factura
 	 */
 	private Double total;
+	
+	/**
+	 * Fecha de la compra
+	 */
+	private Timestamp fecha;
 	
 	/* ****************************************************************
 	 * 			Atributos
@@ -37,15 +47,19 @@ public class Factura implements VOFactura
 	public Factura()
 	{
 		id = 0;
-		idVisitaMercado = 0;
+		idCarritoCompras = 0;
+		idCliente = 0;
 		total = (double) 0;
+		fecha = new Timestamp(0);
 	}
 	
-	public Factura (int pId, int pIdVisitaMercado, Double pTotal)
+	public Factura (int pId, int pIdCarritoCompras, int pIdCliente, Double pTotal, Timestamp pFecha)
 	{
 		this.id=pId;
-		this.idVisitaMercado = pIdVisitaMercado;
+		this.idCarritoCompras = pIdCarritoCompras;
+		this.idCliente = pIdCarritoCompras;
 		this.total=pTotal;
+		this.fecha=pFecha;
 	}
 	
 	/**
@@ -54,7 +68,7 @@ public class Factura implements VOFactura
 	
 	@Override
 	public String toString() {
-		return "Factura [id=" + id + ", visitaMercado=" + idVisitaMercado + ", total=" + total + "]";
+		return "Factura [id=" + id + ", visitaMercado=" + idCarritoCompras + ", total=" + total + ", fecha ="+fecha+"]";
 	}
 	
 	/* ****************************************************************
@@ -65,17 +79,24 @@ public class Factura implements VOFactura
 		return id;
 	}
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public int getIdVisitaMercado() {
-		return idVisitaMercado;
+	public int getIdCarritoCompras() {
+		return idCarritoCompras;
 	}
 
-	public void setCantidadProductos(int pIdVisitaMercado) {
-		this.idVisitaMercado = pIdVisitaMercado;
+	public void setCantidadProductos(int pIdCarritoCompras) {
+		this.idCarritoCompras = pIdCarritoCompras;
+	}
+	
+	public int getIdCliente() {
+		return idCliente;
+	}
+	
+	public void setIdCliente(int pIdCliente) {
+		this.idCliente = pIdCliente;
 	}
 
 	public Double getTotal() {
@@ -84,5 +105,13 @@ public class Factura implements VOFactura
 
 	public void setTotal(Double total) {
 		this.total = total;
+	}
+	
+	public Timestamp getFecha() {
+		return fecha;
+	}
+	
+	public void setFecha(Timestamp pFecha) {
+		this.fecha = pFecha;
 	}
 }
