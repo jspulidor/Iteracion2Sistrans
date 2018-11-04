@@ -818,7 +818,7 @@ public class PersistenciaSuperAndes
 	
 	/**
 	 * Mï¿½todo que inserta, de manera transaccional, una tupla en la tabla Pedido
-	 * Adiciona entradas al log de la aplicaciï¿½n
+	 * Adiciona entradas al log de la aplicación
 	 * @param idSucursal - El identificador de la sucursal
 	 * @param idProveedor - El identificador del proveedor
 	 * @param fechaEsperadaEntrega - La fecha esperada de entrega del pedido
