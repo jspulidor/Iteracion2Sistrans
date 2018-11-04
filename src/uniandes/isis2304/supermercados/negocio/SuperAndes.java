@@ -163,6 +163,40 @@ public class SuperAndes
 		log.info("Adicionando pedido: " + pedido);
 		return pedido;
 	}
+	
+	public long adicionarAlbergan(int idProducto, int idEstante, int cantidadProducto)
+	{
+		log.info("Adicionando Albergan");
+		long albergan = psa.adicionarAlbergan( idProducto,  idEstante, cantidadProducto);
+		log.info("Adicionando Albergan");
+		return albergan;
+	}
+	
+	public long eliminarAlbergan(int idProducto,int idEstante)
+	{
+		log.info("Eliminando Albergan");
+		long albergan = psa.eliminarAlbergan( idProducto,  idEstante);
+		log.info("Eliminando Albergan");
+		return albergan;
+		
+	}
+	
+	public long adicionarAlmacenan(int idProducto, int idEstante, int cantidadProducto)
+	{
+		log.info("Adicionando Almacenan");
+		long almacenan = psa.adicionarAlmacenan( idProducto,  idEstante, cantidadProducto);
+		log.info("Adicionando Almancenan");
+		return almacenan;
+	}
+	
+	public long eliminarAlmacenan(int idProducto,int idBodega)
+	{
+		log.info("Eliminando Almacenan");
+		long almacenan = psa.eliminarAlmacenan( idProducto,  idBodega);
+		log.info("Eliminando Almacenan");
+		return almacenan;
+		
+	}
 
 	public long finalizarPromocionPorFecha(int idSucursal, Timestamp fechaFinal)
 	{
@@ -206,4 +240,12 @@ public class SuperAndes
 		long resp = psa.devolverCantidadProductosDelCarrito(pIdProducto, pIdCarrtioCompras, pIdEstante, pCantidad);
 		return resp;
 	}
+	
+	public long pagarCompra(int pIdSucursal, int pIdCliente, int pIdProducto, int pCantidad, int pIdCarritoCompras, int pTotal, Timestamp pFecha)
+	{
+		long resp = psa.pagarCompra(pIdSucursal, pIdCliente, pIdProducto, pCantidad, pIdCarritoCompras, pTotal, pFecha);
+		return resp;
+	}
+	
+	
 }

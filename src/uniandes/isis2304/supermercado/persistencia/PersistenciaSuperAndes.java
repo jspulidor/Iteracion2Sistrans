@@ -459,7 +459,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlProveedor.adicionarProveedor(pm, idProveedor, nombre, calificacionCalidad);
             tx.commit();
             
-            log.trace ("Inserción del proveedor: "+idProveedor+", "+nombre+", "+calificacionCalidad+": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserciï¿½n del proveedor: "+idProveedor+", "+nombre+", "+calificacionCalidad+": " + tuplasInsertadas + " tuplas insertadas");
             
             return new Proveedor (idProveedor, nombre, calificacionCalidad);
         }
@@ -495,7 +495,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlTipoProducto.adicionarTipoProducto(pm, idTipoProducto, nombre, categoria);
             tx.commit();
             
-            log.trace ("Inserción de tipo de producto: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserciï¿½n de tipo de producto: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
             
             return new TipoProducto(idTipoProducto, nombre, categoria);
         }
@@ -535,7 +535,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlCliente.adicionarCliente(pm, idCliente, nombre, correo, ciudad, direccion);
             tx.commit();
 
-            log.trace ("Inserción del cliente: "+idCliente+", "+nombre+", "+correo+", "+ciudad+", "+direccion+": " + tuplasInsertadas + " tuplas insertadas");    
+            log.trace ("Inserciï¿½n del cliente: "+idCliente+", "+nombre+", "+correo+", "+ciudad+", "+direccion+": " + tuplasInsertadas + " tuplas insertadas");    
             return new Cliente (idCliente, nombre, correo, ciudad, direccion);
         }
         catch (Exception e)
@@ -577,7 +577,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlProducto.adicionarProducto(pm, codigoDeBarras, idTipoProducto, nombre, marca, presentacion, unidadDeMedida, cantidadPresentacion, pesoEmpaque, volumenEmpaque);
             tx.commit();
 
-            log.trace ("Inserción del proveedor: "+codigoDeBarras+", "+idTipoProducto+", "+nombre+", "+marca+", "+presentacion+", "+unidadDeMedida+", "+cantidadPresentacion+", "+pesoEmpaque+", "+volumenEmpaque+": " + tuplasInsertadas + " tuplas insertadas");    
+            log.trace ("Inserciï¿½n del proveedor: "+codigoDeBarras+", "+idTipoProducto+", "+nombre+", "+marca+", "+presentacion+", "+unidadDeMedida+", "+cantidadPresentacion+", "+pesoEmpaque+", "+volumenEmpaque+": " + tuplasInsertadas + " tuplas insertadas");    
             return new Producto(codigoDeBarras, idTipoProducto, nombre, marca, presentacion, cantidadPresentacion, unidadDeMedida, pesoEmpaque, volumenEmpaque);
         }
         catch (Exception e)
@@ -614,7 +614,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlSucursal.adicionarSucursal(pm, idSucursal, ciudad, direccion, sector);
             tx.commit();
 
-            log.trace ("Inserción de Sucursal: "+idSucursal+", "+ciudad+", "+sector+", "+direccion+": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserciï¿½n de Sucursal: "+idSucursal+", "+ciudad+", "+sector+", "+direccion+": " + tuplasInsertadas + " tuplas insertadas");
 
             return new Sucursal(idSucursal, ciudad, sector, direccion);
         }
@@ -653,7 +653,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlBodega.adicionarBodega(pm, idBodega, idTipoProducto, idSucursal, capacidadVolumen, capacidadPeso);
             tx.commit();
 
-            log.trace ("Inserción de Bodega: "+idBodega+", "+idTipoProducto+", "+idSucursal+", "+capacidadVolumen+", "+capacidadPeso+": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserciï¿½n de Bodega: "+idBodega+", "+idTipoProducto+", "+idSucursal+", "+capacidadVolumen+", "+capacidadPeso+": " + tuplasInsertadas + " tuplas insertadas");
 
             return new Bodega(idBodega, idTipoProducto, idSucursal, capacidadVolumen, capacidadPeso);
         }
@@ -693,7 +693,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlEstante.adicionarEstante(pm, idEstante, idTipoProducto, idSucursal, capacidadVolumen, capacidadPeso, nivelAbastecimiento);
             tx.commit();
 
-            log.trace ("Inserción de Estante: " +idEstante+", "+idTipoProducto+", "+idSucursal+", "+capacidadVolumen+", "+capacidadPeso+", "+nivelAbastecimiento+": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserciï¿½n de Estante: " +idEstante+", "+idTipoProducto+", "+idSucursal+", "+capacidadVolumen+", "+capacidadPeso+", "+nivelAbastecimiento+": " + tuplasInsertadas + " tuplas insertadas");
 
             return new Estante(idEstante, idTipoProducto, idSucursal, capacidadVolumen, capacidadPeso, nivelAbastecimiento);
         }
@@ -733,7 +733,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlPromocion.adicionarPromocion(pm, idPromocion, idSucursal, fechaInicio, fechaFinal, cantidadProductos, precioFinal);
             tx.commit();
 
-            log.trace ("Inserción de Promocion: " +idPromocion+", "+idSucursal+", "+fechaInicio+", "+fechaFinal+", "+cantidadProductos+", "+precioFinal+": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserciï¿½n de Promocion: " +idPromocion+", "+idSucursal+", "+fechaInicio+", "+fechaFinal+", "+cantidadProductos+", "+precioFinal+": " + tuplasInsertadas + " tuplas insertadas");
 
             return new Promocion(idPromocion, idSucursal, fechaInicio, fechaFinal, cantidadProductos, precioFinal);
         }
@@ -818,7 +818,7 @@ public class PersistenciaSuperAndes
 	
 	/**
 	 * Mï¿½todo que inserta, de manera transaccional, una tupla en la tabla Pedido
-	 * Adiciona entradas al log de la aplicación
+	 * Adiciona entradas al log de la aplicaciï¿½n
 	 * @param idSucursal - El identificador de la sucursal
 	 * @param idProveedor - El identificador del proveedor
 	 * @param fechaEsperadaEntrega - La fecha esperada de entrega del pedido
@@ -841,7 +841,7 @@ public class PersistenciaSuperAndes
             long tuplasInsertadas = sqlPedido.adicionarPedido(pm, idPedido, idSucursal, idProveedor, idProducto, fechaEsperadaEntrega, cantidad, precioTotal, fechaEntrega, calidadProductos, estadoInicial);
             tx.commit();
 
-            log.trace ("Inserción de Pedido: " +idPedido+", "+idSucursal+", "+idProducto+", "+fechaEsperadaEntrega+", "+cantidad+", "+precioTotal+", "+fechaEntrega+", "+calidadProductos+", "+estadoInicial+": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserciï¿½n de Pedido: " +idPedido+", "+idSucursal+", "+idProducto+", "+fechaEsperadaEntrega+", "+cantidad+", "+precioTotal+", "+fechaEntrega+", "+calidadProductos+", "+estadoInicial+": " + tuplasInsertadas + " tuplas insertadas");
 
             return new Pedido(idPedido, idSucursal, idProveedor, idProducto, fechaEsperadaEntrega, cantidad, precioTotal, fechaEntrega, calidadProductos, estadoInicial);
 		}
@@ -945,7 +945,7 @@ public class PersistenciaSuperAndes
 			long resp = sqlSeleccionProductos.adicionarSeleccionProductos(pm, pIdProducto, pIdCarritoCompras, pCantidad);
 			long resp2 = sqlAlbergan.disminuirProductoEnEstante(pm, pIdEstante, pIdProducto, pCantidad);
 			tx.commit();
-			//Inserción y Eliminación
+			//Inserciï¿½n y Eliminaciï¿½n
 			return resp + resp2;
 		}
 		catch (Exception e)
@@ -973,7 +973,7 @@ public class PersistenciaSuperAndes
 			long resp = sqlSeleccionProductos.devolverSeleccionProductos(pm, pIdProducto, pIdCarritoCompras);
 			long resp2 = sqlAlbergan.adicionarAlbergan(pm, pIdProducto, pIdEstante, pCantidad);
 			tx.commit();
-			//Eliminación + Inserción
+			//Eliminaciï¿½n + Inserciï¿½n
 			return resp + resp2;
 		}
 		catch (Exception e) 
@@ -1002,7 +1002,7 @@ public class PersistenciaSuperAndes
 			long resp = sqlSeleccionProductos.devolverCantidadProductos(pm, pIdProducto, pIdCarrtioCompras, pCantidad);
 			long resp2 = sqlAlbergan.aumentarProductoEnEstante(pm, pIdEstante, pIdProducto, pCantidad);
 			tx.commit();
-			//Eliminación + Inserción
+			//Eliminaciï¿½n + Inserciï¿½n
 			return resp + resp2;
 		}
 		catch (Exception e) 
@@ -1079,7 +1079,7 @@ public class PersistenciaSuperAndes
 	
 	/**
 	 * RF17
-	 * Método que recolecta los productos de los carritos abandonados y los coloca en los estantes
+	 * Mï¿½todo que recolecta los productos de los carritos abandonados y los coloca en los estantes
 	 * Adiciona entradas al log de la aplicaciï¿½n
 	 * @return El objeto Albergan actualizado. null si ocurre alguna Excepciï¿½n
 	 */
@@ -1131,5 +1131,121 @@ public class PersistenciaSuperAndes
 				tx.rollback();
 			pm.close();
 		}
+	}
+
+	public long adicionarAlbergan(int idProducto, int idEstante, int cantidadProducto) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long tuplasInsertadas = sqlAlbergan.adicionarAlbergan (pmf.getPersistenceManager(), idProducto, idEstante, cantidadProducto);
+    		tx.commit();
+
+            log.trace ("InserciÃ³n de gustan: [" + idProducto + ", " + idEstante +","+ cantidadProducto+"]. " + tuplasInsertadas + " tuplas insertadas");
+
+            return tuplasInsertadas;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public long adicionarAlmacenan(int idProducto, int idBodega, int cantidadProducto) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long tuplasInsertadas = sqlAlmacenan.adicionarAlmacenan (pmf.getPersistenceManager(), idProducto, idBodega, cantidadProducto);
+    		tx.commit();
+
+            log.trace ("InserciÃ³n de gustan: [" + idProducto + ", " + idBodega +","+ cantidadProducto+"]. " + tuplasInsertadas + " tuplas insertadas");
+
+            return tuplasInsertadas;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public long eliminarAlbergan (int idProducto, int idEstante) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp = sqlAlbergan.eliminarAlbergan(pm, idProducto, idEstante);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public long eliminarAlmacenan (int idProducto, int idBodega) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp = sqlAlmacenan.eliminarAlmacenan(pm, idProducto, idBodega);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
 	}
 }

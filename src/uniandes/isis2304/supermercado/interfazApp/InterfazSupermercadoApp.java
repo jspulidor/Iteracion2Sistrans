@@ -86,7 +86,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 	/**
 	 * 
-	 * Logger para escribir la traza de la ejecución
+	 * Logger para escribir la traza de la ejecuciï¿½n
 	 * 
 	 */
 
@@ -94,7 +94,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 	/**
 	 * 
-	 * Ruta al archivo de configuración de la interfaz
+	 * Ruta al archivo de configuraciï¿½n de la interfaz
 	 * 
 	 */
 
@@ -102,7 +102,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 	/**
 	 * 
-	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos
+	 * Ruta al archivo de configuraciï¿½n de los nombres de tablas de la base de datos
 	 * 
 	 */
 
@@ -126,7 +126,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 	/**
 	 * 
-	 * Asociación a la clase principal del negocio.
+	 * Asociaciï¿½n a la clase principal del negocio.
 	 * 
 	 */
 
@@ -141,7 +141,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 	/**
 	 * 
-	 * Objeto JSON con la configuración de interfaz de la app.
+	 * Objeto JSON con la configuraciï¿½n de interfaz de la app.
 	 * 
 	 */
 
@@ -149,7 +149,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 	/**
 	 * 
-	 * Panel de despliegue de interacción para los requerimientos
+	 * Panel de despliegue de interacciï¿½n para los requerimientos
 	 * 
 	 */
 
@@ -157,7 +157,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 	/**
 	 * 
-	 * Menú de la aplicación
+	 * Menï¿½ de la aplicaciï¿½n
 	 * 
 	 */
 
@@ -166,13 +166,13 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 	/*
 	 * ****************************************************************
 	 * 
-	 * Métodos
+	 * Mï¿½todos
 	 * 
 	 *****************************************************************/
 
 	/**
 	 * 
-	 * Construye la ventana principal de la aplicación. <br>
+	 * Construye la ventana principal de la aplicaciï¿½n. <br>
 	 * 
 	 * <b>post:</b> Todos los componentes de la interfaz fueron inicializados.
 	 * 
@@ -182,11 +182,11 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 	{
 
-		// Carga la configuración de la interfaz desde un archivo JSON
+		// Carga la configuraciï¿½n de la interfaz desde un archivo JSON
 
 		guiConfig = openConfig("Interfaz", CONFIG_INTERFAZ);
 
-		// Configura la apariencia del frame que contiene la interfaz gráfica
+		// Configura la apariencia del frame que contiene la interfaz grï¿½fica
 
 		configurarFrame();
 
@@ -217,20 +217,20 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 	/*
 	 * ****************************************************************
 	 * 
-	 * Métodos de configuración de la interfaz
+	 * Mï¿½todos de configuraciï¿½n de la interfaz
 	 * 
 	 *****************************************************************/
 
 	/**
 	 * 
-	 * Lee datos de configuración para la aplicació, a partir de un archivo JSON o
+	 * Lee datos de configuraciï¿½n para la aplicaciï¿½, a partir de un archivo JSON o
 	 * con valores por defecto si hay errores.
 	 * 
-	 * @param tipo       - El tipo de configuración deseada
+	 * @param tipo       - El tipo de configuraciï¿½n deseada
 	 * 
-	 * @param archConfig - Archivo Json que contiene la configuración
+	 * @param archConfig - Archivo Json que contiene la configuraciï¿½n
 	 * 
-	 * @return Un objeto JSON con la configuración del tipo especificado
+	 * @return Un objeto JSON con la configuraciï¿½n del tipo especificado
 	 * 
 	 *         NULL si hay un error en el archivo.
 	 * 
@@ -254,7 +254,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 			config = gson.fromJson(reader, JsonObject.class);
 
-			log.info("Se encontró un archivo de configuración válido: " + tipo);
+			log.info("Se encontrï¿½ un archivo de configuraciï¿½n vï¿½lido: " + tipo);
 
 		}
 
@@ -264,10 +264,10 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 // e.printStackTrace ();
 
-			log.info("NO se encontró un archivo de configuración válido");
+			log.info("NO se encontrï¿½ un archivo de configuraciï¿½n vï¿½lido");
 
 			JOptionPane.showMessageDialog(null,
-					"No se encontró un archivo de configuración de interfaz válido: " + tipo, "Parranderos App",
+					"No se encontrï¿½ un archivo de configuraciï¿½n de interfaz vï¿½lido: " + tipo, "Parranderos App",
 					JOptionPane.ERROR_MESSAGE);
 
 		}
@@ -278,7 +278,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 	/**
 	 * 
-	 * Método para configurar el frame principal de la aplicación
+	 * Mï¿½todo para configurar el frame principal de la aplicaciï¿½n
 	 * 
 	 */
 
@@ -296,7 +296,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 		{
 
-			log.info("Se aplica configuración por defecto");
+			log.info("Se aplica configuraciï¿½n por defecto");
 
 			titulo = "SuperAndes APP Default";
 
@@ -310,7 +310,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 		{
 
-			log.info("Se aplica configuración indicada en el archivo de configuración");
+			log.info("Se aplica configuraciï¿½n indicada en el archivo de configuraciï¿½n");
 
 			titulo = guiConfig.get("title").getAsString();
 
@@ -336,11 +336,11 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 	/**
 	 * 
-	 * Método para crear el menú de la aplicación con base em el objeto JSON leído
+	 * Mï¿½todo para crear el menï¿½ de la aplicaciï¿½n con base em el objeto JSON leï¿½do
 	 * 
-	 * Genera una barra de menú y los menús con sus respectivas opciones
+	 * Genera una barra de menï¿½ y los menï¿½s con sus respectivas opciones
 	 * 
-	 * @param jsonMenu - Arreglo Json con los menùs deseados
+	 * @param jsonMenu - Arreglo Json con los menï¿½s deseados
 	 * 
 	 */
 
@@ -348,7 +348,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 	{
 
-		// Creación de la barra de menús
+		// Creaciï¿½n de la barra de menï¿½s
 
 		menuBar = new JMenuBar();
 
@@ -356,7 +356,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 		{
 
-			// Creación de cada uno de los menús
+			// Creaciï¿½n de cada uno de los menï¿½s
 
 			JsonObject jom = men.getAsJsonObject();
 
@@ -370,7 +370,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 			{
 
-				// Creación de cada una de las opciones del menú
+				// Creaciï¿½n de cada una de las opciones del menï¿½
 
 				JsonObject jo = op.getAsJsonObject();
 
@@ -411,7 +411,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 		{
 
-			String idS = JOptionPane.showInputDialog(this, "Cual es el numero de identificación del cliente?",
+			String idS = JOptionPane.showInputDialog(this, "Cual es el numero de identificaciï¿½n del cliente?",
 					"Adicionar Cliente", JOptionPane.QUESTION_MESSAGE);
 
 			String nombre = JOptionPane.showInputDialog(this, "Cual es el nombre del cliente?", "Adicionar Cliente",
@@ -438,7 +438,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				{
 
-					throw new Exception("No se pudo crear un cliente con la información dada ");
+					throw new Exception("No se pudo crear un cliente con la informaciï¿½n dada ");
 
 				}
 
@@ -446,7 +446,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				resultado += "Cliente adicionado exitosamente: " + tb;
 
-				resultado += "\n Operación terminada";
+				resultado += "\n Operaciï¿½n terminada";
 
 				panelDatos.actualizarInterfaz(resultado);
 
@@ -456,7 +456,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 			{
 
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				panelDatos.actualizarInterfaz("Operaciï¿½n cancelada por el usuario");
 
 			}
 
@@ -484,7 +484,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 		{
 
-			String idClienteP = JOptionPane.showInputDialog(this, "Cual es el numero de identificación del cliente?",
+			String idClienteP = JOptionPane.showInputDialog(this, "Cual es el numero de identificaciï¿½n del cliente?",
 					"Comprar", JOptionPane.QUESTION_MESSAGE);
 
 			String idSucursalP = JOptionPane.showInputDialog(this,
@@ -515,7 +515,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				resultado += "Solicitando carrito de compras: " + tb;
 
-				resultado += "\n Operación terminada";
+				resultado += "\n Operaciï¿½n terminada";
 
 				panelDatos.actualizarInterfaz(resultado);
 
@@ -525,7 +525,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 			{
 
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				panelDatos.actualizarInterfaz("Operaciï¿½n cancelada por el usuario");
 
 			}
 
@@ -557,15 +557,15 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 					JOptionPane.QUESTION_MESSAGE);
 
 			String idProductoP = JOptionPane.showInputDialog(this,
-					"Cual es el id del producto que quiere añadir al carrito?", "Adicionar Productos",
+					"Cual es el id del producto que quiere aï¿½adir al carrito?", "Adicionar Productos",
 					JOptionPane.QUESTION_MESSAGE);
 
 			String cantidadProductoP = JOptionPane.showInputDialog(this,
-					"Qué cantidad del producto quiere añadir al carrito?", "Adicionar Productos",
+					"Quï¿½ cantidad del producto quiere aï¿½adir al carrito?", "Adicionar Productos",
 					JOptionPane.QUESTION_MESSAGE);
 
 			String idEstanteP = JOptionPane.showInputDialog(this,
-					"Cual es el id del estante del que cogió el producto?", "Adicionar Productos",
+					"Cual es el id del estante del que cogiï¿½ el producto?", "Adicionar Productos",
 					JOptionPane.QUESTION_MESSAGE);
 
 			if (idClienteP != null && idProductoP != null && cantidadProductoP != null && idEstanteP != null)
@@ -586,7 +586,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				{
 
-					throw new Exception("No se pudo añadir un producto al carrito ");
+					throw new Exception("No se pudo aï¿½adir un producto al carrito ");
 
 				}
 
@@ -594,7 +594,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				resultado += "Producto adicionado exitosamente: " + tb;
 
-				resultado += "\n Operación terminada";
+				resultado += "\n Operaciï¿½n terminada";
 
 				panelDatos.actualizarInterfaz(resultado);
 
@@ -604,7 +604,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 			{
 
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				panelDatos.actualizarInterfaz("Operaciï¿½n cancelada por el usuario");
 
 			}
 
@@ -670,7 +670,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				resultado += "Producto devuelto exitosamente: " + tb;
 
-				resultado += "\n Operación terminada";
+				resultado += "\n Operaciï¿½n terminada";
 
 				panelDatos.actualizarInterfaz(resultado);
 
@@ -680,7 +680,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 			{
 
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				panelDatos.actualizarInterfaz("Operaciï¿½n cancelada por el usuario");
 
 			}
 
@@ -708,7 +708,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 		{
 
-			String idS = JOptionPane.showInputDialog(this, "Cual es el numero de identificación del cliente?",
+			String idS = JOptionPane.showInputDialog(this, "Cual es el numero de identificaciï¿½n del cliente?",
 					"Adicionar Cliente", JOptionPane.QUESTION_MESSAGE);
 
 			String nombre = JOptionPane.showInputDialog(this, "Cual es el nombre del cliente?", "Adicionar Cliente",
@@ -735,7 +735,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				{
 
-					throw new Exception("No se pudo crear un cliente con la información dada ");
+					throw new Exception("No se pudo crear un cliente con la informaciï¿½n dada ");
 
 				}
 
@@ -743,7 +743,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				resultado += "Cliente adicionado exitosamente: " + tb;
 
-				resultado += "\n Operación terminada";
+				resultado += "\n Operaciï¿½n terminada";
 
 				panelDatos.actualizarInterfaz(resultado);
 
@@ -753,7 +753,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 			{
 
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				panelDatos.actualizarInterfaz("Operaciï¿½n cancelada por el usuario");
 
 			}
 
@@ -781,10 +781,10 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 		{
 
-			String idS = JOptionPane.showInputDialog(this, "Cual es el numero de identificación del cliente?",
+			String idClienteP = JOptionPane.showInputDialog(this, "Cual es el numero de identificaciï¿½n del cliente?",
 					"Adicionar Cliente", JOptionPane.QUESTION_MESSAGE);
 
-			String nombre = JOptionPane.showInputDialog(this, "Cual es el nombre del cliente?", "Adicionar Cliente",
+			String idSucursalP = JOptionPane.showInputDialog(this, "Cual es el nombre del cliente?", "Adicionar Cliente",
 					JOptionPane.QUESTION_MESSAGE);
 
 			String correo = JOptionPane.showInputDialog(this, "Cual es el correo del cliente?", "Adicionar Cliente",
@@ -808,7 +808,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				{
 
-					throw new Exception("No se pudo crear un cliente con la información dada ");
+					throw new Exception("No se pudo crear un cliente con la informaciï¿½n dada ");
 
 				}
 
@@ -816,7 +816,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				resultado += "Cliente adicionado exitosamente: " + tb;
 
-				resultado += "\n Operación terminada";
+				resultado += "\n Operaciï¿½n terminada";
 
 				panelDatos.actualizarInterfaz(resultado);
 
@@ -826,7 +826,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 			{
 
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				panelDatos.actualizarInterfaz("Operaciï¿½n cancelada por el usuario");
 
 			}
 
@@ -861,13 +861,13 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 		{
 
-			String ciudad = JOptionPane.showInputDialog(this, "En qué ciudad se encuentra la sucursal?",
+			String ciudad = JOptionPane.showInputDialog(this, "En quï¿½ ciudad se encuentra la sucursal?",
 					"Adicionar Sucursal", JOptionPane.QUESTION_MESSAGE);
 
-			String sector = JOptionPane.showInputDialog(this, "En qué sector se encuentra la bodega?",
+			String sector = JOptionPane.showInputDialog(this, "En quï¿½ sector se encuentra la bodega?",
 					"Adicionar Sucursal", JOptionPane.QUESTION_MESSAGE);
 
-			String direccion = JOptionPane.showInputDialog(this, "Cual es la dirección de la sucursal?",
+			String direccion = JOptionPane.showInputDialog(this, "Cual es la direcciï¿½n de la sucursal?",
 					"Adicionar Sucursal", JOptionPane.QUESTION_MESSAGE);
 
 			if (ciudad != null && sector != null && direccion != null)
@@ -880,7 +880,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				{
 
-					throw new Exception("No se pudo crear una sucursal con la información dada ");
+					throw new Exception("No se pudo crear una sucursal con la informaciï¿½n dada ");
 
 				}
 
@@ -888,7 +888,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				resultado += "Sucursal adicionada exitosamente: " + tb;
 
-				resultado += "\n Operación terminada";
+				resultado += "\n Operaciï¿½n terminada";
 
 				panelDatos.actualizarInterfaz(resultado);
 
@@ -898,7 +898,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 			{
 
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				panelDatos.actualizarInterfaz("Operaciï¿½n cancelada por el usuario");
 
 			}
 
@@ -926,13 +926,13 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 		{
 
-			String ciudad = JOptionPane.showInputDialog(this, "En qué ciudad se encuentra la sucursal?",
+			String ciudad = JOptionPane.showInputDialog(this, "En quï¿½ ciudad se encuentra la sucursal?",
 					"Adicionar Sucursal", JOptionPane.QUESTION_MESSAGE);
 
-			String sector = JOptionPane.showInputDialog(this, "En qué sector se encuentra la bodega?",
+			String sector = JOptionPane.showInputDialog(this, "En quï¿½ sector se encuentra la bodega?",
 					"Adicionar Sucursal", JOptionPane.QUESTION_MESSAGE);
 
-			String direccion = JOptionPane.showInputDialog(this, "Cual es la dirección de la sucursal?",
+			String direccion = JOptionPane.showInputDialog(this, "Cual es la direcciï¿½n de la sucursal?",
 					"Adicionar Sucursal", JOptionPane.QUESTION_MESSAGE);
 
 			if (ciudad != null && sector != null && direccion != null)
@@ -945,7 +945,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				{
 
-					throw new Exception("No se pudo crear una sucursal con la información dada ");
+					throw new Exception("No se pudo crear una sucursal con la informaciï¿½n dada ");
 
 				}
 
@@ -953,7 +953,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				resultado += "Sucursal adicionada exitosamente: " + tb;
 
-				resultado += "\n Operación terminada";
+				resultado += "\n Operaciï¿½n terminada";
 
 				panelDatos.actualizarInterfaz(resultado);
 
@@ -963,7 +963,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 			{
 
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				panelDatos.actualizarInterfaz("Operaciï¿½n cancelada por el usuario");
 
 			}
 
@@ -998,10 +998,10 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 		{
 
-			String sucursalS = JOptionPane.showInputDialog(this, "A qué sucursal quiere agregar la bodega?",
+			String sucursalS = JOptionPane.showInputDialog(this, "A quï¿½ sucursal quiere agregar la bodega?",
 					"Adicionar Bodega", JOptionPane.QUESTION_MESSAGE);
 
-			String tipoProductoS = JOptionPane.showInputDialog(this, "Qué tipo de producto almacena en la bodega?",
+			String tipoProductoS = JOptionPane.showInputDialog(this, "Quï¿½ tipo de producto almacena en la bodega?",
 					"Adicionar Bodega", JOptionPane.QUESTION_MESSAGE);
 
 			String capacidadVolumenS = JOptionPane.showInputDialog(this, "Capacidad en cm^3 de la bodega",
@@ -1028,7 +1028,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				{
 
-					throw new Exception("No se pudo crear una bodega con la información dada ");
+					throw new Exception("No se pudo crear una bodega con la informaciï¿½n dada ");
 
 				}
 
@@ -1036,7 +1036,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				resultado += "Bodega adicionada exitosamente: " + tb;
 
-				resultado += "\n Operación terminada";
+				resultado += "\n Operaciï¿½n terminada";
 
 				panelDatos.actualizarInterfaz(resultado);
 
@@ -1046,7 +1046,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 			{
 
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				panelDatos.actualizarInterfaz("Operaciï¿½n cancelada por el usuario");
 
 			}
 
@@ -1081,10 +1081,10 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 		{
 
-			String sucursalS = JOptionPane.showInputDialog(this, "A qué sucursal quiere agregar el estante?",
+			String sucursalS = JOptionPane.showInputDialog(this, "A quï¿½ sucursal quiere agregar el estante?",
 					"Adicionar Estante", JOptionPane.QUESTION_MESSAGE);
 
-			String tipoProductoS = JOptionPane.showInputDialog(this, "Qué tipo de producto almacena el estante?",
+			String tipoProductoS = JOptionPane.showInputDialog(this, "Quï¿½ tipo de producto almacena el estante?",
 					"Adicionar Estante", JOptionPane.QUESTION_MESSAGE);
 
 			String capacidadVolumenS = JOptionPane.showInputDialog(this, "Capacidad en cm^3 del estante",
@@ -1119,7 +1119,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				{
 
-					throw new Exception("No se pudo crear un estante con la información dada ");
+					throw new Exception("No se pudo crear un estante con la informaciï¿½n dada ");
 
 				}
 
@@ -1127,7 +1127,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				resultado += "Estante adicionado exitosamente: " + tb;
 
-				resultado += "\n Operación terminada";
+				resultado += "\n Operaciï¿½n terminada";
 
 				panelDatos.actualizarInterfaz(resultado);
 
@@ -1137,7 +1137,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 			{
 
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				panelDatos.actualizarInterfaz("Operaciï¿½n cancelada por el usuario");
 
 			}
 
@@ -1166,10 +1166,10 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 	/**
 	 * 
-	 * Adiciona un tipo de bebida con la información dada por el usuario
+	 * Adiciona un tipo de bebida con la informaciï¿½n dada por el usuario
 	 * 
 	 * Se crea una nueva tupla de tipoBebida en la base de datos, si un tipo de
-	 * bebida con ese nombre no existía
+	 * bebida con ese nombre no existï¿½a
 	 * 
 	 */
 
@@ -1205,7 +1205,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				resultado += "Tipo de producto adicionado exitosamente: " + tb;
 
-				resultado += "\n Operación terminada";
+				resultado += "\n Operaciï¿½n terminada";
 
 				panelDatos.actualizarInterfaz(resultado);
 
@@ -1215,7 +1215,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 			{
 
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				panelDatos.actualizarInterfaz("Operaciï¿½n cancelada por el usuario");
 
 			}
 
@@ -1274,7 +1274,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				{
 
-					throw new Exception("No se pudo crear un proveedor con la información dada ");
+					throw new Exception("No se pudo crear un proveedor con la informaciï¿½n dada ");
 
 				}
 
@@ -1282,7 +1282,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				resultado += "Proveedor adicionado exitosamente: " + tb;
 
-				resultado += "\n Operación terminada";
+				resultado += "\n Operaciï¿½n terminada";
 
 				panelDatos.actualizarInterfaz(resultado);
 
@@ -1292,7 +1292,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 			{
 
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				panelDatos.actualizarInterfaz("Operaciï¿½n cancelada por el usuario");
 
 			}
 
@@ -1378,7 +1378,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				{
 
-					throw new Exception("No se pudo crear un producto con la información dada ");
+					throw new Exception("No se pudo crear un producto con la informaciï¿½n dada ");
 
 				}
 
@@ -1386,7 +1386,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 				resultado += "Producto adicionado exitosamente: " + tb;
 
-				resultado += "\n Operación terminada";
+				resultado += "\n Operaciï¿½n terminada";
 
 				panelDatos.actualizarInterfaz(resultado);
 
@@ -1396,7 +1396,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 			{
 
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				panelDatos.actualizarInterfaz("Operaciï¿½n cancelada por el usuario");
 
 			}
 
@@ -1419,7 +1419,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 	/*
 	 * ****************************************************************
 	 * 
-	 * Métodos administrativos
+	 * Mï¿½todos administrativos
 	 * 
 	 *****************************************************************/
 
@@ -1455,7 +1455,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 	 * 
 	 * Limpia el contenido del log de parranderos
 	 * 
-	 * Muestra en el panel de datos la traza de la ejecución
+	 * Muestra en el panel de datos la traza de la ejecuciï¿½n
 	 * 
 	 */
 
@@ -1463,11 +1463,11 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 	{
 
-// Ejecución de la operación y recolección de los resultados
+// Ejecuciï¿½n de la operaciï¿½n y recolecciï¿½n de los resultados
 
 		boolean resp = limpiarArchivo("parranderos.log");
 
-// Generación de la cadena de caracteres con la traza de la ejecución de la demo
+// Generaciï¿½n de la cadena de caracteres con la traza de la ejecuciï¿½n de la demo
 
 		String resultado = "\n\n************ Limpiando el log de parranderos ************ \n";
 
@@ -1483,7 +1483,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 	 * 
 	 * Limpia el contenido del log de datanucleus
 	 * 
-	 * Muestra en el panel de datos la traza de la ejecución
+	 * Muestra en el panel de datos la traza de la ejecuciï¿½n
 	 * 
 	 */
 
@@ -1491,11 +1491,11 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 	{
 
-// Ejecución de la operación y recolección de los resultados
+// Ejecuciï¿½n de la operaciï¿½n y recolecciï¿½n de los resultados
 
 		boolean resp = limpiarArchivo("datanucleus.log");
 
-// Generación de la cadena de caracteres con la traza de la ejecución de la demo
+// Generaciï¿½n de la cadena de caracteres con la traza de la ejecuciï¿½n de la demo
 
 		String resultado = "\n\n************ Limpiando el log de datanucleus ************ \n";
 
@@ -1510,18 +1510,18 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 	/*
 	 * ****************************************************************
 	 * 
-	 * Métodos privados para la presentación de resultados y otras operaciones
+	 * Mï¿½todos privados para la presentaciï¿½n de resultados y otras operaciones
 	 * 
 	 *****************************************************************/
 
 	/**
 	 * 
-	 * Genera una cadena de caracteres con la descripción de la excepcion e,
-	 * haciendo énfasis en las excepcionsde JDO
+	 * Genera una cadena de caracteres con la descripciï¿½n de la excepcion e,
+	 * haciendo ï¿½nfasis en las excepcionsde JDO
 	 * 
-	 * @param e - La excepción recibida
+	 * @param e - La excepciï¿½n recibida
 	 * 
-	 * @return La descripción de la excepción, cuando es
+	 * @return La descripciï¿½n de la excepciï¿½n, cuando es
 	 *         javax.jdo.JDODataStoreException, "" de lo contrario
 	 * 
 	 */
@@ -1548,11 +1548,11 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 	/**
 	 * 
-	 * Genera una cadena para indicar al usuario que hubo un error en la aplicación
+	 * Genera una cadena para indicar al usuario que hubo un error en la aplicaciï¿½n
 	 * 
-	 * @param e - La excepción generada
+	 * @param e - La excepciï¿½n generada
 	 * 
-	 * @return La cadena con la información de la excepción y detalles adicionales
+	 * @return La cadena con la informaciï¿½n de la excepciï¿½n y detalles adicionales
 	 * 
 	 */
 
@@ -1560,11 +1560,11 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 	{
 
-		String resultado = "************ Error en la ejecución\n";
+		String resultado = "************ Error en la ejecuciï¿½n\n";
 
 		resultado += e.getLocalizedMessage() + ", " + darDetalleException(e);
 
-		resultado += "\n\nRevise datanucleus.log y parranderos.log para más detalles";
+		resultado += "\n\nRevise datanucleus.log y parranderos.log para mï¿½s detalles";
 
 		return resultado;
 
@@ -1614,7 +1614,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 	/**
 	 * 
-	 * Abre el archivo dado como parámetro con la aplicación por defecto del sistema
+	 * Abre el archivo dado como parï¿½metro con la aplicaciï¿½n por defecto del sistema
 	 * 
 	 * @param nombreArchivo - El nombre del archivo que se quiere mostrar
 	 * 
@@ -1647,16 +1647,16 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 	/*
 	 * ****************************************************************
 	 * 
-	 * Métodos de la Interacción
+	 * Mï¿½todos de la Interacciï¿½n
 	 * 
 	 *****************************************************************/
 
 	/**
 	 * 
-	 * Método para la ejecución de los eventos que enlazan el menú con los métodos
+	 * Mï¿½todo para la ejecuciï¿½n de los eventos que enlazan el menï¿½ con los mï¿½todos
 	 * de negocio
 	 * 
-	 * Invoca al método correspondiente según el evento recibido
+	 * Invoca al mï¿½todo correspondiente segï¿½n el evento recibido
 	 * 
 	 * @param pEvento - El evento del usuario
 	 * 
@@ -1699,9 +1699,9 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 	/**
 	 * 
-	 * Este método ejecuta la aplicación, creando una nueva interfaz
+	 * Este mï¿½todo ejecuta la aplicaciï¿½n, creando una nueva interfaz
 	 * 
-	 * @param args Arreglo de argumentos que se recibe por línea de comandos
+	 * @param args Arreglo de argumentos que se recibe por lï¿½nea de comandos
 	 * 
 	 */
 
