@@ -90,7 +90,6 @@ class SQLUtil
         Query sqlSucursal = pm.newQuery(SQL, "DELETE FROM" +psa.darTablaSucursal());
         Query sqlTipoProducto = pm.newQuery(SQL, "DELETE FROM" +psa.darTablaTipoProducto());
         Query sqlCarrtioCompras = pm.newQuery(SQL, "DELETE FROM" +psa.darTablaCarritoCompras());
-        Query sqlVisitaMercado = pm.newQuery(SQL, "DELETE FROM" +psa.darTablaVisitaMercado());
         Query sqlSeleccionProductos = pm.newQuery(SQL, "DELETE FROM" +psa.darTablaSeleccionProductos());
         
         long alberganEliminados = (long) sqlAlbergan.executeUnique();
@@ -109,11 +108,10 @@ class SQLUtil
         long sucursalEliminados = (long) sqlSucursal.executeUnique();
         long tipoProductoEliminados = (long) sqlTipoProducto.executeUnique();
         long carritoComprasEliminados = (long) sqlCarrtioCompras.executeUnique();
-        long visitaMercadoEliminados = (long) sqlVisitaMercado.executeUnique();
         long seleccionProductosEliminados = (long) sqlSeleccionProductos.executeUnique();
         return new long[] {alberganEliminados, almacenanEliminados,bodegaEliminados, clienteEliminados, estanteEliminados,facturaEliminados, 
         		            inventarioEliminados, pedidoEliminados, productoEliminados, promocionEliminados, promocionesEliminados,
         		            proveedorEliminados, proveenEliminados, sucursalEliminados, tipoProductoEliminados, 
-        		            carritoComprasEliminados, visitaMercadoEliminados, seleccionProductosEliminados};
+        		            carritoComprasEliminados, seleccionProductosEliminados};
 	}
 }

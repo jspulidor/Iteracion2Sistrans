@@ -1,9 +1,11 @@
 package uniandes.isis2304.supermercado.persistencia;
 
 import java.sql.Timestamp;
-
+import java.util.List;
 import javax.jdo.PersistenceManager;
 
+import uniandes.isis2304.supermercados.negocio.Albergan;
+import uniandes.isis2304.supermercados.negocio.CarritoCompras;
 import javax.jdo.Query;
 public class SQLCarritoCompras 
 {
@@ -50,4 +52,52 @@ public class SQLCarritoCompras
 		sql.setParameters(id, idSucursal, idCliente, Disponibilidad, Abandonado, fechaVisista);
 		return (long) sql.executeUnique();
 	}
+	
+	/**
+	 * Actualiza y ejecuta la sentencia SQL para actualizar un CARRTITOCOMPRAS a la base de datos de SuperAndes
+	 * @param idSucursal - Identificar de la sucursal
+	 * @param id - Identificador del carrito
+	 * @return El número de tuplas actualizadas
+	 */
+	public long actualizarDisponibilidad(PersistenceManager pm, int idSucursal, int id)
+	{
+		Query sql = pm.newQuery(SQL, "UPDATE "+psa.darTablaCarritoCompras()+" SET disponibilidad = SI WHERE id_sucursal = "+idSucursal+" AND id = "+id);
+		sql.setParameters(idSucursal, id);
+		return  (long) sql.executeUnique();
+	}
+	
+	/**
+	 * Actualiza y ejecuta la sentencia SQL para actualizar un CARRTITOCOMPRAS a la base de datos de SuperAndes
+	 * @param idSucursal - Identificar de la sucursal
+	 * @param id - Identificador del carrito
+	 * @return El número de tuplas actualizadas
+	 */
+	public long actualizarAbandonoSI(PersistenceManager pm, int idSucursal, int id)
+	{
+		Query sql = pm.newQuery(SQL, "UPDATE "+psa.darTablaCarritoCompras()+" SET abandonado = 'SI' WHERE id_sucursal = "+idSucursal+" AND id = "+id);
+		sql.setParameters(idSucursal, id);
+		return (long) sql.executeUnique();
+	}
+	
+	/**
+	 * Actualiza y ejecuta la sentencia SQL para actualizar un CARRTITOCOMPRAS a la base de datos de SuperAndes
+	 * @param idSucursal - Identificar de la sucursal
+	 * @param id - Identificador del carrito
+	 * @return El número de tuplas actualizadas
+	 */
+	public long actualizarAbandonoNO(PersistenceManager pm, int idSucursal, int id)
+	{
+		Query sql = pm.newQuery(SQL, "UPDATE "+psa.darTablaCarritoCompras()+" SET abandonado = 'NO' WHERE id_sucursal = "+idSucursal+" AND id = "+id);
+		sql.setParameters(idSucursal, id);
+		return (long) sql.executeUnique();
+	}
+	
+	
+	public List<CarritoCompras> darCarritosAbandonados(PersistenceManager pm)
+	{
+		Query sql = pm.newQuery(SQL, "SELECT id FROM " +psa.darTablaCarritoCompras()+" WHERE abandonado = 'SI'");
+		sql.setResultClass(CarritoCompras.class);
+		return (List<CarritoCompras>) sql.execute();
+	}
+	
 }

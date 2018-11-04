@@ -943,7 +943,7 @@ public class PersistenciaSuperAndes
 		{
 			tx.begin();
 			long resp = sqlSeleccionProductos.adicionarSeleccionProductos(pm, pIdProducto, pIdCarritoCompras, pCantidad);
-			long resp2 = sqlAlbergan.eliminarAlbergan(pm, pIdProducto, pIdEstante);
+			long resp2 = sqlAlbergan.disminuirProductoEnEstante(pm, pIdEstante, pIdProducto, pCantidad);
 			tx.commit();
 			//Inserción y Eliminación
 			return resp + resp2;
@@ -1000,7 +1000,7 @@ public class PersistenciaSuperAndes
 		{
 			tx.begin();
 			long resp = sqlSeleccionProductos.devolverCantidadProductos(pm, pIdProducto, pIdCarrtioCompras, pCantidad);
-			long resp2 = sqlAlbergan.adicionarAlbergan(pm, pIdProducto, pIdEstante, pCantidad);
+			long resp2 = sqlAlbergan.aumentarProductoEnEstante(pm, pIdEstante, pIdProducto, pCantidad);
 			tx.commit();
 			//Eliminación + Inserción
 			return resp + resp2;
@@ -1012,7 +1012,39 @@ public class PersistenciaSuperAndes
 		}
 	}
 	
-	
+	/**
+	 * RF15
+	 * Genera la factura corresponiente a la compra de un clinete
+	 * Adiciona entradas al log de la aplicaciï¿½n
+	 * @param pIdSucursal
+	 * @param pIdProducto
+	 * @param pCantidad
+	 * @param pIdFactura
+	 * @param pIdCarritoCompras
+	 * @param pTotal
+	 * @param pFecha
+	 * @return El objeto Factura insertado. null si ocurre alguna Excepciï¿½n
+	 */
+	public long pagarCompra(int pIdSucursal, int pIdCliente, int pIdProducto, int pCantidad, int pIdCarritoCompras, int pTotal, Timestamp pFecha)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			int pIdFactura = (int) nextval();
+			long resp = sqlFactura.generarFactura(pm, pIdFactura, pIdCarritoCompras, pIdCliente, pTotal, pFecha);
+			long resp2 = sqlInventario.disminuirInventario(pm, pIdSucursal, pIdProducto, pCantidad);
+			long resp3 = sqlCarritoCompras.actualizarDisponibilidad(pm, pIdSucursal, pIdCarritoCompras);
+			tx.commit();
+			return resp + resp2 + resp3;
+		}
+		catch(Exception e)
+		{
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return -1;	
+		}
+	}
 	
 	/**
 	 * RF16
@@ -1023,16 +1055,20 @@ public class PersistenciaSuperAndes
 	 * @param idCliente - Identificador del cliente
 	 * @return El objeto CarritoCompras actualizado. null si ocurre alguna Excepciï¿½n
 	 */
-	public long abandonarCarritoCompras(int pId, int pIdSucursal, int idCliente)
+	public long abandonarCarritoCompras(int pIdSucursal, int pIdCarrito, int pIdProducto, int pIdEstante, int pCantidad)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 		try
 		{
 			tx.begin();
-			long resp = sqlCliente.abandonarCarrito(pm, pId, pIdSucursal, idCliente);
+			long resp = sqlCarritoCompras.actualizarAbandonoSI(pm, pIdSucursal, pIdCarrito);	
+			long resp2 = sqlSeleccionProductos.devolverSeleccionProductos(pm, pIdProducto, pIdCarrito);
+			long resp3 = sqlAlbergan.adicionarAlbergan(pm, pIdProducto, pIdEstante, pCantidad);
+			long resp4 = sqlCarritoCompras.actualizarAbandonoNO(pm, pIdSucursal, pIdCarrito);
+			long resp5 = sqlCarritoCompras.actualizarDisponibilidad(pm, pIdSucursal, pIdCarrito);
 			tx.commit();
-			return resp;
+			return resp + resp2 + resp3 + resp4 +resp5;
 		}
 		catch(Exception e)
 		{
@@ -1047,16 +1083,23 @@ public class PersistenciaSuperAndes
 	 * Adiciona entradas al log de la aplicaciï¿½n
 	 * @return El objeto Albergan actualizado. null si ocurre alguna Excepciï¿½n
 	 */
-	public long recolectarProductosAbandonados()
+	public long recolectarProductosAbandonados(int pIdProducto, int pIdEstante, int pCantidad)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 		try
 		{
-			tx.begin();
-			long resp = sqlSucursal.recolectarProductosAbandonados(pm);
-			tx.commit();
-			return resp;
+			long resp = 0;
+			long resp2 = 0;
+			
+			for(CarritoCompras carrito : sqlCarritoCompras.darCarritosAbandonados(pm))
+			{
+				tx.begin();
+				resp = sqlSeleccionProductos.devolverSeleccionProductos(pm, pIdProducto, carrito.id);
+				resp2 = sqlAlbergan.adicionarAlbergan(pm, pIdProducto, pIdEstante, pCantidad);
+				tx.commit();
+			}
+			return resp + resp2;
 		}
 		catch (Exception e) 
 		{

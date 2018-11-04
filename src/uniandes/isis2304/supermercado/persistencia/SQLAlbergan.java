@@ -61,7 +61,7 @@ class SQLAlbergan
 	 * @param pm - El manejador de persistencia
 	 * @return El número de tuplas modificadas
 	 */
-	public long aumentarProductoEnEstante(PersistenceManager pm, String idEstante, String idProducto, int cantidad)
+	public long aumentarProductoEnEstante(PersistenceManager pm, int idEstante, int idProducto, int cantidad)
 	{
         Query q = pm.newQuery(SQL, "UPDATE " + psa.darTablaAlbergan() + " SET cantidad_producto = cantidad_producto + "+cantidad+" WHERE id_estante = ? AND id_producto = ?");
         q.setParameters(idEstante, idProducto);
@@ -74,7 +74,7 @@ class SQLAlbergan
 	 * @param pm - El manejador de persistencia
 	 * @return El número de tuplas modificadas
 	 */
-	public long disminuirProductoEnEstante(PersistenceManager pm, String idEstante, String idProducto, int cantidad)
+	public long disminuirProductoEnEstante(PersistenceManager pm, int idEstante, int idProducto, int cantidad)
 	{
         Query q = pm.newQuery(SQL, "UPDATE " + psa.darTablaAlbergan() + " SET cantidad_producto = cantidad_producto - "+cantidad+" WHERE id_estante = ? AND id_producto = ?");
         q.setParameters(idEstante, idProducto);
