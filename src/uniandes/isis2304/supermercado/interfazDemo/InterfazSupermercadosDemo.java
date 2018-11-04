@@ -34,6 +34,8 @@ import com.google.gson.stream.JsonReader;
 
 import uniandes.isis2304.supermercados.negocio.SuperAndes;
 import uniandes.isis2304.supermercados.negocio.VOBodega;
+import uniandes.isis2304.supermercados.negocio.VOCarritoCompras;
+import uniandes.isis2304.supermercados.negocio.VOCliente;
 import uniandes.isis2304.supermercados.negocio.VOEstante;
 import uniandes.isis2304.supermercados.negocio.VOProducto;
 import uniandes.isis2304.supermercados.negocio.VOSucursal;
@@ -106,7 +108,7 @@ public class InterfazSupermercadosDemo extends JFrame implements ActionListener 
 				errorTipoProducto= true;
 			}
 			int idTipoProducto= tipoProducto.getId();
-			VOSucursal sucursal1 = superandes.adicionarSucursal("Bogotá", "Teusaquillo", "Calle Falsa 123");
+			VOSucursal sucursal1 = superandes.adicionarSucursal("Bogotá", "Teusaquillo", "Calle Falsa 1234");
 			int idSucursal=sucursal1.getId();
 			VOEstante estante1 = superandes.adicionarEstante(idTipoProducto, idSucursal, 1000.0,1000.0 , 34);
 			int idEstante = estante1.getId();
@@ -195,12 +197,76 @@ public class InterfazSupermercadosDemo extends JFrame implements ActionListener 
 	}
 	
 	public void demoBodega()
-	{
+	{	
+		try 
+		{
+
+			VOTipoProducto tipoProducto = superandes.adicionarTipoProducto ("Cerveza","PERECEDERO");
+			int idTipoProducto= tipoProducto.getId();
+    		// Ejecución de la demo y recolección de los resultados
+			// ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
+			
+			VOSucursal sucursal1 = superandes.adicionarSucursal("Bogotá", "Teusaquillo", "Calle Falsa 123456");
+			int idSucursal=sucursal1.getId();
+			
+			VOBodega bodega = superandes.adicionarBodega(idTipoProducto, idSucursal, 100.0, 100.0);
+			int bodega1=bodega.getId();
+			
+			
+			
+			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
+			String resultado = "Demo de creación y listado de Bares\n\n";
+			resultado += "\n\n************ Generando datos de prueba ************ \n";
+			resultado += "Adicionado la bodega: " + bodega1 + "\n";
+			resultado += "\n\n************ Ejecutando la demo ************ \n";
+			resultado += "\n\n************ Limpiando la base de datos ************ \n";
+			resultado += "\n Demo terminada";
+   
+			panelDatos.actualizarInterfaz(resultado);
+		} 
+		catch (Exception e) 
+		{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 		
 	}
 	
 	public void demoCarritoCompras()
 	{
+		
+		try 
+		{
+
+			VOCliente cliente = superandes.adicionarCliente(1234, "Pepo Perez", "pepoperez@hotmail.com", "Bogota", "Calle Falsa 123");
+			int idCliente= cliente.getDocIdentidad();
+    		// Ejecución de la demo y recolección de los resultados
+			// ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
+			
+			VOSucursal sucursal1 = superandes.adicionarSucursal("Bogotá", "Teusaquillo", "Calle Falsa 1234567");
+			int idSucursal=sucursal1.getId();
+			
+			long carritoCompras = superandes.solicitarCarritoCompras(idSucursal, idCliente, "NO", "NO", new Timestamp(System.currentTimeMillis()));
+			
+			
+			
+			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
+			String resultado = "Demo de creación y listado de Bares\n\n";
+			resultado += "\n\n************ Generando datos de prueba ************ \n";
+			resultado += "Adicionado la bodega: " + carritoCompras + "\n";
+			resultado += "\n\n************ Ejecutando la demo ************ \n";
+			resultado += "\n\n************ Limpiando la base de datos ************ \n";
+			resultado += "\n Demo terminada";
+   
+			panelDatos.actualizarInterfaz(resultado);
+		} 
+		catch (Exception e) 
+		{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 		
 	}
 	
