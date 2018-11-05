@@ -247,5 +247,10 @@ public class SuperAndes
 		return resp;
 	}
 	
+	public long generarFactura(int idFactura, int idCarritoCompras, int idCliente, double total, Timestamp fecha)
+	{
+		long resp = psa.generarFactura(idFactura, idCarritoCompras, idCliente, total, fecha);
+		return resp;
+	}
 	
 }
