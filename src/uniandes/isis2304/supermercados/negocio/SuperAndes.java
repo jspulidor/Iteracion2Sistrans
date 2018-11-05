@@ -253,4 +253,10 @@ public class SuperAndes
 		return resp;
 	}
 	
+	public long recolectarProductosAbandonados(int pIdProducto,int pIdEstante,int pCantidad)
+	{
+		long resp = psa.recolectarProductosAbandonados(pIdProducto, pIdEstante, pCantidad);
+		return resp;
+	}
+	
 }

@@ -777,73 +777,6 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 	{
 
-		try
-
-		{
-
-			String idClienteP = JOptionPane.showInputDialog(this, "Cual es el numero de identificaci�n del cliente?",
-					"Adicionar Cliente", JOptionPane.QUESTION_MESSAGE);
-
-			String idSucursalP = JOptionPane.showInputDialog(this, "Cual es el nombre del cliente?", "Adicionar Cliente",
-					JOptionPane.QUESTION_MESSAGE);
-
-			String correo = JOptionPane.showInputDialog(this, "Cual es el correo del cliente?", "Adicionar Cliente",
-					JOptionPane.QUESTION_MESSAGE);
-
-			String ciudad = JOptionPane.showInputDialog(this, "Cual es la ciudad de residencia del cliente?",
-					"Adicionar Cliente", JOptionPane.QUESTION_MESSAGE);
-
-			String direccion = JOptionPane.showInputDialog(this, "Cual es la ciudad de residencia del cliente?",
-					"Adicionar Cliente", JOptionPane.QUESTION_MESSAGE);
-
-			if (idS != null && nombre != null && correo != null && ciudad != null && direccion != null)
-
-			{
-
-				int idCliente = Integer.parseInt(idS);
-
-				VOCliente tb = superAndes.adicionarCliente(idCliente, nombre, correo, ciudad, direccion);
-
-				if (tb == null)
-
-				{
-
-					throw new Exception("No se pudo crear un cliente con la informaci�n dada ");
-
-				}
-
-				String resultado = "En adicionarCliente\n\n";
-
-				resultado += "Cliente adicionado exitosamente: " + tb;
-
-				resultado += "\n Operaci�n terminada";
-
-				panelDatos.actualizarInterfaz(resultado);
-
-			}
-
-			else
-
-			{
-
-				panelDatos.actualizarInterfaz("Operaci�n cancelada por el usuario");
-
-			}
-
-		}
-
-		catch (Exception e)
-
-		{
-
-// e.printStackTrace();
-
-			String resultado = generarMensajeError(e);
-
-			panelDatos.actualizarInterfaz(resultado);
-
-		}
-
 	}
 
 	/*
@@ -926,32 +859,35 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 		{
 
-			String ciudad = JOptionPane.showInputDialog(this, "En qu� ciudad se encuentra la sucursal?",
-					"Adicionar Sucursal", JOptionPane.QUESTION_MESSAGE);
+			String idProductoP = JOptionPane.showInputDialog(this, "Ingrese el id del producto que quiere recolectar",
+					"Recolectar Productos Abandonados", JOptionPane.QUESTION_MESSAGE);
 
-			String sector = JOptionPane.showInputDialog(this, "En qu� sector se encuentra la bodega?",
-					"Adicionar Sucursal", JOptionPane.QUESTION_MESSAGE);
+			String idEstanteP = JOptionPane.showInputDialog(this, "Ingrese el id del estante",
+					"Recolectar Productos Abandonados", JOptionPane.QUESTION_MESSAGE);
 
-			String direccion = JOptionPane.showInputDialog(this, "Cual es la direcci�n de la sucursal?",
-					"Adicionar Sucursal", JOptionPane.QUESTION_MESSAGE);
+			String cantidadP = JOptionPane.showInputDialog(this, "Ingrese la cantidad",
+					"Recolectar Productos Abandonados", JOptionPane.QUESTION_MESSAGE);
 
-			if (ciudad != null && sector != null && direccion != null)
+			if (idProductoP != null && idEstanteP!= null && cantidadP != null)
 
 			{
+				
+				int idProducto = Integer.parseInt(idProductoP);
+				int idEstante = Integer.parseInt(idEstanteP);
+				int cantidad = Integer.parseInt(cantidadP);
+				long tb = superAndes.recolectarProductosAbandonados(idProducto, idEstante, cantidad);
 
-				VOSucursal tb = superAndes.adicionarSucursal(ciudad, sector, direccion);
-
-				if (tb == null)
+				if (tb == -1)
 
 				{
 
-					throw new Exception("No se pudo crear una sucursal con la informaci�n dada ");
+					throw new Exception("No se pudieron recolectar los productos indicados ");
 
 				}
 
 				String resultado = "En adicionarSucursal\n\n";
 
-				resultado += "Sucursal adicionada exitosamente: " + tb;
+				resultado += "Recoleccion exitosa: " + tb;
 
 				resultado += "\n Operaci�n terminada";
 
@@ -973,7 +909,7 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 		{
 
-// e.printStackTrace();
+			// e.printStackTrace();
 
 			String resultado = generarMensajeError(e);
 
