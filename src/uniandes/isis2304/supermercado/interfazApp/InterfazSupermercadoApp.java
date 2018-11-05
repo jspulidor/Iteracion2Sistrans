@@ -708,30 +708,34 @@ public class InterfazSupermercadoApp extends JFrame implements ActionListener
 
 		{
 
-			String idS = JOptionPane.showInputDialog(this, "Cual es el numero de identificaci�n del cliente?",
+			String idSucursalP = JOptionPane.showInputDialog(this, "Cual es el id de la sucursal del carrito?",
 					"Adicionar Cliente", JOptionPane.QUESTION_MESSAGE);
 
-			String nombre = JOptionPane.showInputDialog(this, "Cual es el nombre del cliente?", "Adicionar Cliente",
+			String idCarritoP = JOptionPane.showInputDialog(this, "Cual es el id del carrito?", "Adicionar Cliente",
 					JOptionPane.QUESTION_MESSAGE);
 
-			String correo = JOptionPane.showInputDialog(this, "Cual es el correo del cliente?", "Adicionar Cliente",
+			String idProductoP = JOptionPane.showInputDialog(this, "Cual es el id del producto?", "Adicionar Cliente",
 					JOptionPane.QUESTION_MESSAGE);
 
-			String ciudad = JOptionPane.showInputDialog(this, "Cual es la ciudad de residencia del cliente?",
+			String idEstanteP = JOptionPane.showInputDialog(this, "Cual es el id del estante?",
 					"Adicionar Cliente", JOptionPane.QUESTION_MESSAGE);
 
-			String direccion = JOptionPane.showInputDialog(this, "Cual es la ciudad de residencia del cliente?",
+			String idCantidadP = JOptionPane.showInputDialog(this, "Cual es la cantidad de producto?",
 					"Adicionar Cliente", JOptionPane.QUESTION_MESSAGE);
 
-			if (idS != null && nombre != null && correo != null && ciudad != null && direccion != null)
+			if (idSucursalP != null && idCarritoP != null && idEstanteP != null && idCantidadP != null)
 
 			{
 
-				int idCliente = Integer.parseInt(idS);
+				int idSucursal = Integer.parseInt(idSucursalP);
+				int idCarrito = Integer.parseInt(idCarritoP);
+				int idProducto = Integer.parseInt(idProductoP);
+				int idEstante = Integer.parseInt(idEstanteP);
+				int idCantidad = Integer.parseInt(idCantidadP);
 
-				VOCliente tb = superAndes.adicionarCliente(idCliente, nombre, correo, ciudad, direccion);
+				long tb = superAndes.abandonarCarritoCompras(idSucursal, idCarrito, idProducto, idEstante, idCantidad);
 
-				if (tb == null)
+				if (tb == -1)
 
 				{
 

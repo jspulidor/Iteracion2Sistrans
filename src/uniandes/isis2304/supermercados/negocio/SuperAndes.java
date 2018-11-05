@@ -259,4 +259,11 @@ public class SuperAndes
 		return resp;
 	}
 	
+	public long abandonarCarritoCompras(int pIdSucursal, int pIdCarrito, int pIdProducto, int pIdEstante, int pCantidad)
+	{
+		long resp = psa.abandonarCarritoCompras(pIdSucursal, pIdCarrito, pIdProducto, pIdEstante, pCantidad);
+		return resp;
+	}
+
+	
 }
